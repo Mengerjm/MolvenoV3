@@ -10,6 +10,7 @@ public class Order {
     private List<Special> specials;
     private int tableNumber;
     private Guest guest;
+    private boolean isPaid;
     private LocalDateTime orderDateTime;
 
     //region getters and setters
