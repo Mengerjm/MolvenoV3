@@ -1,16 +1,14 @@
 package nl.yacht.molvenov3.controller;
 
 import nl.yacht.molvenov3.model.Ingredient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api/ingredients")
 public class IngredientController {
 
-    @GetMapping("/api/getIngrient")
-    public Ingredient getIngrient(){
+    @GetMapping
+    public Ingredient getIngredient(){
 
         Ingredient result = new Ingredient("pasta", true, 100, 3.40);
 
@@ -19,6 +17,7 @@ public class IngredientController {
 
     @PostMapping
     public void save(@RequestBody Ingredient ingredient){
+        System.err.println(ingredient.getName());
         System.err.println(ingredient.isAllergen());
         System.err.println(ingredient.getNumberOfStock());
         System.err.println(ingredient.getCostPrice());
