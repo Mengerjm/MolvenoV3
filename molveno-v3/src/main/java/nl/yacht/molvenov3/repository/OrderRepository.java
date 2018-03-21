@@ -16,17 +16,23 @@ public class OrderRepository {
 
     private Map<Integer, Order> orderMap = new HashMap<>();
 
-    public List<Drink> findAllDrink(int tableNumber) {
+    public Order save(Order order){
+        int tableNumber = order.getTableNumber();
+        this.orderMap.put(tableNumber, order);
+        return order;
+    }
+
+    public List<Drink> findAllDrinks(int tableNumber) {
         Order myOrder = this.orderMap.get(tableNumber);
         return myOrder.getDrinks();
     }
 
-    public List<Dish> findAllDish(int tableNumber) {
+    public List<Dish> findAllDishes(int tableNumber) {
         Order myOrder = this.orderMap.get(tableNumber);
         return myOrder.getDishes();
     }
 
-    public List<Special> findAllSpecial(int tableNumber) {
+    public List<Special> findAllSpecials(int tableNumber) {
         Order myOrder = this.orderMap.get(tableNumber);
         return myOrder.getSpecials();
     }
@@ -34,8 +40,19 @@ public class OrderRepository {
     public Drink addDrink(int tableNumber, Drink drinkToAdd){
         Order myOrder = this.orderMap.get(tableNumber);
         myOrder.getDrinks().add(drinkToAdd);
-        this.orderMap.put(tableNumber, myOrder);
-        return toBeSaved;
+        return drinkToAdd;
+    }
+
+    public Dish addDish(int tableNumber, Dish dishToAdd) {
+        Order myOrder = this.orderMap.get(tableNumber);
+        myOrder.getDishes().add(dishToAdd);
+        return dishToAdd;
+    }
+
+    public Special addSpecial(int tableNumber, Special specialToAdd) {
+        Order myOrder = this.orderMap.get(tableNumber);
+        myOrder.getSpecials().add(specialToAdd);
+        return specialToAdd;
     }
 
     public void delete(int tableNumber){

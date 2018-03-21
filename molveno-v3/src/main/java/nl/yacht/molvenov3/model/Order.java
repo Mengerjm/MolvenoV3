@@ -77,13 +77,17 @@ public class Order {
 
     public Order(){}
 
-    public Order(Map<String,Drink> drinks, Map<String, Dish> dishes, Map<String, Special> specials, int tableNumber, Guest guest) {
+    public Order(int tableNumber) {
+        this.tableNumber = tableNumber;
+        this.orderDateTime = LocalDateTime.now();
+    }
+
+    public Order(List<Drink> drinks, List<Dish> dishes, List<Special> specials, int tableNumber, Guest guest) {
         this.drinks = drinks;
         this.dishes = dishes;
         this.specials = specials;
         this.tableNumber = tableNumber;
         this.guest = guest;
         this.orderDateTime = LocalDateTime.now();
-        //OrderRepository.addOrderToList(this);
     }
 }
