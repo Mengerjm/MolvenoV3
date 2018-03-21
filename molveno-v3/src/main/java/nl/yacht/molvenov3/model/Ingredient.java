@@ -1,5 +1,7 @@
 package nl.yacht.molvenov3.model;
 
+import java.util.ArrayList;
+
 public class Ingredient {
 
     private String name;
@@ -7,6 +9,7 @@ public class Ingredient {
     //private Distributor distributor;
     private int numberOfStock;
     private double costPrice;
+    private long id;//tijdelijk om werkend te krijgen
 
 
     public Ingredient(){}
@@ -16,6 +19,14 @@ public class Ingredient {
         this.isAllergen = isAllergen;
         this.numberOfStock = numberOfStock;
         this.costPrice = costPrice;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,8 +41,8 @@ public class Ingredient {
         return isAllergen;
     }
 
-    public void setAllergen(boolean allergen) {
-        isAllergen = allergen;
+    public void setAllergen(boolean isAllergen) {
+        this.isAllergen = isAllergen;
     }
 
     public int getNumberOfStock() {
@@ -49,4 +60,6 @@ public class Ingredient {
     public void setCostPrice(double costPrice) {
         this.costPrice = costPrice;
     }
+
+
 }
