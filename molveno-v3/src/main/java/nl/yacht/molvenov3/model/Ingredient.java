@@ -3,7 +3,7 @@ package nl.yacht.molvenov3.model;
 public class Ingredient {
 
     private String name;
-    private boolean isAllergen;
+    private boolean isAllergen;//Enum worden
     //private Distributor distributor;
     private int numberOfStock;
     private double costPrice;
