@@ -1,6 +1,7 @@
 package nl.yacht.molvenov3.model;
 
 public class Table {
+
     private int tableNumber;
     private int numberOfSeats;
     private boolean isAvailable;
@@ -38,3 +39,4 @@ public class Table {
 
     }
 }
+

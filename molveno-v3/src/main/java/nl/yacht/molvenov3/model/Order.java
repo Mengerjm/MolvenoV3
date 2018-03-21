@@ -1,41 +1,42 @@
 package nl.yacht.molvenov3.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Map;
 
 public class Order {
 
-    private List<Drink> drinks;
-    private List<Dish> dishes;
-    private List<Special> specials;
+    private Map<String, Drink> drinks;
+    private Map<String, Dish> dishes;
+    private Map<String, Special> specials;
     private int tableNumber;
     private Guest guest;
+    private boolean isPaid;
     private LocalDateTime orderDateTime;
     private boolean isPaid;
 
     //region getters and setters
 
-    public List<Drink> getDrinks() {
+    public Map<String, Drink> getDrinks() {
         return drinks;
     }
 
-    public void setDrinks(List<Drink> drinks) {
+    public void setDrinks(Map<String, Drink> drinks) {
         this.drinks = drinks;
     }
 
-    public List<Dish> getDishes() {
+    public Map<String, Dish> getDishes() {
         return dishes;
     }
 
-    public void setDishes(List<Dish> dishes) {
+    public void setDishes(Map<String, Dish> dishes) {
         this.dishes = dishes;
     }
 
-    public List<Special> getSpecials() {
+    public Map<String, Special> getSpecials() {
         return specials;
     }
 
-    public void setSpecials(List<Special> specials) {
+    public void setSpecials(Map<String, Special> specials) {
         this.specials = specials;
     }
 
@@ -71,17 +72,18 @@ public class Order {
         this.orderDateTime = orderDateTime;
     }
 
+
     //endregion
 
     public Order(){}
 
-    public Order(List<Drink> drinks, List<Dish> dishes, List<Special> specials, int tableNumber, Guest guest) {
+    public Order(Map<String,Drink> drinks, Map<String, Dish> dishes, Map<String, Special> specials, int tableNumber, Guest guest) {
         this.drinks = drinks;
         this.dishes = dishes;
         this.specials = specials;
         this.tableNumber = tableNumber;
         this.guest = guest;
         this.orderDateTime = LocalDateTime.now();
-        //Restaurant.addOrderToList(this);
+        //OrderRepository.addOrderToList(this);
     }
 }
