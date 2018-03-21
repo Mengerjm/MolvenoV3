@@ -1,42 +1,42 @@
 package nl.yacht.molvenov3.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
 
 public class Order {
 
-    private Map<String, Drink> drinks;
-    private Map<String, Dish> dishes;
-    private Map<String, Special> specials;
+    private List<Drink> drinks;
+    private List<Dish> dishes;
+    private List<Special> specials;
     private int tableNumber;
     private Guest guest;
     private boolean isPaid;
     private LocalDateTime orderDateTime;
-    private boolean isPaid;
 
     //region getters and setters
 
-    public Map<String, Drink> getDrinks() {
+    public List<Drink> getDrinks() {
         return drinks;
     }
 
-    public void setDrinks(Map<String, Drink> drinks) {
+    public void setDrinks(List<Drink> drinks) {
         this.drinks = drinks;
     }
 
-    public Map<String, Dish> getDishes() {
+    public List<Dish> getDishes() {
         return dishes;
     }
 
-    public void setDishes(Map<String, Dish> dishes) {
+    public void setDishes(List<Dish> dishes) {
         this.dishes = dishes;
     }
 
-    public Map<String, Special> getSpecials() {
+    public List<Special> getSpecials() {
         return specials;
     }
 
-    public void setSpecials(Map<String, Special> specials) {
+    public void setSpecials(List<Special> specials) {
         this.specials = specials;
     }
 
@@ -55,7 +55,7 @@ public class Order {
     public void setGuest(Guest guest) {
         this.guest = guest;
     }
-/**
+
     public boolean isPaid() {
         return isPaid;
     }
@@ -63,7 +63,7 @@ public class Order {
     public void setPaid(boolean paid) {
         isPaid = paid;
     }
-*/
+
     public LocalDateTime getOrderDateTime() {
         return orderDateTime;
     }
