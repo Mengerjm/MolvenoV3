@@ -54,7 +54,7 @@ public class Order {
     public void setGuest(Guest guest) {
         this.guest = guest;
     }
-
+/**
     public boolean isPaid() {
         return isPaid;
     }
@@ -62,7 +62,7 @@ public class Order {
     public void setPaid(boolean paid) {
         isPaid = paid;
     }
-
+*/
     public LocalDateTime getOrderDateTime() {
         return orderDateTime;
     }
