@@ -12,7 +12,8 @@ public class Order {
     private Guest guest;
     private boolean isPaid;
     private LocalDateTime orderDateTime;
-    private boolean isPaid;
+
+
 
     //region getters and setters
 
