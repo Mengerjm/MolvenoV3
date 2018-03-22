@@ -45,19 +45,34 @@ public class OrderController {
 
     //region Put Order
 
-    @PostMapping(value = "/putdrink/{id}")
-    public Drink putDrink(@PathVariable("id") int tableNumber, @RequestBody Drink drinkToAdd){
+    @PostMapping(value = "/adddrink/{id}")
+    public Drink addDrink(@PathVariable("id") int tableNumber, @RequestBody Drink drinkToAdd){
         return this.orderRepository.addDrink(tableNumber, drinkToAdd);
     }
 
-    @PostMapping(value = "/putdish/{id}")
-    public Dish putDish(@PathVariable("id") int tableNumber, @RequestBody Dish dishToAdd){
+    @PostMapping(value = "/adddish/{id}")
+    public Dish addDish(@PathVariable("id") int tableNumber, @RequestBody Dish dishToAdd){
         return this.orderRepository.addDish(tableNumber, dishToAdd);
     }
 
-    @PostMapping(value = "/putspecial/{id}")
-    public Special putSpecial(@PathVariable("id") int tableNumber, @RequestBody Special specialToAdd){
-        return this.orderRepository.addDish(tableNumber, specialToAdd);
+    @PostMapping(value = "/addspecial/{id}")
+    public Special addSpecial(@PathVariable("id") int tableNumber, @RequestBody Special specialToAdd){
+        return this.orderRepository.addSpecial(tableNumber, specialToAdd);
+    }
+
+    @PostMapping(value = "/removedrink/{id}")
+    public Drink removeDrink(@PathVariable("id") int tableNumber, @RequestBody Drink drinkToRemove){
+        return this.orderRepository.removeDrink(tableNumber, drinkToRemove);
+    }
+
+    @PostMapping(value = "/removedish/{id}")
+    public Dish removeDish(@PathVariable("id") int tableNumber, @RequestBody Dish dishToRemove){
+        return this.orderRepository.removeDish(tableNumber, dishToRemove);
+    }
+
+    @PostMapping(value = "/removespecial/{id}")
+    public Special removeSpecial(@PathVariable("id") int tableNumber, @RequestBody Special specialToRemove){
+        return this.orderRepository.removeSpecial(tableNumber, specialToRemove);
     }
 
     //endregion
