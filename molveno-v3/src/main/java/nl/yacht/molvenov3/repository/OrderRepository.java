@@ -1,9 +1,6 @@
 package nl.yacht.molvenov3.repository;
 
-import nl.yacht.molvenov3.model.Dish;
-import nl.yacht.molvenov3.model.Drink;
-import nl.yacht.molvenov3.model.Order;
-import nl.yacht.molvenov3.model.Special;
+import nl.yacht.molvenov3.model.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -60,7 +57,6 @@ public class OrderRepository {
         return specialToAdd;
     }
 
-    //Moet equals methode aanpassen om te vergelijken op field name
     public Drink removeDrink(int tableNumber, Drink drinkToRemove){
         Order myOrder = this.orderMap.get(tableNumber);
         int index = 0;
