@@ -15,7 +15,7 @@ public class IngredientRepository {
 
 
     //get all ingredients
-    public Iterable<Ingredient> getAll(){
+    public Iterable<Ingredient> getAll() {
         Iterable<Ingredient> result = this.ingredienet.values();
 
         return result;
@@ -24,12 +24,15 @@ public class IngredientRepository {
     //save ingedient
     public Ingredient save(Ingredient ingredienetToBeSaved) {
 
-        counter++;
-        this.ingredienet.put(counter, ingredienetToBeSaved);
 
-        ingredienetToBeSaved.setId(counter);
 
-        Ingredient savedPerson = this.ingredienet.get(counter);
+            counter++;
+            this.ingredienet.put(counter, ingredienetToBeSaved);
+
+            ingredienetToBeSaved.setId(counter);
+
+            Ingredient savedPerson = this.ingredienet.get(counter);
+
 
         return ingredienetToBeSaved;
     }
@@ -37,13 +40,15 @@ public class IngredientRepository {
     public Ingredient update(long id, Ingredient input) {
         Ingredient output = this.ingredienet.get(id);
 
-        output.setName(input.getName());
-        output.setAllergen(input.isAllergen());
-        output.setCostPrice(input.getCostPrice());
-        output.setNumberOfStock(input.getNumberOfStock());
+
+            output.setName(input.getName());
+            output.setAllergen(input.isAllergen());
+            output.setCostPrice(input.getCostPrice());
+            output.setNumberOfStock(input.getNumberOfStock());
 
         return output;
     }
+
 
     public void delete(long id) {
         this.ingredienet.remove(id);
