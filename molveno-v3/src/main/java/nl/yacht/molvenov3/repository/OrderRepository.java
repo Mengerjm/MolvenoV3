@@ -20,18 +20,18 @@ public class OrderRepository {
 
     //region Get Order
 
-    public List<Drink> findAllDrinks(int tableNumber) {
-        Order myOrder = this.orderMap.get(tableNumber);
+    public List<Drink> findAllDrinks(long guestID) {
+        Order myOrder = this.orderMap.get(guestID);
         return myOrder.getDrinks();
     }
 
-    public List<Dish> findAllDishes(int tableNumber) {
-        Order myOrder = this.orderMap.get(tableNumber);
+    public List<Dish> findAllDishes(long guestID) {
+        Order myOrder = this.orderMap.get(guestID);
         return myOrder.getDishes();
     }
 
-    public List<Special> findAllSpecials(int tableNumber) {
-        Order myOrder = this.orderMap.get(tableNumber);
+    public List<Special> findAllSpecials(long guestID) {
+        Order myOrder = this.orderMap.get(guestID);
         return myOrder.getSpecials();
     }
 
@@ -39,26 +39,26 @@ public class OrderRepository {
 
     //region Put Order
 
-    public Drink addDrink(int tableNumber, Drink drinkToAdd){
-        Order myOrder = this.orderMap.get(tableNumber);
+    public Drink addDrink(long guestID, Drink drinkToAdd){
+        Order myOrder = this.orderMap.get(guestID);
         myOrder.getDrinks().add(drinkToAdd);
         return drinkToAdd;
     }
 
-    public Dish addDish(int tableNumber, Dish dishToAdd) {
-        Order myOrder = this.orderMap.get(tableNumber);
+    public Dish addDish(long guestID, Dish dishToAdd) {
+        Order myOrder = this.orderMap.get(guestID);
         myOrder.getDishes().add(dishToAdd);
         return dishToAdd;
     }
 
-    public Special addSpecial(int tableNumber, Special specialToAdd) {
-        Order myOrder = this.orderMap.get(tableNumber);
+    public Special addSpecial(long guestID, Special specialToAdd) {
+        Order myOrder = this.orderMap.get(guestID);
         myOrder.getSpecials().add(specialToAdd);
         return specialToAdd;
     }
 
-    public Drink removeDrink(int tableNumber, Drink drinkToRemove){
-        Order myOrder = this.orderMap.get(tableNumber);
+    public Drink removeDrink(long guestID, Drink drinkToRemove){
+        Order myOrder = this.orderMap.get(guestID);
         int index = 0;
         for (Drink drink : myOrder.getDrinks()) {
             if (drinkToRemove.equals(drink)) {
@@ -71,8 +71,8 @@ public class OrderRepository {
     }
 
     //Moet equals methode aanpassen om te vergelijken op field name
-    public Dish removeDish(int tableNumber, Dish dishToRemove){
-        Order myOrder = this.orderMap.get(tableNumber);
+    public Dish removeDish(long guestID, Dish dishToRemove){
+        Order myOrder = this.orderMap.get(guestID);
         int index = 0;
         for (Dish dish : myOrder.getDishes()) {
             if (dishToRemove.equals(dish)) {
@@ -85,8 +85,8 @@ public class OrderRepository {
     }
 
     //Moet equals methode aanpassen om te vergelijken op field name
-    public Special removeSpecial(int tableNumber, Special specialToRemove){
-        Order myOrder = this.orderMap.get(tableNumber);
+    public Special removeSpecial(long guestID, Special specialToRemove){
+        Order myOrder = this.orderMap.get(guestID);
         int index = 0;
         for (Special special: myOrder.getSpecials()) {
             if (specialToRemove.equals(special)) {
@@ -100,8 +100,8 @@ public class OrderRepository {
 
     //endregion
 
-    public void delete(int tableNumber){
-        this.orderMap.remove(tableNumber);
+    public void delete(long guestID){
+        this.orderMap.remove(guestID);
     }
 
 }

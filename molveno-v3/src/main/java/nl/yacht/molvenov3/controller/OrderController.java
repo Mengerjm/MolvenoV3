@@ -23,22 +23,22 @@ public class OrderController {
 
     //region Get Order
 
-    //Get all drinks of a specific order with tablenumber as "id"
+    //Get all drinks of a specific order with guestID
     @GetMapping(value = "/getdrink/{id}")
-    public Iterable<Drink> findAllDrinksById(@PathVariable("id") int tableNumber){
-        return this.orderRepository.findAllDrinks(tableNumber);
+    public Iterable<Drink> findAllDrinksById(@PathVariable("id") long guestID){
+        return this.orderRepository.findAllDrinks(guestID);
     }
 
-    //Get all dishes of a specific order with tablenumber as "id"
+    //Get all dishes of a specific order with guestID
     @GetMapping(value = "/getdish/{id}")
-    public Iterable<Dish> findAllDishesById(@PathVariable("id") int tableNumber){
-        return this.orderRepository.findAllDishes(tableNumber);
+    public Iterable<Dish> findAllDishesById(@PathVariable("id") long guestID){
+        return this.orderRepository.findAllDishes(guestID);
     }
 
-    //Get all specials of a specific order with tablenumber as "id"
+    //Get all specials of a specific order with guestID
     @GetMapping(value = "/getspecial/{id}")
-    public Iterable<Special> findAllSpecialsById(@PathVariable("id") int tableNumber){
-        return this.orderRepository.findAllSpecials(tableNumber);
+    public Iterable<Special> findAllSpecialsById(@PathVariable("id") long guestID){
+        return this.orderRepository.findAllSpecials(guestID);
     }
 
     //endregion
@@ -46,41 +46,41 @@ public class OrderController {
     //region Put Order
 
     @PostMapping(value = "/adddrink/{id}")
-    public Drink addDrink(@PathVariable("id") int tableNumber, @RequestBody Drink drinkToAdd){
-        return this.orderRepository.addDrink(tableNumber, drinkToAdd);
+    public Drink addDrink(@PathVariable("id") long guestID, @RequestBody Drink drinkToAdd){
+        return this.orderRepository.addDrink(guestID, drinkToAdd);
     }
 
     @PostMapping(value = "/adddish/{id}")
-    public Dish addDish(@PathVariable("id") int tableNumber, @RequestBody Dish dishToAdd){
-        return this.orderRepository.addDish(tableNumber, dishToAdd);
+    public Dish addDish(@PathVariable("id") long guestID, @RequestBody Dish dishToAdd){
+        return this.orderRepository.addDish(guestID, dishToAdd);
     }
 
     @PostMapping(value = "/addspecial/{id}")
-    public Special addSpecial(@PathVariable("id") int tableNumber, @RequestBody Special specialToAdd){
-        return this.orderRepository.addSpecial(tableNumber, specialToAdd);
+    public Special addSpecial(@PathVariable("id") long guestID, @RequestBody Special specialToAdd){
+        return this.orderRepository.addSpecial(guestID, specialToAdd);
     }
 
     @PostMapping(value = "/removedrink/{id}")
-    public Drink removeDrink(@PathVariable("id") int tableNumber, @RequestBody Drink drinkToRemove){
-        return this.orderRepository.removeDrink(tableNumber, drinkToRemove);
+    public Drink removeDrink(@PathVariable("id") long guestID, @RequestBody Drink drinkToRemove){
+        return this.orderRepository.removeDrink(guestID, drinkToRemove);
     }
 
     @PostMapping(value = "/removedish/{id}")
-    public Dish removeDish(@PathVariable("id") int tableNumber, @RequestBody Dish dishToRemove){
-        return this.orderRepository.removeDish(tableNumber, dishToRemove);
+    public Dish removeDish(@PathVariable("id") long guestID, @RequestBody Dish dishToRemove){
+        return this.orderRepository.removeDish(guestID, dishToRemove);
     }
 
     @PostMapping(value = "/removespecial/{id}")
-    public Special removeSpecial(@PathVariable("id") int tableNumber, @RequestBody Special specialToRemove){
-        return this.orderRepository.removeSpecial(tableNumber, specialToRemove);
+    public Special removeSpecial(@PathVariable("id") long guestID, @RequestBody Special specialToRemove){
+        return this.orderRepository.removeSpecial(guestID, specialToRemove);
     }
 
     //endregion
 
     //Delete an Order from the repository
     @DeleteMapping(value="/deleteorder/{id}")
-    public void delete(@PathVariable("id") int tableNumber){
-        this.orderRepository.delete(tableNumber);
+    public void delete(@PathVariable("id") long guestID){
+        this.orderRepository.delete(guestID);
     }
 
 }
