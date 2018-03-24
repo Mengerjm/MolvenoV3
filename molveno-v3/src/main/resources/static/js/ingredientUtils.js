@@ -33,6 +33,7 @@ console.log("doc ready");
                 costPrice: Number($("#costPrice").val())
             };
 
+
                 $.ajax({
                         contentType : "application/json",
                          // waar moet hij de request op uitvoeren
@@ -54,7 +55,7 @@ console.log("doc ready");
 function createIngredientString(ingredient){
 
 
-    result = "<tr><td>"+"Ingredient: "+ingredient.name+"</td><td>"+"Stock: "+ingredient.numberOfStock+"</td><td>"+"Price: "+ingredient.costPrice+"</td></tr>";
+    result = "<tr><td>"+"Ingredient: "+ingredient.name+"</td><td>"+"Stock: "+ingredient.numberOfStock+"g"+"</td><td>"+"Price: € "+ingredient.costPrice+"</td></tr>";
 return result;
 }
 
