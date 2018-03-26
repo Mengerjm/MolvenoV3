@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingredient</title>
+</head>
+<body>
+
+
+<br>
+<input type="button" id="button2" value="Clear"/>
+<button onclick="hideSome();"> delete </button>
+<button onclick="showAll();"> Show </button>
+<button onclick="toggle();">Toggle</button>
+<br>
+<br>
+<table id="guestList" ></table>
+<button id="updateButton">Guest list</button>
+<br>
+
+
+Fristname:<input type="text" name="firstName" id="firstName"/>
+Lastname:<input type="text" name="lastName" id="lastName"/>
+Year of birth:<input type="text" name="yearOfBirth" id="yearOfBirth"/>
+<button id="addButton">add</button>
+
+
+<br>
+<br>
+
+<table id="addedPerson"></table>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="js/ingredientUtils.js"></script>
+</body>
+</html>

@@ -9,44 +9,48 @@ import java.util.Map;
 @Repository
 public class ReservationRepository {
 
+
     private static long counter = 0;
 
-    private Map<Long, Reservation> reservationMap = new HashMap<>();
+    private Map<Long, Reservation> reservation = new HashMap<>();
 
     public Iterable<Reservation> findAll() {
-        Iterable<Reservation> result = this.reservationMap.values();
+        Iterable<Reservation> result = this.reservation.values();
 
         return result;
     }
 
-    public Reservation save(Reservation personToBeSaved) {
+    public Reservation save(Reservation reservationToBeSaved) {
 
         counter++;
-        this.reservationMap.put(counter, personToBeSaved);
 
-        personToBeSaved.setId(counter);
+        reservationToBeSaved.setId(counter);
+        this.reservation.put(counter, reservationToBeSaved);
 
-        Reservation savedReservation = this.reservationMap.get(counter);
-
+        Reservation savedReservation = this.reservation.get(counter);
         return savedReservation;
+
     }
 
     public Reservation update(long id, Reservation input) {
-        Reservation output = this.reservationMap.get(id);
 
-        output.zetLocalDateTimeBasedOnLocalDateTime(input.getReservationTime());
-        output.setNumberOfPeople(input.getNumberOfPeople());
-        output.setGuest(input.getGuest());
-        output.setTableNumber(input.getTableNumber());
+        Reservation output = this.reservation.get(id);
+
+        output.setFirstName(input.getFirstName());
+        output.setLastName(input.getLastName());
+        output.setAmountOfPeople(input.getAmountOfPeople());
+        output.setReservationTIme(input.getReservationTime());
         //and so on, if u have more fields
         return output;
     }
 
     public void delete(long id) {
-        this.reservationMap.remove(id);
+        this.reservation.remove(id);
     }
 
     public Reservation findById(long id) {
-        return this.reservationMap.get(id);
+        return this.reservation.get(id);
     }
 }
+
+
