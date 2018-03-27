@@ -7,7 +7,7 @@ public class Table {
 
     private int tableNumber;
     private int numberOfSeats;
-    private boolean isAvailable; //Deze is nu voor nood/handmatig
+    private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
     private static int tableNumberCounter = 1;
     private ArrayList<LocalDateTime> reservationTimes;
 
