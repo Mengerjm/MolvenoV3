@@ -10,11 +10,24 @@ public class TableRepository {
 
     private ArrayList<Table> tables = new ArrayList<>();
 
+    //Find all available tables
+    public Iterable<Table> findAllAvailable(){
+        ArrayList<Table> availableTables = new ArrayList<>();
+        for (Table table:this.tables) {
+            if (table.isAvailable() && table.canTableBeUsedNow(table)){
+                availableTables.add(table);
+            }
+        }
+        return availableTables;
+    }
+
+    //Add new table
     public Table save(Table table){
         this.tables.add(table);
         return table;
     }
 
+    //Delete table by tableNumber
     public void delete(int tableNumber){
         int counter = 0;
         for (Table table:tables) {
@@ -25,11 +38,12 @@ public class TableRepository {
         }
     }
 
+    //Toggle available/not available
     public Table update(int tableNumber, Table table){
         Table output = this.tables.get(tableNumber);
-        output.setAvailable(!output.isAvailable());
-        output.setNumberOfSeats(output.getNumberOfSeats());
-        output.setTableNumber(output.getTableNumber());
+        output.setAvailable(!table.isAvailable());
+        output.setNumberOfSeats(table.getNumberOfSeats());
+        output.setTableNumber(table.getTableNumber());
         return output;
     }
 

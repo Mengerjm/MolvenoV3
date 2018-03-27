@@ -7,7 +7,7 @@ public class Table {
 
     private int tableNumber;
     private int numberOfSeats;
-    private boolean isAvailable; //Is deze nog nodig, kan deze gemaakt worden uit onderstaande 2 methodes?
+    private boolean isAvailable; //Deze is nu voor nood/handmatig
     private static int tableNumberCounter = 1;
     private ArrayList<LocalDateTime> reservationTimes;
 
@@ -47,7 +47,7 @@ public class Table {
 //endregion
 
     //Can table be used NOW, or is it reserved?
-    public boolean canTableBeUsed(Table table){
+    public boolean canTableBeUsedNow(Table table){
         int counter = 0;
         for (LocalDateTime reserved:table.getReservationTimes()) {
             if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(3))){

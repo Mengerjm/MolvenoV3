@@ -12,6 +12,12 @@ public class TableController {
     @Autowired
     private TableRepository tables;
 
+    //Show all available tables
+    @GetMapping(value = "/available")
+    public Iterable<Table> findAllAvailable(){
+        return this.tables.findAllAvailable();
+    }
+
     //Add new table with tablenumber and number of seats
     @PostMapping(value = "/newtable")
     public Table save(@RequestBody Table table){
