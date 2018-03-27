@@ -1,20 +1,7 @@
 var updateTable = function(){
-    var baseUrl = "/api/";
-    $.ajax({
 
-        url : baseUrl+"reservation",
-        type : "get",
-        success : function(data){
-
-              reservationList ="";
-
-              $.each(data, function(index, current){
-                 reservationList += createReservationString(current);
-              });
-
-              $("#reservationList").html(reservationList);
-        }
-    });
+var table = $('#reservationTable').DataTable();
+ table.ajax.reload();
  }
 
 $(document).ready(function(){
@@ -23,8 +10,6 @@ $(document).ready(function(){
     });
 
     $("#changeButton").click(updateTable);
-});
-
 
 
 $("#updateButton").click(function() {
@@ -35,10 +20,10 @@ $("#addButton").click(function() {
 
   var baseUrl ="/api/";
         var jsonObject = {
-            firstName: $("#firstName").val(),
-            lastName: $("#lastName").val(),
-            amountOfPeople: Number($("#numberOfPeople").val()),
-            reservationTime: Number($("#reservationTime").val())
+            firstName: $("#firstNameInput").val(),
+            lastName: $("#lastNameInput").val(),
+            amountOfPeople: Number($("#amountOfPeopleInput").val()),
+            reservationTime: Number($("#reservationTimeInput").val())
 
         };
 
@@ -57,7 +42,7 @@ $("#addButton").click(function() {
 
              updateTable();
       });
-
+});
 function started (){
     console.log("Pagina is geladen")
 }
