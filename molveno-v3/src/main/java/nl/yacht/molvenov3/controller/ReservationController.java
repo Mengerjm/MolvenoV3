@@ -3,6 +3,7 @@ package nl.yacht.molvenov3.controller;
 
 import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.repository.ReservationRepository;
+import nl.yacht.molvenov3.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,8 @@ public class ReservationController {
 
     @Autowired
     private ReservationRepository reservationRepository;
+    @Autowired
+    private TableRepository tableRepository;
 
 
     @PostConstruct
@@ -67,8 +70,14 @@ public class ReservationController {
 
     @PostMapping
     public Reservation save(@RequestBody Reservation reservation) {
+        Reservation saved = this.reservationRepository.save(reservation);
 
-        return this.reservationRepository.save(reservation);
+        // TODO something with saved.
+        int tables = this.tableRepository.howManyTables(saved);
+        saved.setTableNuber(tables);
+        this.reservationRepository.save(saved);
+
+        return saved;
     }
 }
 

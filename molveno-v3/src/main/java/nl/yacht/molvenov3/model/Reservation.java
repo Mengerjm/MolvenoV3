@@ -11,6 +11,7 @@ public class Reservation implements Serializable {
     private int amountOfPeople;
     private LocalDateTime reservationTime;
     private long id;
+    private int tableNumber;
 
 
     public Reservation() {
@@ -63,8 +64,15 @@ public class Reservation implements Serializable {
         this.id = id;
     }
 
+    public int getTableNuber() {
+        return tableNumber;
+    }
 
-    /** public void cancel() {
+    public void setTableNuber(int tableNuber) {
+        this.tableNumber = tableNuber;
+    }
+
+/** public void cancel() {
 
      //vervang guest voor tablenumber
 
