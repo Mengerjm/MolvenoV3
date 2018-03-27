@@ -17,6 +17,7 @@ public class IngredientController {
     @GetMapping
     public Iterable<Ingredient> getAll() {
 
+
         Iterable<Ingredient> ingredients = this.ingredientRepository.getAll();
         return ingredients;
     }
@@ -24,6 +25,7 @@ public class IngredientController {
     @PostMapping
     public Ingredient save(@RequestBody Ingredient ingredient) {
         return this.ingredientRepository.save(ingredient);
+
 
     }
 

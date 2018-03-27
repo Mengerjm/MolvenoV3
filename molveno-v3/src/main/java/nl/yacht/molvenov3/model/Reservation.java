@@ -1,92 +1,57 @@
 package nl.yacht.molvenov3.model;
 
-import org.apache.tomcat.jni.Local;
-import org.hibernate.mapping.Table;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Reservation {
+public class Reservation implements Serializable {
 
-
-    private LocalDateTime reservationTime;
-    private int numberOfPeople;
-    private String guest;
-    private int tableNumber;
+    private String firstName;
+    private String lastName;
+    private int amountOfPeople;
+    private int reservationTime;
     private long id;
+
 
     public Reservation() {
     }
 
-    public Reservation(LocalDateTime reservationTime, int numberOfPeople, String guest, int tableNumber, long id) {
-        this.reservationTime = reservationTime;
-        this.numberOfPeople = numberOfPeople;
-        this.guest = guest;
-        this.tableNumber = tableNumber;
-        this.id = id;
-    }
-
-    public void cancel() {
-
-        //vervang guest voor tablenumber
-        /**
-         public void cancel (Guest guest){
-         ArrayList<Reservation> reservationList = Restaurant.getReservationList();
-         // Go through the list of reservations
-         int index = 0;
-         for (Reservation res : reservationList) {
-         // if tablenumber.equals(res.gettablenumber)
-         if (guest.equals(res.guest)) {
-         reservationList.remove(index);
-
-         // Als de tafel gelijk is aan de gereserveerde tafel: maak de tafel available
-         for (Table tabl : Restaurant.getTableList()) {
-         if (tabl.getTableNumber() == res.tableNumber) {
-         tabl.setAvailable(true);
-         }
-         }
-
-         }
-         index++;
-         // Gaat in de lijst verder zoeken index +1
-         }
-         }
-         */
-    }
-
-    public void zetLocalDateTimeBasedOnLocalDateTime(LocalDateTime reservationTime) {
+    public Reservation(String firstName, String lastName, int amountOfPeople, int reservationTime) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.amountOfPeople = amountOfPeople;
         this.reservationTime = reservationTime;
     }
 
-    public LocalDateTime getReservationTime() {
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAmountOfPeople() {
+        return amountOfPeople;
+    }
+
+    public void setAmountOfPeople(int amountOfPeople) {
+        this.amountOfPeople = amountOfPeople;
+    }
+
+    public int getReservationTime() {
         return reservationTime;
     }
 
-    public void setReservationTime(String reservationTime) {
-        this.reservationTime = LocalDateTime.parse(reservationTime);
-    }
-    public int getNumberOfPeople() {
-        return numberOfPeople;
-    }
-
-    public void setNumberOfPeople(int numberOfPeople) {
-        this.numberOfPeople = numberOfPeople;
-    }
-
-    public String getGuest() {
-        return guest;
-    }
-
-    public void setGuest(String guest) {
-        this.guest = guest;
-    }
-
-    public int getTableNumber() {
-        return tableNumber;
-    }
-
-    public void setTableNumber(int tableNumber) {
-        this.tableNumber = tableNumber;
+    public void setReservationTime(int reservationTime) {
+        this.reservationTime = reservationTime;
     }
 
     public long getId() {
@@ -97,4 +62,37 @@ public class Reservation {
         this.id = id;
     }
 
+    public void setReservationTIme(int reservationTIme) {
+        this.reservationTime = reservationTIme;
+    }
+
+
+    /** public void cancel() {
+
+     //vervang guest voor tablenumber
+
+     public void cancel (Guest guest){
+     ArrayList<Reservation> reservationList = Restaurant.getReservationList();
+     // Go through the list of reservations
+     int index = 0;
+     for (Reservation res : reservationList) {
+     // if tablenumber.equals(res.gettablenumber)
+     if (guest.equals(res.guest)) {
+     reservationList.remove(index);
+
+     // Als de tafel gelijk is aan de gereserveerde tafel: maak de tafel available
+     for (Table tabl : Restaurant.getTableList()) {
+     if (tabl.getTableNumber() == res.tableNumber) {
+     tabl.setAvailable(true);
+     }
+     }
+
+     }
+     index++;
+     // Gaat in de lijst verder zoeken index +1
+     }
+     }
+
+     }
+     */
 }
