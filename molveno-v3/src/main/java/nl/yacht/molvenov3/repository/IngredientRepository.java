@@ -1,9 +1,9 @@
 
-
 package nl.yacht.molvenov3.repository;
 
 import nl.yacht.molvenov3.model.Ingredient;
 import org.omg.PortableInterceptor.INACTIVE;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -16,6 +16,7 @@ import java.util.Map;
 public class IngredientRepository {
 
     private boolean isEqual;
+
     private static long counter = 0;
 
     private Map<Long, Ingredient> ingredienet = new HashMap<>();
@@ -51,10 +52,12 @@ public class IngredientRepository {
         if (!isEqual){
 
 
+
             counter++;
             this.ingredienet.put(counter, ingredienetToBeSaved);
 
             ingredienetToBeSaved.setId(counter);
+
 
             Ingredient savedIngredient = this.ingredienet.get(counter);
 
@@ -80,10 +83,12 @@ public class IngredientRepository {
             return ingredienetToBeSaved;
         }
 
+
     }
 
     public Ingredient update(long id, Ingredient input) {
         Ingredient output = this.ingredienet.get(id);
+
 
 
 

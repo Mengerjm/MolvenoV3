@@ -1,6 +1,7 @@
 var baseUrl = "http://localhost:8080/api/";
 
 
+
 $(document).ready(function(){
 console.log("doc ready");
 
@@ -63,3 +64,4 @@ function toggle(){
 
 $("table").slideToggle("10")
 }
+

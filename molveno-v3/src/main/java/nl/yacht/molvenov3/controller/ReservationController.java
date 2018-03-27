@@ -1,22 +1,49 @@
 package nl.yacht.molvenov3.controller;
 
+
 import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.repository.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
+
 @RestController
-@RequestMapping("/api/reservations")
+@RequestMapping("/api/reservation")
 public class ReservationController {
+
+    @Value("${firstName}")
+    private String voornaam;
+
 
     @Autowired
     private ReservationRepository reservationRepository;
 
 
-    //GET, haal iets van de server
+    @PostConstruct
+    public void someData() {
+        for(int i = 0;i<10;i++) {
+            char c = (char) (i+65);
+            Reservation one = new Reservation("Henk","Boer", 2, 1930);
+            this.reservationRepository.save(one);
+        }
+    }
+
     @GetMapping
     public Iterable<Reservation> findAll() {
+
+        final boolean demo = false;
+
         Iterable<Reservation> reservations = this.reservationRepository.findAll();
+
+        if (demo) {
+            for (Reservation r : reservations) {
+                r.setFirstName(this.voornaam);
+            }
+        }
+
+
         return reservations;
     }
 
@@ -29,6 +56,7 @@ public class ReservationController {
     public Reservation update(@PathVariable long id, @RequestBody Reservation input) {
 
         return this.reservationRepository.update(id, input);
+
     }
 
     @DeleteMapping("{id}")
@@ -38,6 +66,8 @@ public class ReservationController {
 
     @PostMapping
     public Reservation save(@RequestBody Reservation reservation) {
+
         return this.reservationRepository.save(reservation);
     }
 }
+
