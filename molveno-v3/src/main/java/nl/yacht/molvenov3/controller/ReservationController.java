@@ -70,14 +70,9 @@ public class ReservationController {
 
     @PostMapping
     public Reservation save(@RequestBody Reservation reservation) {
-        Reservation saved = this.reservationRepository.save(reservation);
-
-        // TODO something with saved.
-        int tables = this.tableRepository.howManyTables(saved);
-        saved.setTableNuber(tables);
-        this.reservationRepository.save(saved);
-
-        return saved;
+        int tables = this.tableRepository.howManyTables(reservation);
+        reservation.setTableNuber(tables);
+        return this.reservationRepository.save(reservation);
     }
 }
 

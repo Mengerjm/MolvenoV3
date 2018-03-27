@@ -24,7 +24,7 @@ public class TableController {
         return this.tables.save(table);
     }
 
-    //Change availability of table with id
+    //Update tablenumber, numberOfSeats and isAvailable
     @PutMapping(value = "/available/{id}")
     public Table update(@PathVariable("id") int tableNumber, @RequestBody Table table){
         return this.tables.update(tableNumber, table);
