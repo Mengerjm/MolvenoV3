@@ -7,28 +7,25 @@
 <body>
 
 
+
+
+
+
+    <button id="updateButton">Update ingridient list</button>
+    <button onclick="toggle();">Toggle</button>
 <br>
-<input type="button" id="button2" value="Clear"/>
-<button onclick="hideSome();"> delete </button>
-<button onclick="showAll();"> Show </button>
-<button onclick="toggle();">Toggle</button>
 <br>
+    Name ingredient:<input type="text" name="name" id="nameIngredient"/>
+    Number of stock:<input type="text" name="numberOfStock" id="numberOfStock"/>
+    Cost price:<input type="text" name="costPrice" id="costPrice"/>
+    <button id="addButton">add</button>
 <br>
-<table id="guestList" ></table>
-<button id="updateButton">Guest list</button>
 <br>
 
 
-Fristname:<input type="text" name="firstName" id="firstName"/>
-Lastname:<input type="text" name="lastName" id="lastName"/>
-Year of birth:<input type="text" name="yearOfBirth" id="yearOfBirth"/>
-<button id="addButton">add</button>
+    <table id="ingredientList" ></table>
+    <table id="addedIngredient"></table>
 
-
-<br>
-<br>
-
-<table id="addedPerson"></table>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
