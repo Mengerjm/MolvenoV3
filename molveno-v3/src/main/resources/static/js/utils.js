@@ -27,6 +27,8 @@ $("#addButton").click(function() {
 
         };
 
+        console.log(jsonObject);
+
          $.ajax({
                  contentType : "application/json",
                  // waar moet hij de request op uitvoeren
@@ -37,6 +39,8 @@ $("#addButton").click(function() {
                  // als de actie lukt, voer deze functie uit
                  success: function(data){ // so the data is the bulb of the response of the Spring Boot REST controller
                       console.log(data);
+                      // update datatable
+                      // getreservations
                  }
              });
 
