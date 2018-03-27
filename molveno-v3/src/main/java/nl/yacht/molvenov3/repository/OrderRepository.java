@@ -10,28 +10,34 @@ import java.util.Map;
 @Repository
 public class OrderRepository {
 
-    private Map<Integer, Order> orderMap = new HashMap<>();
+    private static long counter = 0;
+    private Map<Long, Order> orderMap = new HashMap<>();
 
     public Order save(Order order){
-        int tableNumber = order.getTableNumber();
-        this.orderMap.put(tableNumber, order);
+        counter++;
+        this.orderMap.put(counter, order);
+        order.setOrderId(counter);
         return order;
+    }
+
+    public Iterable<Order> findAll(){
+        return this.orderMap.values();
     }
 
     //region Get Order
 
-    public List<Drink> findAllDrinks(long guestID) {
-        Order myOrder = this.orderMap.get(guestID);
+    public List<Drink> findAllDrinks(long orderId) {
+        Order myOrder = this.orderMap.get(orderId);
         return myOrder.getDrinks();
     }
 
-    public List<Dish> findAllDishes(long guestID) {
-        Order myOrder = this.orderMap.get(guestID);
+    public List<Dish> findAllDishes(long orderId) {
+        Order myOrder = this.orderMap.get(orderId);
         return myOrder.getDishes();
     }
 
-    public List<Special> findAllSpecials(long guestID) {
-        Order myOrder = this.orderMap.get(guestID);
+    public List<Special> findAllSpecials(long orderId) {
+        Order myOrder = this.orderMap.get(orderId);
         return myOrder.getSpecials();
     }
 
@@ -39,26 +45,26 @@ public class OrderRepository {
 
     //region Put Order
 
-    public Drink addDrink(long guestID, Drink drinkToAdd){
-        Order myOrder = this.orderMap.get(guestID);
+    public Drink addDrink(long orderId, Drink drinkToAdd){
+        Order myOrder = this.orderMap.get(orderId);
         myOrder.getDrinks().add(drinkToAdd);
         return drinkToAdd;
     }
 
-    public Dish addDish(long guestID, Dish dishToAdd) {
-        Order myOrder = this.orderMap.get(guestID);
+    public Dish addDish(long orderId, Dish dishToAdd) {
+        Order myOrder = this.orderMap.get(orderId);
         myOrder.getDishes().add(dishToAdd);
         return dishToAdd;
     }
 
-    public Special addSpecial(long guestID, Special specialToAdd) {
-        Order myOrder = this.orderMap.get(guestID);
+    public Special addSpecial(long orderId, Special specialToAdd) {
+        Order myOrder = this.orderMap.get(orderId);
         myOrder.getSpecials().add(specialToAdd);
         return specialToAdd;
     }
 
-    public Drink removeDrink(long guestID, Drink drinkToRemove){
-        Order myOrder = this.orderMap.get(guestID);
+    public Drink removeDrink(long orderId, Drink drinkToRemove){
+        Order myOrder = this.orderMap.get(orderId);
         int index = 0;
         for (Drink drink : myOrder.getDrinks()) {
             if (drinkToRemove.equals(drink)) {
@@ -71,8 +77,8 @@ public class OrderRepository {
     }
 
     //Moet equals methode aanpassen om te vergelijken op field name
-    public Dish removeDish(long guestID, Dish dishToRemove){
-        Order myOrder = this.orderMap.get(guestID);
+    public Dish removeDish(long orderId, Dish dishToRemove){
+        Order myOrder = this.orderMap.get(orderId);
         int index = 0;
         for (Dish dish : myOrder.getDishes()) {
             if (dishToRemove.equals(dish)) {
@@ -85,8 +91,8 @@ public class OrderRepository {
     }
 
     //Moet equals methode aanpassen om te vergelijken op field name
-    public Special removeSpecial(long guestID, Special specialToRemove){
-        Order myOrder = this.orderMap.get(guestID);
+    public Special removeSpecial(long orderId, Special specialToRemove){
+        Order myOrder = this.orderMap.get(orderId);
         int index = 0;
         for (Special special: myOrder.getSpecials()) {
             if (specialToRemove.equals(special)) {
@@ -100,8 +106,8 @@ public class OrderRepository {
 
     //endregion
 
-    public void delete(long guestID){
-        this.orderMap.remove(guestID);
+    public void delete(long orderId){
+        this.orderMap.remove(orderId);
     }
 
 }

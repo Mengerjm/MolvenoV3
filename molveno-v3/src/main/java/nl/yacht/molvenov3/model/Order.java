@@ -13,6 +13,8 @@ public class Order {
     private Guest guest;
     private boolean isPaid;
     private LocalDateTime orderDateTime;
+    private static long orderIdCounter = 1;
+    private long orderId;
 
     //region getters and setters
 
@@ -72,15 +74,17 @@ public class Order {
         this.orderDateTime = orderDateTime;
     }
 
+    public long getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
+    }
 
     //endregion
 
     public Order(){}
-
-    public Order(int tableNumber) {
-        this.tableNumber = tableNumber;
-        this.orderDateTime = LocalDateTime.now();
-    }
 
     public Order(List<Drink> drinks, List<Dish> dishes, List<Special> specials, int tableNumber, Guest guest) {
         this.drinks = drinks;
