@@ -2,20 +2,21 @@ package nl.yacht.molvenov3.model;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class Reservation implements Serializable {
 
     private String firstName;
     private String lastName;
     private int amountOfPeople;
-    private int reservationTime;
+    private LocalDateTime reservationTime;
     private long id;
 
 
     public Reservation() {
     }
 
-    public Reservation(String firstName, String lastName, int amountOfPeople, int reservationTime) {
+    public Reservation(String firstName, String lastName, int amountOfPeople, LocalDateTime reservationTime) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.amountOfPeople = amountOfPeople;
@@ -46,11 +47,11 @@ public class Reservation implements Serializable {
         this.amountOfPeople = amountOfPeople;
     }
 
-    public int getReservationTime() {
+    public LocalDateTime getReservationTime() {
         return reservationTime;
     }
 
-    public void setReservationTime(int reservationTime) {
+    public void setReservationTime(LocalDateTime reservationTime) {
         this.reservationTime = reservationTime;
     }
 
@@ -60,10 +61,6 @@ public class Reservation implements Serializable {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public void setReservationTIme(int reservationTIme) {
-        this.reservationTime = reservationTIme;
     }
 
 

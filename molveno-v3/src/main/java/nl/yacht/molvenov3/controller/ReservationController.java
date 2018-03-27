@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/reservation")
@@ -25,7 +26,7 @@ public class ReservationController {
     public void someData() {
         for(int i = 0;i<10;i++) {
             char c = (char) (i+65);
-            Reservation one = new Reservation("Henk","Boer", 2, 1930);
+            Reservation one = new Reservation("Henk","Boer", 2, LocalDateTime.now());
             this.reservationRepository.save(one);
         }
     }

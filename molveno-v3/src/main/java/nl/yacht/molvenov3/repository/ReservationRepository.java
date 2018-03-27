@@ -39,7 +39,7 @@ public class ReservationRepository {
         output.setFirstName(input.getFirstName());
         output.setLastName(input.getLastName());
         output.setAmountOfPeople(input.getAmountOfPeople());
-        output.setReservationTIme(input.getReservationTime());
+        output.setReservationTime(input.getReservationTime());
         //and so on, if u have more fields
         return output;
     }

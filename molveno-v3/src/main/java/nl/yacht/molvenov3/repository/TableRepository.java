@@ -51,13 +51,13 @@ public class TableRepository {
     public int howManyTables(Reservation reservation){
         int fourChairCounter = 0;
         int twoChairCounter = 0;
-        while(reservation.getNumberOfPeople()>=3){
+        while(reservation.getAmountOfPeople()>=3){
                 fourChairCounter++;
-                reservation.setNumberOfPeople(reservation.getNumberOfPeople()-4);
+                reservation.setAmountOfPeople(reservation.getAmountOfPeople()-4);
         }
-        while(reservation.getNumberOfPeople()>=1){
+        while(reservation.getAmountOfPeople()>=1){
                 twoChairCounter++;
-                reservation.setNumberOfPeople(reservation.getNumberOfPeople()-2);
+                reservation.setAmountOfPeople(reservation.getAmountOfPeople()-2);
         }
         return fourSeatTables(fourChairCounter, twoChairCounter, reservation);
     }
