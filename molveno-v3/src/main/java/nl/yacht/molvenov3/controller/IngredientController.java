@@ -17,13 +17,13 @@ public class IngredientController {
     @GetMapping
     public Iterable<Ingredient> getAll() {
 
-        Iterable<Ingredient> persons = this.ingredientRepository.getAll();
-        return persons;
+        Iterable<Ingredient> ingredients = this.ingredientRepository.getAll();
+        return ingredients;
     }
 
     @PostMapping
-    public Ingredient save(@RequestBody Ingredient person) {
-        return this.ingredientRepository.save(person);
+    public Ingredient save(@RequestBody Ingredient ingredient) {
+        return this.ingredientRepository.save(ingredient);
 
     }
 
