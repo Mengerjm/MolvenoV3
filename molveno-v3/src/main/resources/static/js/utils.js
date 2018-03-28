@@ -1,8 +1,28 @@
+var baseUrl = "http://localhost:8080/api/";
+
 var updateTable = function(){
 
-var table = $('#reservationTable').DataTable();
- table.ajax.reload();
+    //var baseUrl = "/api/";
+    $.ajax({
+
+        url : baseUrl+"reservation",
+        type : "get",
+        success : function(data){
+
+              reservationList ="";
+
+              $.each(data, function(index, current){
+                 reservationList += createReservationString(current);
+              });
+
+              $("#reservationList").html(reservationList);
+        }
+    });
+    var table = $('#reservationTable').DataTable();
+     table.ajax.reload();
  }
+
+
 
 $(document).ready(function(){
     $("#testButton").click(function(){
@@ -12,20 +32,20 @@ $(document).ready(function(){
     $("#changeButton").click(updateTable);
 
 
-$("#updateButton").click(function() {
-  updateTable();
-     });
+        $("#updateButton").click(function() {
+        updateTable();
+            });
 
-$("#addButton").click(function() {
+        $("#addButton").click(function() {
 
-  var baseUrl ="/api/";
-        var jsonObject = {
-            firstName: $("#firstNameInput").val(),
-            lastName: $("#lastNameInput").val(),
-            amountOfPeople: Number($("#amountOfPeopleInput").val()),
-            reservationTime: Number($("#reservationTimeInput").val())
+            var baseUrl ="/api/";
+                var jsonObject = {
+                    firstName: $("#firstNameInput").val(),
+                    lastName: $("#lastNameInput").val(),
+                    amountOfPeople: Number($("#amountOfPeopleInput").val()),
+                    reservationTime: Number($("#reservationTimeInput").val())
 
-        };
+                    };
 
         console.log(jsonObject);
 
