@@ -9,7 +9,7 @@ public class Table {
     private int numberOfSeats;
     private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
     private static int tableNumberCounter = 1;
-    private ArrayList<LocalDateTime> reservationTimes;
+    private ArrayList<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
     public int getTableNumber() {
