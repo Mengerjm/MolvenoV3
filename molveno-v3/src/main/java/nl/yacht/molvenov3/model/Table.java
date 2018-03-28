@@ -88,10 +88,5 @@ public class Table {
         this.isAvailable = true;
     }
 
-    public Table(int tableNumber, int numberOfSeats, boolean isAvailable) {
-        this.tableNumber = tableNumber;
-        this.numberOfSeats = numberOfSeats;
-        this.isAvailable = isAvailable;
-    }
 }
 
