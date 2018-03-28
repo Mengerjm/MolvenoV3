@@ -3,17 +3,17 @@ package nl.yacht.molvenov3.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Map;
 
 @Controller
-@RequestMapping(value="/")
-public class FrontendController {
+@RequestMapping(value="/reservation.html")
+public class FrontendReservationController {
 
-    @RequestMapping(value="", method= RequestMethod.GET)
+    @GetMapping
     public String home(Map<String, Object> model){
-        return "index";
+        return "reservation";
     }
 
 }
+

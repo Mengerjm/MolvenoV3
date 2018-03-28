@@ -58,26 +58,20 @@ public class ReservationController {
 
     @PutMapping(value = "{id}")
     public Reservation update(@PathVariable long id, @RequestBody Reservation input) {
-
         return this.reservationRepository.update(id, input);
-
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable long id) {
+        this.tableRepository.cancelReservedTables(this.reservationRepository.findById(id));
         this.reservationRepository.delete(id);
     }
 
     @PostMapping
     public Reservation save(@RequestBody Reservation reservation) {
-        Reservation saved = this.reservationRepository.save(reservation);
-
-        // TODO something with saved.
-        int tables = this.tableRepository.howManyTables(saved);
-        saved.setTableNuber(tables);
-        this.reservationRepository.save(saved);
-
-        return saved;
+        int[] tables = this.tableRepository.howManyTables(reservation);
+        reservation.setTableNumber(tables);
+        return this.reservationRepository.save(reservation);
     }
 }
 
