@@ -1,5 +1,112 @@
 {{>header}}
 
+<h1>Restaurant Lago di Molveno</h1>
+
+
+<img id="header" src="http://www.pizzacalzonebanbury.co.uk/wpimages/wpdeb47062_05_06.jpg" height="10px" width="100%">
+<br><br>
+<h2>Reservation List</h2>
+
+<button id="button1" class="btn btn-danger">Rescue</button>
+<button id="button2" class="btn btn-danger">Rescue</button>
+<table>
+    <tr>
+        <td>Firstname:</td>
+        <td>
+            <input type="text" name="firstName" id="firstNameInput"/>
+        </td>
+    </tr>
+    <tr>
+        <td>Lastname:</td>
+        <td><input type="text" name="lastName" id="lastNameInput"/></td>
+    </tr>
+    <tr>
+        <td>Number of people:</td>
+        <td><input type="text" name="numberOfPeople" id="amountOfPeopleInput"/></td>
+    </tr>
+    <tr>
+        <td>Reservation time:</td>
+        <td><input type="text" name="reservationTime" id="reservationTimeInput"/></td>
+    </tr>
+    <tr>
+
+        <td><br>
+            <button id="updateButton">Update</button>
+        </td>
+        <td><br>
+            <button id="addButton">Add</button>
+        </td>
+    </tr>
+</table>
+
+<br>
+<br>
+
+<table id="reservationTable" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>Amount of People</th>
+        <th>Reservation Time</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Amount of People</th>
+        <th>Reservation Time</th>
+    </tr>
+    </tfoot>
+</table>
+
+
+
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title" id="modal-title">Title</h3>
+            </div>
+            <div class="modal-body">
+                <form id="reservationForm" enctype='text/plain'>
+                    First name:<br>
+                    <input type='text' class="form-control" name='firstName' id="firstName"><br>
+                    Last name:<br>
+                    <input type='text' class="form-control" name='lastName' id="lastName"><br>
+                    Amount of people<br>
+                    <input type='text' class="form-control" name='amountOfPeople' id="amountOfPeople"><br>
+                    Reservation time<br>
+                    <input type='text' class="form-control" name='reservationTime' id="reservationTime"><br>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="btnsubmit">Submit</button>
+                <a href="#" id="confirmbutton" data-title="Are you sure" data-trigger="focus" data-toggle="clickover"
+                   data-placement="top" class="btn btn-danger">Delete</a>
+                <button type="button" class="btn btn-default" id="btnclose" onclick="deselect()" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil
+        anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    </div>
+</div>-->
+
+<script src="js/datatable.js"></script>
+<script src="js/utils.js"></script>
+
 
 
 
