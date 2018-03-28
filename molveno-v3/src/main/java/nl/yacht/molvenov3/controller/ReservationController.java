@@ -58,7 +58,10 @@ public class ReservationController {
 
     @PutMapping(value = "{id}")
     public Reservation update(@PathVariable long id, @RequestBody Reservation input) {
-        return this.reservationRepository.update(id, input);
+        this.tableRepository.cancelReservedTables(this.reservationRepository.findById(id));
+        Reservation output = this.reservationRepository.update(id, input);
+        output.setTableNumber(this.tableRepository.howManyTables(input));
+        return output;
     }
 
     @DeleteMapping("{id}")

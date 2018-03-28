@@ -31,6 +31,16 @@ public class TableRepository {
         return this.tables;
     }
 
+    //Find single table by ID
+    public Table findByID(int tableNumber) {
+        for (Table table:tables) {
+            if(tableNumber==table.getTableNumber()){
+                return table;
+            }
+        }
+        return null;
+    }
+
     //Add new table
     public Table save(Table table) {
         this.tables.add(table);
@@ -49,11 +59,18 @@ public class TableRepository {
     }
 
     //Update table
-    public Table update(int tableNumber, Table table) {
+    public Table update(int tableNumber, Table input) {
         Table output = this.tables.get(tableNumber);
-        output.setAvailable(table.isAvailable());
-        output.setNumberOfSeats(table.getNumberOfSeats());
-        output.setTableNumber(table.getTableNumber());
+        output.setAvailable(input.isAvailable());
+        output.setNumberOfSeats(input.getNumberOfSeats());
+        output.setTableNumber(input.getTableNumber());
+        return output;
+    }
+
+    //Set table unavailable NOW
+    public Table setUnavailable(int tableNumber) {
+        Table output = this.tables.get(tableNumber);
+        output.getReservationTimes().add(LocalDateTime.now());
         return output;
     }
 
@@ -136,41 +153,7 @@ public class TableRepository {
     public void removeReservationFromTable(Table table, Reservation reservation){
         int index = 0;
         for (LocalDateTime reservationTime : table.getReservationTimes()) {
-            if (reservationTime.equals(reservation.getReservationTime())) {
-                table.getReservationTimes().remove(index);
-            }
-            index++;
-        }
-    }
-
-//endregion
-
-    //WORK IN PROGRESS IGNORE ERRORS
-    //region Reservation edited - edit reservationtime from table
-
-    //For every tablenumber that is saved in reservation, run the next method
-    public int[] editReservedTables(int tableNumber, Reservation input) {
-        for (int j = 0; j <= input.getTableNumber().length; j++) {
-            this.findReservationtimesToEdit(input, j);
-        }
-        return null;
-    }
-
-    //For each table find the correct one and run the next method in it
-    public void findReservationtimesToEdit(Reservation input, int j){
-        for (Table table : tables) {
-            int[] reservedTables = input.getTableNumber();
-            if (reservedTables[j] == table.getTableNumber()) {
-                this.removeReservationFromTable(table, input);
-            }
-        }
-    }
-
-    //For the correct table, find the correct reservationtime and delete it from the arraylist of the table
-    public void edirReservationFromTable(Table table, Reservation input){
-        int index = 0;
-        for (LocalDateTime reservationTime : table.getReservationTimes()) {
-            if (reservationTime.equals(input.getReservationTime())) {
+            if (reservationTime.isEqual(reservation.getReservationTime())) {
                 table.getReservationTimes().remove(index);
             }
             index++;

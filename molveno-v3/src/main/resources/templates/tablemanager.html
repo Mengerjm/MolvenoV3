@@ -1,5 +1,41 @@
 {{>header}}
 
+<table id="allTables" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>Table Number</th>
+        <th>Number of Chairs</th>
+    </tr>
+    </thead>
+</table>
+
+<div class="modal fade" id="allTableModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-all-table">All tables</h3>
+            </div>
+            <div class="modal-body">
+                <form id="tableForm" enctype='text/plain'>
+                    Tablenumber:<br>
+                    <input type='text' class="form-control" name='tableNumber' id="tableNumberTwo"><br>
+                    Number of Chairs:<br>
+                    <input type='text' class="form-control" name='numberOfSeats' id="numberOfSeatsTwo"><br>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="editbutton">Submit</button>
+                <a href="#" id="confirmbutton" data-title="Are you sure" data-trigger="focus" data-toggle="clickover" data-placement="top" class="btn btn-danger">Delete</a>
+                <button type="button" class="btn btn-default" id="btnclosealltable" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Hieronder staat de werkende knop-->
+
 <button type="button" class="btn btn-info" id="modalButton">Add a Table</button>
 
 <div class="modal fade" id="myModal" role="dialog">
@@ -20,5 +56,8 @@
     </div>
 </div>
 
+
+
+<script src="/js/tablemanagerdatatable.js"></script>
 <script src="/js/tablemanager.js"></script>
 {{>footer}}
