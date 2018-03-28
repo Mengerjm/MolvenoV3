@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Map;
 
 @Controller
-@RequestMapping(value="/")
-public class FrontendController {
+@RequestMapping(value="/reservation.html")
+public class FrontendReservationController {
 
     @GetMapping
     public String home(Map<String, Object> model){
-        return "index";
+        return "reservation";
     }
 
 }
+
