@@ -1,8 +1,8 @@
-var baseUrl = "http://localhost:8080/api/";
+//var baseUrl = "http://localhost:8080/api/";
 
 var updateTable = function(){
 
-    //var baseUrl = "/api/";
+    var baseUrl = "/api/";
     $.ajax({
 
         url : baseUrl+"reservation",
@@ -25,15 +25,10 @@ var updateTable = function(){
 
 
 $(document).ready(function(){
-    $("#testButton").click(function(){
-        $("#test").hide();
-    });
-
     $("#changeButton").click(updateTable);
 
-
-        $("#updateButton").click(function() {
-        updateTable();
+    $("#updateButton").click(function() {
+       updateTable();
             });
 
         $("#addButton").click(function() {
