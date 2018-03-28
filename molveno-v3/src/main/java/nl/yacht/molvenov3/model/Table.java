@@ -8,7 +8,8 @@ public class Table {
     private int tableNumber;
     private int numberOfSeats;
     private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
-    private static int tableNumberCounter = 1;
+    private int tableId;
+    private static int idCounter = 1;
     private ArrayList<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
@@ -44,13 +45,22 @@ public class Table {
         this.reservationTimes = reservationTimes;
     }
 
-//endregion
+    public int getTableId() {
+        return tableId;
+    }
+
+    public void setTableId(int tableId) {
+        this.tableId = tableId;
+    }
+
+    //endregion
 
     //Can table be used NOW, or is it reserved?
     public boolean canTableBeUsedNow(Table table){
         int counter = 0;
         for (LocalDateTime reserved:table.getReservationTimes()) {
-            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(3))){
+            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(6))){
+                reserved.minusHours(3);
                 counter++;
             }
         }
@@ -64,7 +74,8 @@ public class Table {
     public boolean canTableBeReserved(Table table, LocalDateTime reservationTime){
         int counter = 0;
         for (LocalDateTime reserved:table.getReservationTimes()) {
-            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(3))){
+            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(6))){
+                reserved.minusHours(3);
                 counter++;
             }
         }
@@ -77,7 +88,7 @@ public class Table {
     public Table(){}
 
     public Table(int numberOfSeats){
-        this.tableNumber = tableNumberCounter++;
+        this.tableNumber = idCounter++;
         this.numberOfSeats = numberOfSeats;
         this.isAvailable = true;
     }

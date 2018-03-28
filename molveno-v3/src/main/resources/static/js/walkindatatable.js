@@ -3,7 +3,7 @@ $(document).ready(function() {
         $('#allTables').DataTable( {
                 "order": [[ 0, "asc" ]],
                 "ajax": {
-                        url: 'http://localhost:8080/api/table/findall',
+                        url: 'http://localhost:8080/api/table/available',
                         dataSrc: ''
                     },
                 "columns": [
@@ -93,7 +93,6 @@ function submitEdit(id){
     $.ajax({
         url:"/api/table/available/" + tableNumber,
         type:"put",
-        contentType: "application/json; charset=utf-8",
         success: getData,
         error: function(error){
             displayError(error);

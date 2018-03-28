@@ -4,6 +4,7 @@ import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.model.Table;
 import org.springframework.stereotype.Repository;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,9 +15,15 @@ public class TableRepository {
 
     private ArrayList<Table> tables = new ArrayList<>();
     private Map<Long, Reservation> reservation = new HashMap<>();
+    private static int counter = 0;
 
     //Find all available tables
     public Iterable<Table> findAllAvailable() {
+        return createAvailableList();
+    }
+
+    //Create list of available tables
+    public Iterable<Table> createAvailableList(){
         ArrayList<Table> availableTables = new ArrayList<>();
         for (Table table : this.tables) {
             if (table.isAvailable() && table.canTableBeUsedNow(table)) {
@@ -60,18 +67,26 @@ public class TableRepository {
 
     //Update table
     public Table update(int tableNumber, Table input) {
-        Table output = this.tables.get(tableNumber);
-        output.setAvailable(input.isAvailable());
-        output.setNumberOfSeats(input.getNumberOfSeats());
-        output.setTableNumber(input.getTableNumber());
-        return output;
+        for (Table table:this.tables) {
+            if(table.getTableNumber()==tableNumber){
+                table.setAvailable(input.isAvailable());
+                table.setNumberOfSeats(input.getNumberOfSeats());
+                table.setTableNumber(input.getTableNumber());
+                return table;
+            }
+        }
+        return input;
     }
 
     //Set table unavailable NOW
     public Table setUnavailable(int tableNumber) {
-        Table output = this.tables.get(tableNumber);
-        output.getReservationTimes().add(LocalDateTime.now());
-        return output;
+        for (Table table:this.tables) {
+            if(table.getTableNumber()==tableNumber){
+                table.getReservationTimes().add(LocalDateTime.now());
+                return table;
+            }
+        }
+        return null;
     }
 
     //region New reservation - set reservation time to table
