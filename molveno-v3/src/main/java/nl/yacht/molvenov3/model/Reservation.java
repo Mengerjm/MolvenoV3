@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Reservation implements Serializable {
 
@@ -15,7 +16,7 @@ public class Reservation implements Serializable {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationTime;
     private long id;
-    private int[] tableNumber;
+    private List<Table> reservedTable;
 
 
     public Reservation() {
@@ -68,12 +69,12 @@ public class Reservation implements Serializable {
         this.id = id;
     }
 
-    public int[] getTableNumber() {
-        return tableNumber;
+    public List<Table> getReservedTable() {
+        return reservedTable;
     }
 
-    public void setTableNumber(int[] tableNumber) {
-        this.tableNumber = tableNumber;
+    public void setReservedTable(List<Table> reservedTable) {
+        this.reservedTable = reservedTable;
     }
 
 /** public void cancel() {
