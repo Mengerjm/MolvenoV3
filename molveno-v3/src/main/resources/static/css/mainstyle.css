@@ -1,0 +1,26 @@
+
+@font-face {
+font-family: "Header font";
+src: url("../fonts/BRUSHSCI.ttf");
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Header font";
+    color: #00205f;
+    }
+
+
+body {
+  font-family: Calibri, sans-serif;
+  background-color: #EFF8FB;
+  }
+
+.logo {
+width: 100px;
+}
+
+.site-title {
+display: inline-block;
+}
