@@ -11,7 +11,17 @@ $(document).ready(function() {
                     { "data": "lastName" },
                     { "data": "amountOfPeople"},
                     { "data": "reservationTime"},
-                    { "data": "tableNumber"}
+                    { "data": function( data, type, row){
+
+                        var toReturn = "";
+
+                        $.each(data.reservedTable, function (index, current){
+                            toReturn = toReturn + current.tableNumber + ", ";
+                        });
+
+                        return toReturn;
+
+                    }}
 
                 ]
          } );
