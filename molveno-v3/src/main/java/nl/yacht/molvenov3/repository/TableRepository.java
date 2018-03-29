@@ -26,7 +26,7 @@ public class TableRepository {
     public Iterable<Table> createAvailableList(){
         ArrayList<Table> availableTables = new ArrayList<>();
         for (Table table : this.tables) {
-            if (table.isAvailable() && table.canTableBeUsedNow(table)) {
+            if (table.canTableBeUsedNow(table)) {
                 availableTables.add(table);
             }
         }
@@ -69,7 +69,6 @@ public class TableRepository {
     public Table update(int tableNumber, Table input) {
         for (Table table:this.tables) {
             if(table.getTableNumber()==tableNumber){
-                table.setAvailable(input.isAvailable());
                 table.setNumberOfSeats(input.getNumberOfSeats());
                 table.setTableNumber(input.getTableNumber());
                 return table;
@@ -113,7 +112,6 @@ public class TableRepository {
         int[] tableNumber = new int[5];
         for (Table table : tables) {
             if (table.getNumberOfSeats() == 4
-                    && table.isAvailable()
                     && fourChairs > 0
                     && table.canTableBeReserved(table, reservation.getReservationTime())) {
                 table.getReservationTimes().add(reservation.getReservationTime());
@@ -129,7 +127,6 @@ public class TableRepository {
     public int[] twoSeatTables(int twoChairs, int[] tableNumber, Reservation reservation, int i) {
         for (Table table : tables) {
             if (table.getNumberOfSeats() == 4
-                    && table.isAvailable()
                     && twoChairs > 0
                     && table.canTableBeReserved(table, reservation.getReservationTime())) {
                 table.getReservationTimes().add(reservation.getReservationTime());

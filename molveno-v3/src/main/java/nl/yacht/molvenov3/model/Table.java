@@ -7,8 +7,7 @@ public class Table {
 
     private int tableNumber;
     private int numberOfSeats;
-    private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
-    private int tableId;
+    //private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
     private static int idCounter = 1;
     private ArrayList<LocalDateTime> reservationTimes = new ArrayList<>();
 
@@ -29,28 +28,12 @@ public class Table {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
-    }
-
     public ArrayList<LocalDateTime> getReservationTimes() {
         return reservationTimes;
     }
 
     public void setReservationTimes(ArrayList<LocalDateTime> reservationTimes) {
         this.reservationTimes = reservationTimes;
-    }
-
-    public int getTableId() {
-        return tableId;
-    }
-
-    public void setTableId(int tableId) {
-        this.tableId = tableId;
     }
 
     //endregion
@@ -90,13 +73,11 @@ public class Table {
     public Table(int numberOfSeats){
         this.tableNumber = idCounter++;
         this.numberOfSeats = numberOfSeats;
-        this.isAvailable = true;
     }
 
     public Table(int tableNumber, int numberOfSeats) {
         this.tableNumber = tableNumber;
         this.numberOfSeats = numberOfSeats;
-        this.isAvailable = true;
     }
 
 }
