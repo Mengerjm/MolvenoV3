@@ -1,0 +1,30 @@
+{{>header}}
+
+<table id="allTables" class="display" style="width:100%">
+    <thead>
+    <tr>
+        <th>Table Number</th>
+        <th>Number of Chairs</th>
+    </tr>
+    </thead>
+</table>
+
+<div class="modal fade" id="allTableModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-all-table">All tables</h3>
+            </div>
+            <div class="modal-body">
+                <h3>Do you want to set this table to unavailable?</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="editbutton">Yes</button>
+                <button type="button" class="btn btn-default" id="btnclosealltable" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/walkindatatable.js"></script>
+{{>footer}}
