@@ -95,13 +95,14 @@ public class TableRepository {
     public int[] howManyTables(Reservation reservation) {
         int fourChairCounter = 0;
         int twoChairCounter = 0;
-        while (reservation.getAmountOfPeople() >= 3) {
+        int numberGuests = reservation.getAmountOfPeople();
+        while (numberGuests - 4 >= 3) {
             fourChairCounter++;
-            reservation.setAmountOfPeople(reservation.getAmountOfPeople() - 4);
+            numberGuests -= 4;
         }
-        while (reservation.getAmountOfPeople() >= 1) {
+        while (numberGuests >= 1) {
             twoChairCounter++;
-            reservation.setAmountOfPeople(reservation.getAmountOfPeople() - 2);
+            numberGuests -= 2;
         }
         return fourSeatTables(fourChairCounter, twoChairCounter, reservation);
     }
