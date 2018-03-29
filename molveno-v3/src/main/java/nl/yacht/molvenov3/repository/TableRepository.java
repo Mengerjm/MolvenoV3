@@ -8,6 +8,7 @@ import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -90,74 +91,64 @@ public class TableRepository {
     //region New reservation - set reservation time to table
 
     //Online reservations, how many tables for number of people. Returns table number if possible, returns 0 of no tables available.
-    public int[] howManyTables(Reservation reservation) {
+    public List<Table> howManyTables(Reservation reservation) {
         int fourChairCounter = 0;
         int twoChairCounter = 0;
         int numberGuests = reservation.getAmountOfPeople();
-        while (numberGuests - 4 >= 3) {
+        while (numberGuests >= 3) {
             fourChairCounter++;
-            numberGuests -= 4;
+            numberGuests = numberGuests - 4;
         }
         while (numberGuests >= 1) {
             twoChairCounter++;
-            numberGuests -= 2;
+            numberGuests = numberGuests - 2;
         }
         return fourSeatTables(fourChairCounter, twoChairCounter, reservation);
     }
 
     //Find 4 seat tables and set them unavailable for online reservations
-    public int[] fourSeatTables(int fourChairs, int twoChairs, Reservation reservation) {
+    public List<Table> fourSeatTables(int fourChairs, int twoChairs, Reservation reservation) {
         int i = 0;
-        int[] tableNumber = new int[5];
-        for (Table table : tables) {
+        List<Table> reservedTables = new ArrayList<>();
+        for (Table table : this.tables) {
             if (table.getNumberOfSeats() == 4
                     && fourChairs > 0
                     && table.canTableBeReserved(table, reservation.getReservationTime())) {
                 table.getReservationTimes().add(reservation.getReservationTime());
                 fourChairs--;
-                tableNumber[i] = table.getTableNumber();
-                i++;
+                reservedTables.add(table);
             }
         }
-        return twoSeatTables(fourChairs * 2 + twoChairs, tableNumber, reservation, i);
+        twoChairs = fourChairs*2 + twoChairs;
+
+        return twoSeatTables(twoChairs, reservedTables, reservation, i);
     }
 
     //Find 2 seat tables and set them unavailable for online reservations
-    public int[] twoSeatTables(int twoChairs, int[] tableNumber, Reservation reservation, int i) {
-        for (Table table : tables) {
-            if (table.getNumberOfSeats() == 4
+    public List<Table> twoSeatTables(int twoChairs, List<Table> reservedTables, Reservation reservation, int i) {
+        for (Table table : this.tables) {
+            if (table.getNumberOfSeats() == 2
                     && twoChairs > 0
                     && table.canTableBeReserved(table, reservation.getReservationTime())) {
                 table.getReservationTimes().add(reservation.getReservationTime());
                 twoChairs--;
-                tableNumber[i] = table.getTableNumber();
-                i++;
+                reservedTables.add(table);
             }
         }
         if (twoChairs > 0) {
             return null;
             //Not enough tables, send error message
-        } else return tableNumber;
+        } else return reservedTables;
     }
 
     //endregion
 
     //region Reservation deleted - remove reservationtime from table
 
-    //For every tablenumber that is saved in reservation, run the next method
+    //For every table that is saved in reservation, run the next method
     public void cancelReservedTables(Reservation reservation) {
-        for (int j = 0; j <= reservation.getTableNumber().length; j++) {
-            this.findReservationtimesFromTables(reservation, j);
-        }
-    }
-
-    //For each table find the correct one and run the next method in it
-    public void findReservationtimesFromTables(Reservation reservation, int j){
-        for (Table table : tables) {
-            int[] reservedTables = reservation.getTableNumber();
-            if (reservedTables[j] == table.getTableNumber()) {
-                this.removeReservationFromTable(table, reservation);
-            }
+        for (Table table:reservation.getReservedTable()) {
+            removeReservationFromTable(table, reservation);
         }
     }
 

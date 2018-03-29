@@ -4,20 +4,24 @@ var baseUrl = "http://localhost:8080/api/"
 $(document).ready(function(){
 console.log("doc ready");
 
-$("#addButton").click(function() {
+$('#modalButton').click(activateModal);
 
+function activateModal (){
+$('#myModalInput').modal('toggle');
+}
+
+$("#addButton").click(function() {
 
         var jsonObject = {
             firstName: $("#firstNameInput").val(),
             lastName: $("#lastNameInput").val(),
             amountOfPeople: Number($("#amountOfPeopleInput").val()),
             reservationTime: $("#reservationTimeInput").val()
-
         };
 
         console.log(JSON.stringify(jsonObject));
 
-         $.ajax({
+        $.ajax({
                  contentType : "application/json",
                  // waar moet hij de request op uitvoeren
                  url : baseUrl+"reservation",
@@ -31,6 +35,7 @@ $("#addButton").click(function() {
              });
 
              updateTable();
+             $('#myModalInput').modal('toggle');
       });
 
 });

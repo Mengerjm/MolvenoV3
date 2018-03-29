@@ -10,7 +10,8 @@ $(document).ready(function() {
                     { "data": "firstName" },
                     { "data": "lastName" },
                     { "data": "amountOfPeople"},
-                    { "data": "reservationTime" }
+                    { "data": "reservationTime"},
+                    { "data": "tableNumber"}
 
                 ]
          } );
@@ -71,9 +72,8 @@ function fillUpdateDiv(reservation){
     $("#lastName").val(reservation.lastName);
     $("#amountOfPeople").val(reservation.amountOfPeople);
     $("#reservationTime").val(reservation.reservationTime);
-    /*
-    $("#address").val(guest.address);
-    $("#postalCode").val(guest.postalCode);
+   // $("#tableNumber").val(reservation.tableNumber);
+    /*$("#postalCode").val(guest.postalCode);
     $("#city").val(guest.city);
     $("#country").val(guest.country);
     $("#phoneNumber").val(guest.phoneNumber);
