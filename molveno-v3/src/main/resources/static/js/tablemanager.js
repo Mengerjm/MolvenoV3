@@ -10,7 +10,6 @@ $(document).ready(function(){
         var jsonObject = {
             tableNumber: Number($("#tableNumber").val()),
             numberOfSeats: Number($("#numberOfSeats").val()),
-            available: true
         };
         $.ajax({
             contentType: "application/json",
@@ -21,6 +20,12 @@ $(document).ready(function(){
                 console.log(data);
             }
         });
+        updateTable();
+        dew();
     });
-
 });
+
+    var updateTable = function(){
+          console.log("ik start update");
+          $('#allTables').DataTable().ajax.reload();
+    }

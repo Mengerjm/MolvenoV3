@@ -15,7 +15,6 @@ public class TableRepository {
 
     private ArrayList<Table> tables = new ArrayList<>();
     private Map<Long, Reservation> reservation = new HashMap<>();
-    private static int counter = 0;
 
     //Find all available tables
     public Iterable<Table> findAllAvailable() {

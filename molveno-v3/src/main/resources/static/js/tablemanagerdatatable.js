@@ -119,6 +119,13 @@ function submitDelete(){
         contentType: "application/json; charset=utf-8"
     });
 
+    updateTable();
+
     $('#allTableModal').modal('toggle');
     deselect();
 }
+
+    var updateTable = function(){
+          console.log("ik start update");
+          $('#allTables').DataTable().ajax.reload();
+    }
