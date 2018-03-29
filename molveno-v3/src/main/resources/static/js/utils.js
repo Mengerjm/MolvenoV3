@@ -8,10 +8,10 @@ $("#addButton").click(function() {
 
 
         var jsonObject = {
-            firstName: $("#firstName").val(),
-            lastName: $("#lastName").val(),
-            amountOfPeople: Number($("#amountOfPeople").val()),
-            reservationTime: $("#reservationTime").val()
+            firstName: $("#firstNameInput").val(),
+            lastName: $("#lastNameInput").val(),
+            amountOfPeople: Number($("#amountOfPeopleInput").val()),
+            reservationTime: $("#reservationTimeInput").val()
 
         };
 
