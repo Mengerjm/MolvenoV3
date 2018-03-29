@@ -27,16 +27,28 @@ public class TableController {
         return this.tables.findAll();
     }
 
+    //Get table by id
+    @GetMapping(value="/get/{id}")
+    public Table findById(@PathVariable("id") int tableNumber){
+        return this.tables.findByID(tableNumber);
+    }
+
     //Add new table with tablenumber and number of seats
     @PostMapping(value = "/newtable")
     public Table save(@RequestBody Table table) {
         return this.tables.save(table);
     }
 
-    //Update tablenumber, numberOfSeats and isAvailable
+    //Change table characteristics
+    @PutMapping(value = "/update/{id}")
+    public Table update(@PathVariable("id") int tableNumber, @RequestBody Table input) {
+        return this.tables.update(tableNumber, input);
+    }
+
+    //Set table unavailable now for random walk in guests
     @PutMapping(value = "/available/{id}")
-    public Table update(@PathVariable("id") int tableNumber, @RequestBody Table table) {
-        return this.tables.update(tableNumber, table);
+    public Table setUnavailable(@PathVariable("id") int tableNumber) {
+        return this.tables.setUnavailable(tableNumber);
     }
 
     //Delete a table by tablenumber
