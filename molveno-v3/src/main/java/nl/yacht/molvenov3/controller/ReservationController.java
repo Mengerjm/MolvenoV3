@@ -66,8 +66,7 @@ public class ReservationController {
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable long id) {
-        //Tijdelijk uitgecomment - nog geen list
-        //this.tableRepository.cancelReservedTables(this.reservationRepository.findById(id));
+        this.tableRepository.cancelReservedTables(this.reservationRepository.findById(id));
         this.reservationRepository.delete(id);
     }
 

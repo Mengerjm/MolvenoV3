@@ -94,13 +94,13 @@ public class TableRepository {
         int fourChairCounter = 0;
         int twoChairCounter = 0;
         int numberGuests = reservation.getAmountOfPeople();
-        while (numberGuests - 4 >= 3) {
+        while (numberGuests >= 3) {
             fourChairCounter++;
-            numberGuests -= 4;
+            numberGuests = numberGuests - 4;
         }
         while (numberGuests >= 1) {
             twoChairCounter++;
-            numberGuests -= 2;
+            numberGuests = numberGuests - 2;
         }
         return fourSeatTables(fourChairCounter, twoChairCounter, reservation);
     }
@@ -119,13 +119,15 @@ public class TableRepository {
                 i++;
             }
         }
-        return twoSeatTables(fourChairs * 2 + twoChairs, tableNumber, reservation, i);
+        twoChairs = fourChairs*2 + twoChairs;
+
+        return twoSeatTables(twoChairs, tableNumber, reservation, i);
     }
 
     //Find 2 seat tables and set them unavailable for online reservations
     public int[] twoSeatTables(int twoChairs, int[] tableNumber, Reservation reservation, int i) {
         for (Table table : tables) {
-            if (table.getNumberOfSeats() == 4
+            if (table.getNumberOfSeats() == 2
                     && twoChairs > 0
                     && table.canTableBeReserved(table, reservation.getReservationTime())) {
                 table.getReservationTimes().add(reservation.getReservationTime());
