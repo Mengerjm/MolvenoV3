@@ -4,6 +4,12 @@ var baseUrl = "http://localhost:8080/api/"
 $(document).ready(function(){
 console.log("doc ready");
 
+$('#modalButton').click(activateModal);
+
+function activateModal (){
+$('#myModalInput').modal('toggle');
+}
+
 $("#addButton").click(function() {
 
         var jsonObject = {
@@ -29,6 +35,7 @@ $("#addButton").click(function() {
              });
 
              updateTable();
+             $('#myModalInput').modal('toggle');
       });
 
 });

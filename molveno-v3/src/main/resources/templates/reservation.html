@@ -12,6 +12,35 @@
 <h2>Reservation List</h2>
 
 
+<button type="button" class="btn btn-info" id="modalButton">Make a Reservation</button>
+<div class="modal fade" id="myModalInput" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-titleInput">Add a Table</h3>
+            </div>
+            <div class="modal-body">
+                <form id="reservationFormInput" enctype='text/plain'>
+                <h5>Firstname:</h5>
+                <input type="text" name="firstName" id="firstNameInput"/>
+                <h5>Lastname:</h5>
+                <input type="text" name="lastName" id="lastNameInput"/>
+                <h5>Number of people:</h5>
+                <input type="text" name="amountOfPeople" id="amountOfPeopleInput"/>
+                <h5>Reservation time:</h5>
+                <input type="text" name="reservationTime" id="reservationTimeInput"/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="addButton">Add new Table</button>
+                <button type="button" class="btn btn-default" id="btncloseInput" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+
 <table>
     <tr>
         <td>Firstname:</td>
@@ -39,8 +68,7 @@
         </td>
     </tr>
 </table>
-
-
+-->
 <br>
 <br>
 
