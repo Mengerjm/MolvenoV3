@@ -17,10 +17,11 @@
             </div>
             <div class="modal-body">
                 <form id="tableForm" enctype='text/plain'>
-                    Tablenumber:<br>
-                    <input type='text' class="form-control" name='tableNumber' id="tableNumberTwo"><br>
-                    Number of Chairs:<br>
-                    <input type='text' class="form-control" name='numberOfSeats' id="numberOfSeatsTwo"><br>
+                    <h5>Input tablenumber: </h5><input type='text' class="form-control" name='tableNumber' id="tableNumberTwo"><br>
+                    <h5>Input number of chairs: </h5><select name="numberOfSeats" id="numberOfSeatsTwo">
+                        <option value=2>2 Chairs</option>
+                        <option value=4>4 Chairs</option>
+                    </select><br>
                 </form>
 
             </div>
@@ -46,7 +47,10 @@
             </div>
             <div class="modal-body">
                 <h5>Input tablenumber: </h5><input type="text" name="tableNumber" id="tableNumber"><br>
-                <h5>Input number of seats: </h5><input type="text" name="numberOfSeats" id="numberOfSeats">
+                <h5>Input number of chairs: </h5><select name="numberOfSeats" id="numberOfSeats">
+                    <option value=2>2 Chairs</option>
+                    <option value=4>4 Chairs</option>
+                </select>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="btnsubmit">Add new Table</button>
