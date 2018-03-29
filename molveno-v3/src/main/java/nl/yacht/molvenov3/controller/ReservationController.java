@@ -58,12 +58,16 @@ public class ReservationController {
 
     @PutMapping(value = "{id}")
     public Reservation update(@PathVariable long id, @RequestBody Reservation input) {
-        return this.reservationRepository.update(id, input);
+        this.tableRepository.cancelReservedTables(this.reservationRepository.findById(id));
+        Reservation output = this.reservationRepository.update(id, input);
+        output.setTableNumber(this.tableRepository.howManyTables(input));
+        return output;
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable long id) {
-        this.tableRepository.cancelReservedTables(this.reservationRepository.findById(id));
+        //Tijdelijk uitgecomment - nog geen list
+        //this.tableRepository.cancelReservedTables(this.reservationRepository.findById(id));
         this.reservationRepository.delete(id);
     }
 

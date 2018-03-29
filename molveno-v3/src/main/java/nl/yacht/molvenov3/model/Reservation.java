@@ -1,6 +1,8 @@
 package nl.yacht.molvenov3.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -9,6 +11,8 @@ public class Reservation implements Serializable {
     private String firstName;
     private String lastName;
     private int amountOfPeople;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationTime;
     private long id;
     private int[] tableNumber;
