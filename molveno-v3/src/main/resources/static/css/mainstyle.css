@@ -1,0 +1,53 @@
+
+@font-face {
+font-family: "Header font";
+src: url("../fonts/BRUSHSCI.ttf");
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Header font";
+    color: #00205f;
+    }
+
+
+body {
+  font-family: Calibri, sans-serif;
+  background-color: #EFF8FB;
+  }
+
+.logo {
+width: 100px;
+}
+
+.site-title {
+display: inline-block;
+}
+
+.test {
+font-family: Calibri, sans-serif;
+color: black;
+}
+
+.btn-default {
+background-color: #D8D8D8;
+}
+
+.button1 {
+background-color: #68CFF5;
+}
+
+.button1:hover {
+background-color: #68CFF5;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
+}
+
+.button2 {
+background-color: #40B7E0;
+}
+
+.button2:hover {
+background-color: #40B7E0;
+box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
+}

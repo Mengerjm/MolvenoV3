@@ -91,7 +91,7 @@ public class TableRepository {
     //region New reservation - set reservation time to table
 
     //Online reservations, how many tables for number of people. Returns table number if possible, returns 0 of no tables available.
-    public Iterable<Table> howManyTables(Reservation reservation) {
+    public List<Table> howManyTables(Reservation reservation) {
         int fourChairCounter = 0;
         int twoChairCounter = 0;
         int numberGuests = reservation.getAmountOfPeople();
@@ -107,7 +107,7 @@ public class TableRepository {
     }
 
     //Find 4 seat tables and set them unavailable for online reservations
-    public Iterable<Table> fourSeatTables(int fourChairs, int twoChairs, Reservation reservation) {
+    public List<Table> fourSeatTables(int fourChairs, int twoChairs, Reservation reservation) {
         int i = 0;
         List<Table> reservedTables = new ArrayList<>();
         for (Table table : this.tables) {
@@ -125,7 +125,7 @@ public class TableRepository {
     }
 
     //Find 2 seat tables and set them unavailable for online reservations
-    public Iterable<Table> twoSeatTables(int twoChairs, List<Table> reservedTables, Reservation reservation, int i) {
+    public List<Table> twoSeatTables(int twoChairs, List<Table> reservedTables, Reservation reservation, int i) {
         for (Table table : this.tables) {
             if (table.getNumberOfSeats() == 2
                     && twoChairs > 0
