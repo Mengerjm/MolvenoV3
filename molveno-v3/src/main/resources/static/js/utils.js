@@ -6,18 +6,16 @@ console.log("doc ready");
 
 $("#addButton").click(function() {
 
-
         var jsonObject = {
             firstName: $("#firstNameInput").val(),
             lastName: $("#lastNameInput").val(),
             amountOfPeople: Number($("#amountOfPeopleInput").val()),
             reservationTime: $("#reservationTimeInput").val()
-
         };
 
         console.log(JSON.stringify(jsonObject));
 
-         $.ajax({
+        $.ajax({
                  contentType : "application/json",
                  // waar moet hij de request op uitvoeren
                  url : baseUrl+"reservation",
