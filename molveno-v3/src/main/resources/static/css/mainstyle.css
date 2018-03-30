@@ -28,26 +28,31 @@ display: inline-block;
 .test {
 font-family: Calibri, sans-serif;
 color: black;
+font size: 11px;
 }
 
 .btn-default {
 background-color: #D8D8D8;
 }
 
-.button1 {
-background-color: #68CFF5;
+.modal-header {
+    padding: 2px 16px;
+    background-color: #DFF1F7;
+    color: white;
 }
 
-.button1:hover {
-background-color: #68CFF5;
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
+.modal-footer {
+    background-color: #DFF1F7;
+    color: white;
 }
 
-.button2 {
-background-color: #40B7E0;
+
+.modal-content {
+    border: 3px solid #888;
 }
 
-.button2:hover {
-background-color: #40B7E0;
-box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
+
+.btn-primary{
+    background-color: #17a2b8;
 }
+
