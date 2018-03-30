@@ -31,7 +31,7 @@ public class ReservationController {
     public void someData() {
         for(int i = 0;i<10;i++) {
             char c = (char) (i+65);
-            Reservation one = new Reservation("Henk","Boer", 2, LocalDateTime.now());
+            Reservation one = new Reservation("Henk","Boer", 2, "0612345678","voorbeeld@voorbeeld.nl",LocalDateTime.now ());
             this.reservationRepository.save(one);
         }
     }

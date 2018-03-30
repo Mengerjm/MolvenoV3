@@ -33,12 +33,12 @@ public class ReservationRepository {
     }
 
     public Reservation update(long id, Reservation input) {
-
         Reservation output = this.reservation.get(id);
-
         output.setFirstName(input.getFirstName());
         output.setLastName(input.getLastName());
         output.setAmountOfPeople(input.getAmountOfPeople());
+        output.setPhoneNumber(input.getPhoneNumber());
+        output.setMailAdres(input.getMailAdres());
         output.setReservationTime(input.getReservationTime());
         return output;
     }
