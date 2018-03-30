@@ -28,6 +28,7 @@ display: inline-block;
 .test {
 font-family: Calibri, sans-serif;
 color: black;
+font size: 11px;
 }
 
 .btn-default {
@@ -36,10 +37,22 @@ background-color: #D8D8D8;
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #087BA6;
+    background-color: #DFF1F7;
     color: white;
 }
 
-.modal-content {
-background-color: #DFF1F7;
+.modal-footer {
+    background-color: #DFF1F7;
+    color: white;
 }
+
+
+.modal-content {
+    border: 3px solid #888;
+}
+
+
+.btn-primary{
+    background-color: #17a2b8;
+}
+

@@ -1,5 +1,6 @@
-
 {{>header}}
+<link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
 <img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
 
@@ -13,80 +14,93 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="modal-titleInput">Add a Table</h3>
+                <h3 class="modal-title" id="modal-titleInput">Your Online Reservation</h3>
             </div>
             <div class="modal-body">
                 <form id="reservationFormInput" enctype='text/plain'>
-                <h5 class="test">First Name:</h5>
-                <input type="text" name="firstName" id="firstNameInput"/>
-                <h5 class="test">Last Name:</h5>
-                <input type="text" name="lastName" id="lastNameInput"/>
-                <h5 class="test">Number of People:</h5>
-                <input type="text" name="amountOfPeople" id="amountOfPeopleInput"/>
-                <h5 class="test">Reservation Time:</h5>
-                <input type="text" name="reservationTime" id="reservationTimeInput"/>
+
+                    <h5 class="test">First Name:</h5>
+                    <input type="text" name="firstName" id="firstNameInput"/>
+                    <h5 class="test">Last Name:</h5>
+                    <input type="text" name="lastName" id="lastNameInput"/>
+                    <h5 class="test">Number Of People:</h5>
+                    <input type="text" name="amountOfPeople" id="amountOfPeopleInput"/>
+                    <h5 class="test">Reservation Time:</h5>
+                    <!--
+                    <input type="text" name="reservationTime" id="reservationTimeInput"/>
+                    -->
+
+                    <div class="container">
+                        <form action="" class="form-horizontal">
+                            <fieldset>
+                                <div class="control-group">
+                                    <div class="controls input-append date form_datetime"
+                                         data-date="2018-03-29T16:15:07Z" data-date-format="yyyy-mm-dd hh:mm:ss "
+                                         data-link-field="dtp_input1">
+                                        <input size="16" type="text" name="reservationTime" id="reservationTimeInput" readonly>
+                                        <span class="add-on"><i class="icon-remove"></i></span>
+                                        <span class="add-on"><i class="icon-th"></i></span>
+                                    </div>
+                                    <input type="hidden" id="dtp_input1" value=""/><br/>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+
+                    <script type="text/javascript" src="./jquery/jquery-1.8.3.min.js" charset="UTF-8"></script>
+                    <script type="text/javascript" src="./bootstrap/js/bootstrap.min.js"></script>
+                    <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+                    <script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js"
+                            charset="UTF-8"></script>
+                    <script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+	$('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+	$('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 1,
+		minView: 0,
+		maxView: 1,
+		forceParse: 0
+    });
+
+
+                    </script>
+
+
+
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="addButton">Add new Table</button>
+                <button type="button" class="btn btn-primary" id="addButton">Confirm Reservation</button>
                 <button type="button" class="btn btn-default" id="btncloseInput" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
-<!--
 
-<table>
-    <tr>
-<<<<<<< HEAD
-        <td>First Name:</td>
-        <td><input type="text" name="firstName" id="firstNameInput" /></td>
-    </tr>
-    <tr>
-        <td>Last Name: </td>
-        <td><input type="text" name="lastName" id="lastNameInput" /></td>
-    </tr>
-    <tr>
-        <td>Number of People:</td>
-        <td><input type="text" name="amountOfPeople" id="amountOfPeopleInput" /></td>
-    </tr>
-    <tr>
-        <td>Reservation Time:</td>
-        <td><input type="text" name="reservationTime" id="reservationTimeInput" /></td>
-    </tr>
-    <tr>
-
-        <td><br><button id="updateButton" class="btn button1">Update List</button></td>
-        <td><br><button id="addButton" class="btn button2">Add Reservation</button></td>
-=======
-        <td>Firstname:</td>
-        <td><input type="text" name="firstName" id="firstNameInput"/></td>
-    </tr>
-    <tr>
-        <td>Lastname:</td>
-        <td><input type="text" name="lastName" id="lastNameInput"/></td>
-    </tr>
-    <tr>
-        <td>Number of people:</td>
-        <td><input type="text" name="amountOfPeople" id="amountOfPeopleInput"/></td>
-    </tr>
-    <tr>
-        <td>Reservation time:</td>
-        <td><input type="text" name="reservationTime" id="reservationTimeInput"/></td>
-    </tr>
-    <tr>
-
-        <td><br>
-            <button id="updateButton">Update</button>
-        </td>
-        <td><br>
-            <button id="addButton">Add</button>
-        </td>
->>>>>>> master
-    </tr>
-</table>
--->
 <br>
 <br>
 
@@ -107,8 +121,8 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>
                 <h3 class="modal-title" id="modal-title">Title</h3>
+               <!-- <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>-->
             </div>
             <div class="modal-body">
                 <form id="reservationForm" enctype='text/plain'>
