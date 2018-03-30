@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('#modalButton').click(dew);
 
     function dew (){
-    $('#myModal').modal('toggle');
+    $('#addTableModal').modal('toggle');
     }
 
     $("#btnsubmit").click(function(){
