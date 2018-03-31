@@ -12,27 +12,21 @@ public class Reservation implements Serializable {
     private String firstName;
     private String lastName;
     private int amountOfPeople;
-    private String phoneNumber;
-    private String mailAdres;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationTime;
     private long id;
-
     private List<Table> reservedTable;
 
 
-    public Reservation(String henk, String boer, int i, String s, String s1, LocalDateTime now) {
+    public Reservation() {
     }
 
-    public Reservation(String firstName, String lastName, int amountOfPeople, String phoneNumber, String mailAdres, LocalDateTime reservationTime, List<Table> reservedTable) {
+    public Reservation(String firstName, String lastName, int amountOfPeople, LocalDateTime reservationTime) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.amountOfPeople = amountOfPeople;
-        this.phoneNumber = phoneNumber;
-        this.mailAdres = mailAdres;
         this.reservationTime = reservationTime;
-        this.reservedTable = reservedTable;
     }
 
     public String getFirstName() {
@@ -81,22 +75,6 @@ public class Reservation implements Serializable {
 
     public void setReservedTable(List<Table> reservedTable) {
         this.reservedTable = reservedTable;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getMailAdres() {
-        return mailAdres;
-    }
-
-    public void setMailAdres(String mailAdres) {
-        this.mailAdres = mailAdres;
     }
 
 /** public void cancel() {
