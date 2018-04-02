@@ -1,9 +1,9 @@
 $(document).ready(function(){
 
-    $('#modalButton').click(modalToggle);
+    $('#modalButton').click(dew);
 
-    function modalToggle (){
-    $('#addTableModal').modal('toggle');
+    function dew (){
+    $('#myModal').modal('toggle');
     }
 
     $("#btnsubmit").click(function(){
@@ -21,7 +21,7 @@ $(document).ready(function(){
             }
         });
         updateTable();
-        modalToggle();
+        dew();
     });
 });
 
