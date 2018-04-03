@@ -26,16 +26,6 @@ public class ReservationController {
     @Autowired
     private TableRepository tableRepository;
 
-
-    @PostConstruct
-    public void someData() {
-        for(int i = 0;i<10;i++) {
-            char c = (char) (i+65);
-            Reservation one = new Reservation("Henk","Boer", 2, "0612345678","HenkBoer@gmail.com", LocalDateTime.now());
-            this.reservationRepository.save(one);
-        }
-    }
-
     @GetMapping
     public Iterable<Reservation> findAll() {
 
@@ -48,8 +38,6 @@ public class ReservationController {
                 r.setFirstName(this.voornaam);
             }
         }
-
-
         return reservations;
     }
 
