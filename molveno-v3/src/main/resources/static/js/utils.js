@@ -50,6 +50,7 @@ function checkIfDataIsGiven(){
         } else{
             $(".error-messages").text("");
             return true;
+            // want awsome
         }
 }
 
