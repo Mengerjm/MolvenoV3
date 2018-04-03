@@ -1,15 +1,17 @@
 var baseUrl = "http://localhost:8080/api/"
 
+//At ready watch for button click: add button & modal button
 $(document).ready(function(){
 console.log("doc ready");
 
-$('#modalButton').click(activateModal);
+    $('#modalButton').click(activateModal);
 
-function activateModal (){
-$('#myModalInput').modal('toggle');
-}
+    //Deze functie kan misschien ook wel buiten at ready volgens mij
+    function activateModal (){
+        $('#myModalInput').modal('toggle');
+    }
 
-$("#addButton").click(function() {
+    $("#addButton").click(function() {
 
         var a = $("#firstNameInput").val()
         var b = $("#lastNameInput").val()
@@ -59,29 +61,29 @@ $("#addButton").click(function() {
                  success: function(data){ // so the data is the bulb of the response of the Spring Boot REST controller
                       console.log(data);
                  }
-             });
+        });
 
-             updateTable();
-             $('#myModalInput').modal('toggle');
-      });
+        updateTable();
+        $('#myModalInput').modal('toggle');
+
+    });
 
 });
 
+//Call datatable to reload the data table
 var updateTable = function(){
-
-console.log("ik start update");
     $('#reservationTable').DataTable().ajax.reload();
+
  }
 
-
+//If update button click then update Data table
 $("#updateButton").click(function() {
-console.log("ik klik de update knop");
-  updateTable();
-     });
 
+    updateTable();
+});
 
+//Create line for data table
 function createReservationString(reservation){
    result ="<tr><td>"+reservation.firstName+"</td><td>"+reservation.lastName+"</td><td>"+reservation.amountOfPeople+"</td><td>"+reservation.email+"</td><td>"+reservation.telephoneNumber+"</td><td>"+reservation.reservationTime+"</td></tr>";
-
    return result;
-   }
+}

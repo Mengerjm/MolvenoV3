@@ -1,6 +1,9 @@
+
+//At ready create data table & watch for click on resarvationtable
 $(document).ready(function() {
 
-        $('#reservationTable').DataTable( {
+    // Create data table
+    $('#reservationTable').DataTable( {
                 "order": [[ 0, "asc" ]],
                 "ajax": {
                         url: 'http://localhost:8080/api/reservation',
@@ -26,9 +29,8 @@ $(document).ready(function() {
                 ]
          } );
 
-
     // Functionality for interaction when clicking on rows of the table
-        $('#reservationTable tbody').on( 'click', 'tr', function () {
+    $('#reservationTable tbody').on( 'click', 'tr', function () {
             console.log("hallo ik heb geklikt");
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
@@ -44,8 +46,9 @@ $(document).ready(function() {
             }
         });
 
-} );
+});
 
+// Get all data
 function getData() {
       var api = "http://localhost:8080/api/reservation";
         $.get(api, function(data){
@@ -55,6 +58,7 @@ function getData() {
         });
 }
 
+// Set data in data table
 function setData(data){
     $("#reservationTable").DataTable().clear();
     $("#reservationTable").DataTable().rows.add(data);
