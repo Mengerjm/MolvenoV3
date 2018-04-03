@@ -23,7 +23,7 @@ public class TableRepository {
     }
 
     //Create list of available tables
-    public Iterable<Table> createAvailableList(){
+    public Iterable<Table> createAvailableList() {
         ArrayList<Table> availableTables = new ArrayList<>();
         for (Table table : this.tables) {
             if (table.canTableBeUsedNow(table)) {
@@ -40,8 +40,8 @@ public class TableRepository {
 
     //Find single table by ID
     public Table findByID(int tableNumber) {
-        for (Table table:tables) {
-            if(tableNumber==table.getTableNumber()){
+        for (Table table : tables) {
+            if (tableNumber == table.getTableNumber()) {
                 return table;
             }
         }
@@ -67,8 +67,8 @@ public class TableRepository {
 
     //Update table
     public Table update(int tableNumber, Table input) {
-        for (Table table:this.tables) {
-            if(table.getTableNumber()==tableNumber){
+        for (Table table : this.tables) {
+            if (table.getTableNumber() == tableNumber) {
                 table.setNumberOfSeats(input.getNumberOfSeats());
                 table.setTableNumber(input.getTableNumber());
                 return table;
@@ -79,8 +79,8 @@ public class TableRepository {
 
     //Set table unavailable NOW
     public Table setUnavailable(int tableNumber) {
-        for (Table table:this.tables) {
-            if(table.getTableNumber()==tableNumber){
+        for (Table table : this.tables) {
+            if (table.getTableNumber() == tableNumber) {
                 table.getReservationTimes().add(LocalDateTime.now());
                 return table;
             }
@@ -119,7 +119,7 @@ public class TableRepository {
                 reservedTables.add(table);
             }
         }
-        twoChairs = fourChairs*2 + twoChairs;
+        twoChairs = fourChairs * 2 + twoChairs;
 
         return twoSeatTables(twoChairs, reservedTables, reservation, i);
     }
@@ -147,13 +147,15 @@ public class TableRepository {
 
     //For every table that is saved in reservation, run the next method
     public void cancelReservedTables(Reservation reservation) {
-        for (Table table:reservation.getReservedTable()) {
-            removeReservationFromTable(table, reservation);
+        if (reservation.getReservedTable() != null) {
+            for (Table table : reservation.getReservedTable()) {
+                removeReservationFromTable(table, reservation);
+            }
         }
     }
 
     //For the correct table, find the correct reservationtime and delete it from the arraylist of the table
-    public void removeReservationFromTable(Table table, Reservation reservation){
+    public void removeReservationFromTable(Table table, Reservation reservation) {
         int index = 0;
         for (LocalDateTime reservationTime : table.getReservationTimes()) {
             if (reservationTime.isEqual(reservation.getReservationTime())) {

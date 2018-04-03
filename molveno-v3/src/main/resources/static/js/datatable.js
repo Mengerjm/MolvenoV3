@@ -81,14 +81,9 @@ function fillUpdateDiv(reservation){
     $("#firstName").val(reservation.firstName);
     $("#lastName").val(reservation.lastName);
     $("#amountOfPeople").val(reservation.amountOfPeople);
+    $("#email").val(reservation.email);
+    $("#telephoneNumber").val(reservation.telephoneNumber);
     $("#reservationTime").val(reservation.reservationTime);
-   // $("#tableNumber").val(reservation.tableNumber);
-    /*$("#postalCode").val(guest.postalCode);
-    $("#city").val(guest.city);
-    $("#country").val(guest.country);
-    $("#phoneNumber").val(guest.phoneNumber);
-    $("#mailAddress").val(guest.mailAddress);
-    */
     $("#confirmbutton").css('display', 'inline-block');
     deleteID = reservation.id;
     var elem = '<button type="button" class="btn btn-danger" onclick="submitDelete();">Confirm delete</button>';
@@ -103,8 +98,6 @@ function fillUpdateDiv(reservation){
 // Deselect all items in the table
 function deselect(){
     $('#reservationTable tr.selected').removeClass('selected');
-    // rloman dit moet straks terug. ik denk dat dit het modal form is
-//    document.getElementById("reservationForm").reset();
 }
 
 // Submit the edited data in the form to the database

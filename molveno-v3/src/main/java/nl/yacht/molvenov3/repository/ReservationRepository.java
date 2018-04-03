@@ -40,6 +40,8 @@ public class ReservationRepository {
         output.setLastName(input.getLastName());
         output.setAmountOfPeople(input.getAmountOfPeople());
         output.setReservationTime(input.getReservationTime());
+        output.setEmail(input.getEmail());
+        output.setTelephoneNumber(input.getTelephoneNumber());
         return output;
     }
 
