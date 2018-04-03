@@ -16,6 +16,8 @@ $("#addButton").click(function() {
             firstName: $("#firstNameInput").val(),
             lastName: $("#lastNameInput").val(),
             amountOfPeople: Number($("#amountOfPeopleInput").val()),
+            email: $("#emailInput").val(),
+            telephoneNumber: $("#telephoneNumberInput").val(),
             reservationTime: $("#reservationTimeInput").val()
         };
 
@@ -85,7 +87,7 @@ console.log("ik klik de update knop");
 
 
 function createReservationString(reservation){
-   result ="<tr><td>"+reservation.firstName+"</td><td>"+reservation.lastName+"</td><td>"+reservation.amountOfPeople+"</td><td>"+reservation.reservationTime+"</td></tr>";
+   result ="<tr><td>"+reservation.firstName+"</td><td>"+reservation.lastName+"</td><td>"+reservation.amountOfPeople+"</td><td>"+reservation.email+"</td><td>"+reservation.telephoneNumber+"</td><td>"+reservation.reservationTime+"</td></tr>";
 
    return result;
    }

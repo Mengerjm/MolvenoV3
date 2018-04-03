@@ -81,7 +81,12 @@ function fillUpdateDiv(reservation){
     $("#firstName").val(reservation.firstName);
     $("#lastName").val(reservation.lastName);
     $("#amountOfPeople").val(reservation.amountOfPeople);
+    $("#email").val(reservation.email);
+    $("#telephoneNumber").val(reservation.telephoneNumber);
     $("#reservationTime").val(reservation.reservationTime);
+
+
+
    // $("#tableNumber").val(reservation.tableNumber);
     /*$("#postalCode").val(guest.postalCode);
     $("#city").val(guest.city);
