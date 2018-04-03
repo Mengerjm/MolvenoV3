@@ -17,15 +17,23 @@
                 <h3 class="modal-title" id="modal-titleInput">Your Online Reservation</h3>
             </div>
             <div class="modal-body">
-                <form id="reservationFormInput" enctype='text/plain'>
+                <form id="reservationFormInput" enctype='text/plain' name="inputForm" onsubmit="return validateForm()">
 
                     <h5 class="test">First Name:</h5>
-                    <input type="text" name="firstName" id="firstNameInput"/>
+                    <input type="text" name="firstName" id="firstNameInput" required/>
                     <h5 class="test">Last Name:</h5>
-                    <input type="text" name="lastName" id="lastNameInput"/>
+                    <input type="text" name="lastName" id="lastNameInput" required/>
                     <h5 class="test">Number Of People:</h5>
-                    <input type="text" name="amountOfPeople" id="amountOfPeopleInput"/>
+                    <input type="text" name="amountOfPeople" id="amountOfPeopleInput" required/>
+
+                    <h5 class="test">E-mail:</h5>
+                    <input type="text" name="email" id="emailInput"/>
+                    <h5 class="test">TelephoneNumber:</h5>
+                    <input type="text" name="telephoneNumber" id="telephoneNumberInput"/>
                     <h5 class="test">Reservation Time:</h5>
+
+
+
                     <!--
                     <input type="text" name="reservationTime" id="reservationTimeInput"/>
                     -->
@@ -41,7 +49,7 @@
                                         <span class="add-on"><i class="icon-remove"></i></span>
                                         <span class="add-on"><i class="icon-th"></i></span>
                                     </div>
-                                    <input type="hidden" id="dtp_input1" value=""/><br/>
+                                    <input type="hidden" id="dtp_input1" value="" required/><br/>
                                 </div>
                             </fieldset>
                         </form>
@@ -84,6 +92,7 @@
 		maxView: 1,
 		forceParse: 0
     });
+<<<<<<< HEAD
 
 
                     </script>
@@ -91,10 +100,19 @@
 
 
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="addButton">Confirm Reservation</button>
-                <button type="button" class="btn btn-default" id="btncloseInput" data-dismiss="modal">Close</button>
+=======
+                    </script>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="addButton">Confirm Reservation</button>
+                        <button type="button" class="btn btn-default" id="btncloseInput" data-dismiss="modal">Close</button>
+
+                    </div>
+                    <!--hier moet nog style-->
+                    <div class="error-messages" style="display:none;"></div>
+                    <!--Deze 2 statements-->
+                </form>         <!--Moeten nagekeken worden-->
+>>>>>>> master
             </div>
         </div>
     </div>
@@ -127,13 +145,17 @@
             <div class="modal-body">
                 <form id="reservationForm" enctype='text/plain'>
                     First name:<br>
-                    <input type='text' class="form-control" name='firstName' id="firstName"><br>
+                    <input type='text' class="form-control" name='firstName' id="firstName" required><br>
                     Last name:<br>
-                    <input type='text' class="form-control" name='lastName' id="lastName"><br>
+                    <input type='text' class="form-control" name='lastName' id="lastName" required><br>
                     Amount of people<br>
-                    <input type='text' class="form-control" name='amountOfPeople' id="amountOfPeople"><br>
+                    <input type='text' class="form-control" name='amountOfPeople' id="amountOfPeople" required><br>
+                    E-mail<br>
+                    <input type='text' class="form-control" name='email' id="email"><br>
+                    TelephoneNumber<br>
+                    <input type='text' class="form-control" name='telephoneNumber' id="telephoneNumber"><br>
                     Reservation time<br>
-                    <input type='text' class="form-control" name='reservationTime' id="reservationTime"><br>
+                    <input type='text' class="form-control" name='reservationTime' id="reservationTime" required><br>
                 </form>
 
             </div>
