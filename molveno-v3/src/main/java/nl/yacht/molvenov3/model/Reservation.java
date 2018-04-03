@@ -12,6 +12,8 @@ public class Reservation implements Serializable {
     private String firstName;
     private String lastName;
     private int amountOfPeople;
+    private String telephoneNumber;
+    private String email;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationTime;
@@ -22,11 +24,29 @@ public class Reservation implements Serializable {
     public Reservation() {
     }
 
-    public Reservation(String firstName, String lastName, int amountOfPeople, LocalDateTime reservationTime) {
+    public Reservation(String firstName, String lastName, int amountOfPeople, String telephoneNumber, String email, LocalDateTime reservationTime) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.amountOfPeople = amountOfPeople;
+        this.telephoneNumber = telephoneNumber;
+        this.email = email;
         this.reservationTime = reservationTime;
+    }
+
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {

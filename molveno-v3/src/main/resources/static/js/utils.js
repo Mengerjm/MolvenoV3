@@ -1,5 +1,4 @@
 var baseUrl = "http://localhost:8080/api/"
-//var baseUrl ="/api/";
 
 $(document).ready(function(){
 console.log("doc ready");
@@ -12,10 +11,38 @@ $('#myModalInput').modal('toggle');
 
 $("#addButton").click(function() {
 
+        var a = $("#firstNameInput").val()
+        var b = $("#lastNameInput").val()
+        var c = Number($("#amountOfPeopleInput").val())
+        var d = $("#reservationTimeInput").val()
+
+        var alertString = "";
+
+        if(a== null || a==""){
+            alertString += "Firstname,"
+        }
+        if(b== null || b==""){
+            alertString += "Lastname,"
+        }
+        if(c== null || c==""){
+            alertString += "Amount of people,"
+        }
+        if(d== null || d==""){
+            alertString += "Reservation time"
+        }
+
+        if (alertString != "")
+        {
+         $(".error-messages").text("Please Fill All Required Field(s) \n" + alertString).show();
+            return false;
+        }
+
         var jsonObject = {
             firstName: $("#firstNameInput").val(),
             lastName: $("#lastNameInput").val(),
             amountOfPeople: Number($("#amountOfPeopleInput").val()),
+            email: $("#emailInput").val(),
+            telephoneNumber: $("#telephoneNumberInput").val(),
             reservationTime: $("#reservationTimeInput").val()
         };
 
@@ -40,42 +67,11 @@ $("#addButton").click(function() {
 
 });
 
-
 var updateTable = function(){
-  // var baseUrl = "/api/";
-  console.log("ik start update");
-    /*$.ajax({
 
-
-
-        url : baseUrl+"reservation",
-        type : "get",
-
-        success : function(data){
-
-              reservationList ="";
-
-              $.each(data, function(index, current){
-                 reservationTable += createReservationString(current);
-              });
-
-              $("#reservationTable").html(reservationTable);
-        }
-    });*/
-
+console.log("ik start update");
     $('#reservationTable').DataTable().ajax.reload();
  }
-
-
-/**
-//$(document).ready(function(){
-    $("#testButton").click(function(){
-        $("#test").hide();
-    );
-
-  $("#changeButton").click(updateTable);
-});
-*/
 
 
 $("#updateButton").click(function() {
@@ -85,7 +81,7 @@ console.log("ik klik de update knop");
 
 
 function createReservationString(reservation){
-   result ="<tr><td>"+reservation.firstName+"</td><td>"+reservation.lastName+"</td><td>"+reservation.amountOfPeople+"</td><td>"+reservation.reservationTime+"</td></tr>";
+   result ="<tr><td>"+reservation.firstName+"</td><td>"+reservation.lastName+"</td><td>"+reservation.amountOfPeople+"</td><td>"+reservation.email+"</td><td>"+reservation.telephoneNumber+"</td><td>"+reservation.reservationTime+"</td></tr>";
 
    return result;
    }

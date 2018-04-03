@@ -313,7 +313,7 @@
       }
       return res.concat((render ? render : []));
     }
-    this.startDate = new Date(-8639968443048000);
+    this.startDate = new Date();
     this.endDate = new Date(8639968443048000);
     this.datesDisabled = [];
     this.daysOfWeekDisabled = [];
