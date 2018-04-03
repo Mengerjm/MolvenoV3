@@ -12,6 +12,35 @@ $('#myModalInput').modal('toggle');
 
 $("#addButton").click(function() {
 
+        var a = $("#firstNameInput").val()
+        var b = $("#lastNameInput").val()
+        var c = Number($("#amountOfPeopleInput").val())
+        var d = $("#reservationTimeInput").val()
+
+        var alertString = "";
+
+        if(a== null || a==""){
+            alertString += "Firstname,"
+        }
+        if(b== null || b==""){
+            alertString += "Lastname,"
+        }
+        if(c== null || c==""){
+            alertString += "Amount of people,"
+        }
+        if(d== null || d==""){
+            alertString += "Reservation time"
+        }
+
+        if (alertString != "")
+        {
+         $(".error-messages").text("Please Fill All Required Field(s) \n" + alertString).show();
+            return false;
+        }
+
+
+
+
         var jsonObject = {
             firstName: $("#firstNameInput").val(),
             lastName: $("#lastNameInput").val(),
