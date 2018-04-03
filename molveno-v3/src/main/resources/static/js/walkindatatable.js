@@ -12,7 +12,6 @@ $(document).ready(function() {
                 ]
          } );
 
-
     // Functionality for interaction when clicking on rows of the table
         $('#allTables tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {

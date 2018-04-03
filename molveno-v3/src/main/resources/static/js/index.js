@@ -1,7 +1,3 @@
-//$(document).ready(started);
-
-// instead of started .. and mostly done ...
-
 var baseUrl = "http://localhost:8080/api/"
 
 $(document).ready(function() {
