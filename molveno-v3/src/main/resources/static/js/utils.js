@@ -9,7 +9,7 @@ function activateModal (){
 $('#myModalInput').modal('toggle');
 }
 
-$("#addButton").click(function() {
+function checkIfDataIsGiven(){
 
         var a = $("#firstNameInput").val()
         var b = $("#lastNameInput").val()
@@ -19,23 +19,42 @@ $("#addButton").click(function() {
         var alertString = "";
 
         if(a== null || a==""){
-            alertString += "Firstname,"
+            alertString += "Firstname, ";
+            $("#firstNameInput").css("backgroundColor", "yellow");
+        } else{
+            $("#firstNameInput").css("backgroundColor", "white");
         }
         if(b== null || b==""){
-            alertString += "Lastname,"
+            alertString += "Lastname, ";
+            $("#lastNameInput").css("backgroundColor", "yellow");
+        }else{
+            $("#lastNameInput").css("backgroundColor", "white");
         }
         if(c== null || c==""){
-            alertString += "Amount of people,"
+            alertString += "Amount of people, ";
+            $("#amountOfPeopleInput").css("backgroundColor", "yellow");
+        }else{
+            $("#amountOfPeopleInput").css("backgroundColor", "white");
         }
         if(d== null || d==""){
-            alertString += "Reservation time"
+            alertString += "Reservation time";
+            $("#reservationTimeInput").css("backgroundColor", "yellow");
+        }else{
+            $("#reservationTimeInput").css("backgroundColor", "white");
         }
 
         if (alertString != "")
         {
-         $(".error-messages").text("Please Fill All Required Field(s) \n" + alertString).show();
+            $(".error-messages").text("Please Fill All Required Field(s): \n" + alertString).show();
             return false;
+        } else{
+            $(".error-messages").text("");
+            return true;
         }
+}
+
+$("#addButton").click(function() {
+        if(checkIfDataIsGiven()){
 
         var jsonObject = {
             firstName: $("#firstNameInput").val(),
@@ -63,7 +82,7 @@ $("#addButton").click(function() {
 
              updateTable();
              $('#myModalInput').modal('toggle');
-      });
+    }});
 
 });
 
