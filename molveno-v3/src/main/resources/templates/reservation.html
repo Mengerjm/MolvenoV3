@@ -2,6 +2,11 @@
 <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
+<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/locales/bootstrap-datetimepicker.fr.js"
+        charset="UTF-8"></script>
+
+
 <img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
 
 <br><br>
@@ -37,66 +42,26 @@
 
                     <script type="text/javascript">
     $(".form_datetime").datetimepicker({
-        format: "dd MM yyyy - HH:ii P",
-        showMeridian: true,
+        format: "dd mm yyyy - HH:ii P",
+        showMeridian: false,
         autoclose: true,
         todayBtn: true
     });
-
                     </script>
 
-
-                    <script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-                    <script type="text/javascript" src="js/locales/bootstrap-datetimepicker.fr.js"
-                            charset="UTF-8"></script>
-                    <script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        //language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1
-    });
-	$('.form_date').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
-	$('.form_time').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 1,
-		minView: 0,
-		maxView: 1,
-		forceParse: 0
-    });
-
-                    </script>
 
                 </form>
 
-                </script>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="addButton">Confirm Reservation</button>
-                        <button type="button" class="btn btn-default" id="btncloseInput" data-dismiss="modal">Close</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="addButton">Confirm Reservation</button>
+                    <button type="button" class="btn btn-default" id="btncloseInput" data-dismiss="modal">Close</button>
 
-                    </div>
-                    <!--hier moet nog style-->
-                    <div class="error-messages" style="display:none;"></div>
-                    <!--Deze 2 statements-->
-                </form>        
+                </div>
+                <!--hier moet nog style-->
+                <div class="error-messages" style="display:none;"></div>
+                <!--Deze 2 statements-->
+                </form>
             </div>
         </div>
     </div>
@@ -124,7 +89,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="modal-title">Title</h3>
-               <!-- <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>-->
+                <!-- <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>-->
             </div>
             <div class="modal-body">
                 <form id="reservationForm" enctype='text/plain'>
@@ -133,7 +98,8 @@
                     Last name:<br>
                     <input type='text' class="form-control" name='lastName' id="lastName" required><br>
                     Amount of people<br>
-                    <input type='number' class="form-control" min="1" name='amountOfPeople' id="amountOfPeople" required><br>
+                    <input type='number' class="form-control" min="1" name='amountOfPeople' id="amountOfPeople"
+                           required><br>
                     E-mail<br>
                     <input type='text' class="form-control" name='email' id="email"><br>
                     TelephoneNumber<br>
@@ -156,9 +122,9 @@
 </div>
 
 <!--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>-->
-                <script src="js/datatable.js"></script>
-                <script src="js/utils.js"></script>
+<script src="js/datatable.js"></script>
+<script src="js/utils.js"></script>
 
-                </body>
+</body>
 
-                {{>footer}}
+{{>footer}}
