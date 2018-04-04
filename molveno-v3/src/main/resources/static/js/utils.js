@@ -20,25 +20,25 @@ function checkIfDataIsGiven(){
 
         if(a== null || a==""){
             alertString += "Firstname, ";
-            $("#firstNameInput").css("backgroundColor", "yellow");
+            $("#firstNameInput").css("backgroundColor", "#f8fbc8");
         } else{
             $("#firstNameInput").css("backgroundColor", "white");
         }
         if(b== null || b==""){
             alertString += "Lastname, ";
-            $("#lastNameInput").css("backgroundColor", "yellow");
+            $("#lastNameInput").css("backgroundColor", "#f8fbc8");
         }else{
             $("#lastNameInput").css("backgroundColor", "white");
         }
         if(c== null || c==""){
             alertString += "Amount of people, ";
-            $("#amountOfPeopleInput").css("backgroundColor", "yellow");
+            $("#amountOfPeopleInput").css("backgroundColor", "#f8fbc8");
         }else{
             $("#amountOfPeopleInput").css("backgroundColor", "white");
         }
         if(d== null || d==""){
             alertString += "Reservation time";
-            $("#reservationTimeInput").css("backgroundColor", "yellow");
+            $("#reservationTimeInput").css("backgroundColor", "#f8fbc8");
         }else{
             $("#reservationTimeInput").css("backgroundColor", "white");
         }

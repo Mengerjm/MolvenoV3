@@ -5,3 +5,7 @@ background-color: #D8D8D8;
 .reservation_btn-primary{
     background-color: #17a2b8;
 }
+
+.error-messages{
+color: #c11010;
+}

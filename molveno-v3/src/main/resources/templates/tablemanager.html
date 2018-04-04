@@ -3,7 +3,13 @@
 
 <br><br>
 
-<h2> Table Manager</h2>
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Reservation')">Reservation</button>
+    <button class="tablinks" onclick="openTab(event, 'TableManager')">Table Manager</button>
+    <button class="tablinks" onclick="openTab(event, 'WalkIn')">Walk In</button>
+</div>
+
+<h2 class="titleBar"> Table Manager</h2>
 
 <!-- Hieronder staat het tabel waar de datatable verschijnt-->
 <table id="allTables" class="display" style="width:100%">
@@ -66,6 +72,7 @@
     </div>
 </div>
 
+<script src="js/homepage.js"></script>
 <script src="/js/tablemanagerdatatable.js"></script>
 <script src="/js/tablemanager.js"></script>
 {{>footer}}

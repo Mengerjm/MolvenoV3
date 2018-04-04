@@ -3,7 +3,14 @@
 <img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
 
 <br><br>
-<h2> Available Tables </h2>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Reservation')">Reservation</button>
+    <button class="tablinks" onclick="openTab(event, 'TableManager')">Table Manager</button>
+    <button class="tablinks" onclick="openTab(event, 'WalkIn')">Walk In</button>
+</div>
+
+<h2 class="titleBar"> Available Tables </h2>
 
 <!--Hieronder staat de datatabel van alle beschikbare tafels-->
 <table id="allTables" class="display" style="width:100%">
@@ -33,5 +40,6 @@
     </div>
 </div>
 
+<script src="js/homepage.js"></script>
 <script src="/js/walkindatatable.js"></script>
 {{>footer}}
