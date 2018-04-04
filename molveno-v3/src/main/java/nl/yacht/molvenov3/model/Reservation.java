@@ -15,7 +15,7 @@ public class Reservation implements Serializable {
     private String telephoneNumber;
     private String email;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:00")
     private LocalDateTime reservationTime;
     private long id;
     private List<Table> reservedTable;
