@@ -21,7 +21,7 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-var els = document.body.children;
+var els = document.getElementsByClassName('selectableDivs')
 for(var i=0; i<els.length; ++i) {
     els[i].addEventListener('focus', focus, true);
     els[i].addEventListener('blur', blur, true);
