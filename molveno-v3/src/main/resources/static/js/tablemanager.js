@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('#modalButton').click(dew);
 
     function dew (){
-    $('#myModal').modal('toggle');
+    $('#newReservationModal').modal('toggle');
     }
 
     $("#btnsubmit").click(function(){
