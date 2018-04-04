@@ -6,10 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.lang.reflect.Array;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class TableRepository {
@@ -90,55 +87,97 @@ public class TableRepository {
 
     //region New reservation - set reservation time to table
 
-    //Online reservations, how many tables for number of people. Returns table number if possible, returns 0 of no tables available.
-    public List<Table> howManyTables(Reservation reservation) {
-        int fourChairCounter = 0;
-        int twoChairCounter = 0;
-        int numberGuests = reservation.getAmountOfPeople();
-        while (numberGuests >= 3) {
-            fourChairCounter++;
-            numberGuests = numberGuests - 4;
+    //Assign tables automatically depending on availability and party size
+    public List<Table> reserveTables(Reservation reservation){
+        int totalSeats = reservation.getAmountOfPeople();
+        Table biggestTable = biggestTableAvailable(reservation);
+        List<Table> output = reserveOneTable(reservation, totalSeats);
+        if(!output.isEmpty()){
+            return output;
         }
-        while (numberGuests >= 1) {
-            twoChairCounter++;
-            numberGuests = numberGuests - 2;
+        else if(biggestTable.getNumberOfSeats()>reservation.getAmountOfPeople()){
+            return findBestTable(totalSeats, reservation);
         }
-        return fourSeatTables(fourChairCounter, twoChairCounter, reservation);
+        else return findMultipleTables(reservation, biggestTable);
+
     }
 
-    //Find 4 seat tables and set them unavailable for online reservations
-    public List<Table> fourSeatTables(int fourChairs, int twoChairs, Reservation reservation) {
-        int i = 0;
-        List<Table> reservedTables = new ArrayList<>();
-        for (Table table : this.tables) {
-            if (table.getNumberOfSeats() == 4
-                    && fourChairs > 0
-                    && table.canTableBeReserved(table, reservation.getReservationTime())) {
+    //See if one table is available that has the exact right amount of seats
+    public List<Table> reserveOneTable(Reservation reservation, int totalSeats){
+        List<Table> output = new ArrayList<>();
+        for (Table table: tables) {
+            if(table.getNumberOfSeats()==totalSeats && table.canTableBeReserved(table, reservation.getReservationTime())){
+                output.add(table);
                 table.getReservationTimes().add(reservation.getReservationTime());
-                fourChairs--;
-                reservedTables.add(table);
+                return output;
             }
         }
-        twoChairs = fourChairs * 2 + twoChairs;
-
-        return twoSeatTables(twoChairs, reservedTables, reservation, i);
+        return output;
     }
 
-    //Find 2 seat tables and set them unavailable for online reservations
-    public List<Table> twoSeatTables(int twoChairs, List<Table> reservedTables, Reservation reservation, int i) {
-        for (Table table : this.tables) {
-            if (table.getNumberOfSeats() == 2
-                    && twoChairs > 0
-                    && table.canTableBeReserved(table, reservation.getReservationTime())) {
-                table.getReservationTimes().add(reservation.getReservationTime());
-                twoChairs--;
-                reservedTables.add(table);
+    //Find smallest possible available table
+    public List<Table> findBestTable(int totalSeats, Reservation reservation){
+        List<Table> output = new ArrayList<>();
+        int smallestTable = 0;
+        Table outputTable = new Table();
+        for (Table table:tables) {
+            if(table.getNumberOfSeats()<smallestTable
+                    && table.getNumberOfSeats()>totalSeats
+                    && table.canTableBeReserved(table, reservation.getReservationTime())){
+                smallestTable = table.getNumberOfSeats();
+                outputTable = table;
             }
         }
-        if (twoChairs > 0) {
-            return null;
-            //Not enough tables, send error message
-        } else return reservedTables;
+        output.add(outputTable);
+        outputTable.getReservationTimes().add(reservation.getReservationTime());
+        return output;
+
+    }
+
+    //Find multiple tables
+    public List<Table> findMultipleTables(Reservation reservation, Table biggestTable){
+        int totalSeats = reservation.getAmountOfPeople() - biggestTable.getNumberOfSeats();
+        List<Table> output = reserveOneTable(reservation, totalSeats);
+        output.add(biggestTable);
+        Table secondBiggestTable = biggestTableAvailable(reservation, biggestTable);
+        if(!output.isEmpty()){
+            return output;
+        }
+        else if(secondBiggestTable.getNumberOfSeats()>reservation.getAmountOfPeople()){
+            List<Table> outputTables = findBestTable(totalSeats, reservation);
+            outputTables.add(biggestTable);
+            return outputTables;
+        }
+        else  throw new RuntimeException(); // FIX DIE SHIZZLE NO RESERVATION POSSIBLE
+    }
+
+    //Find biggest table available
+    public Table biggestTableAvailable(Reservation reservation){
+        int biggestTable = 0;
+        Table outputTable = new Table();
+        for (Table table:tables) {
+            if(table.getNumberOfSeats()>biggestTable
+                    && table.canTableBeReserved(table, reservation.getReservationTime())){
+                biggestTable = table.getNumberOfSeats();
+                outputTable = table;
+            }
+        }
+        return outputTable;
+    }
+
+    //Find the second biggest table available, ignoreTable = biggest table from first iteration
+    public Table biggestTableAvailable(Reservation reservation, Table ignoreTable){
+        int biggestTable = 0;
+        Table outputTable = new Table();
+        for (Table table:tables) {
+            if(table.getNumberOfSeats()>biggestTable
+                    && !table.equals(ignoreTable)
+                    && table.canTableBeReserved(table, reservation.getReservationTime())){
+                biggestTable = table.getNumberOfSeats();
+                outputTable = table;
+            }
+        }
+        return outputTable;
     }
 
     //endregion
