@@ -38,7 +38,6 @@
 }
 
 div {
-    background: #ccc;
     margin: 20px;
 }
 div:focus, div.focus {
