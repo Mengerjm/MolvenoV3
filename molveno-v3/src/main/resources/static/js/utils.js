@@ -6,7 +6,10 @@ console.log("doc ready");
 $('#modalButton').click(activateModal);
 
 function activateModal (){
-$('#myModalInput').modal('toggle');
+        console.log("Ik activeer");
+        $('#reservationFormInput').trigger("reset");
+
+        $('#myModalInput').modal('toggle');
 }
 
 function checkIfDataIsGiven(){
@@ -82,6 +85,7 @@ $("#addButton").click(function() {
 
              updateTable();
              $('#myModalInput').modal('toggle');
+
     }});
 
 });
