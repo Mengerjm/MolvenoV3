@@ -21,34 +21,34 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-function openDescription(evt, selectedDiv){
+function openDescription(evt, selectedDiv) {
     var i, divcontent, selectableDivs;
 
-        divcontent = document.getElementsByClassName("divcontent");
-        for (i = 0; i < divcontent.length; i++) {
-            divcontent[i].style.display = "none";
-        }
+    divcontent = document.getElementsByClassName("divcontent");
+    for (i = 0; i < divcontent.length; i++) {
+        divcontent[i].style.display = "none";
+    }
 
-            selectableDivs = document.getElementsByClassName("selectableDivs");
-            for (i = 0; i < selectableDivs.length; i++) {
-                selectableDivs[i].className = selectableDivs[i].className.replace(" active", "");
-            }
+    selectableDivs = document.getElementsByClassName("selectableDivs");
+    for (i = 0; i < selectableDivs.length; i++) {
+        selectableDivs[i].className = selectableDivs[i].className.replace(" active", "");
+    }
 
-document.getElementById(selectedDiv).style.display = "block";
+    document.getElementById(selectedDiv).style.display = "block";
     evt.currentTarget.className += " active";
 }
 
 
-
-
 var els = document.getElementsByClassName('selectableDivs')
-for(var i=0; i<els.length; ++i) {
+for (var i = 0; i < els.length; ++i) {
     els[i].addEventListener('focus', focus, true);
     els[i].addEventListener('blur', blur, true);
 }
+
 function focus() {
     this.classList.add('focus');
 }
+
 function blur() {
     this.classList.remove('focus');
 }
