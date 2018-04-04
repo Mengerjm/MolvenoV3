@@ -98,6 +98,8 @@ function fillUpdateDiv(reservation){
 // Deselect all items in the table
 function deselect(){
     $('#reservationTable tr.selected').removeClass('selected');
+    console.log("Ik ben bij deselect");
+
 }
 
 // Submit the edited data in the form to the database

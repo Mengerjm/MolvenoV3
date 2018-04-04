@@ -17,9 +17,6 @@ import java.util.List;
 @RequestMapping("/api/reservation")
 public class ReservationController {
 
-    @Value("${firstName}")
-    private String voornaam;
-
 
     @Autowired
     private ReservationRepository reservationRepository;
@@ -29,15 +26,8 @@ public class ReservationController {
     @GetMapping
     public Iterable<Reservation> findAll() {
 
-        final boolean demo = false;
-
         Iterable<Reservation> reservations = this.reservationRepository.findAll();
 
-        if (demo) {
-            for (Reservation r : reservations) {
-                r.setFirstName(this.voornaam);
-            }
-        }
         return reservations;
     }
 
