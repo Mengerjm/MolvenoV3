@@ -9,7 +9,7 @@ function activateModal (){
         console.log("Ik activeer");
         $('#reservationFormInput').trigger("reset");
 
-        $('#myModalInput').modal('toggle');
+        $('#reservationInputModal').modal('toggle');
 }
 
 function checkIfDataIsGiven(){
@@ -84,7 +84,7 @@ $("#addButton").click(function() {
              });
 
              updateTable();
-             $('#myModalInput').modal('toggle');
+             $('#reservationInputModal').modal('toggle');
 
     }});
 
