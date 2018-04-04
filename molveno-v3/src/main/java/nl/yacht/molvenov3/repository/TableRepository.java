@@ -4,7 +4,6 @@ import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.model.Table;
 import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +25,7 @@ public class TableRepository {
     public Iterable<Table> createAvailableList() {
         ArrayList<Table> availableTables = new ArrayList<>();
         for (Table table : this.tables) {
-            if (table.canTableBeUsedNow(table)) {
+            if (table.canTableBeUsedNow()) {
                 availableTables.add(table);
             }
         }
