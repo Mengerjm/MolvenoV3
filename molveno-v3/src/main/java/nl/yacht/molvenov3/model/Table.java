@@ -7,13 +7,21 @@ public class Table {
 
     private int tableNumber;
     private int numberOfSeats;
-    //private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
+    private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
     private static int idCounter = 1;
     private ArrayList<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
     public int getTableNumber() {
         return tableNumber;
+    }
+
+    public boolean isAvailable(){
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available){
+        this.isAvailable = available;
     }
 
     public void setTableNumber(int tableNumber) {
