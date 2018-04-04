@@ -111,6 +111,7 @@ function submitEdit(id){
     var formData = $("#reservationForm").serializeArray().reduce(function(result, object){ result[object.name] = object.value; return result}, {});
     console.log(formData);
     var reservationNumber = id;
+
     for(var key in formData){
         if(formData[key] == "" || formData == null) delete formData[key];
     }
