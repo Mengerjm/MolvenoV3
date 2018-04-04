@@ -14,14 +14,34 @@
 
 <div id="Drinks" class="tabcontent">
     <h3>Drinks</h3>
+    <div tabindex="-2">Dit is drank 1</div>
+    <div tabindex="-2">Dit is drank 2</div>
+    <div tabindex="-2">Dit is drank 3</div>
+    <div tabindex="-2">Dit is drank 4</div>
+    <div tabindex="-2">Dit is drank 5</div>
+    <div tabindex="-2">Dit is drank 6</div>
+    <div tabindex="-2">Dit is drank 7</div>
+    <div tabindex="-2">Dit is drank 8</div>
 </div>
 
 <div id="Dishes" class="tabcontent">
     <h3>Dishes</h3>
+    <div tabindex="-2">Dit is gerecht 1</div>
+    <div tabindex="-2">Dit is gerecht 2</div>
+    <div tabindex="-2">Dit is gerecht 3</div>
+    <div tabindex="-2">Dit is gerecht 4</div>
+    <div tabindex="-2">Dit is gerecht 5</div>
+    <div tabindex="-2">Dit is gerecht 6</div>
+    <div tabindex="-2">Dit is gerecht 7</div>
+    <div tabindex="-2">Dit is gerecht 8</div>
 </div>
 
 <div id="Specials" class="tabcontent">
     <h3>Specials</h3>
+    <div tabindex="-2">Dit is special 1</div>
+    <div tabindex="-2">Dit is special 2</div>
+    <div tabindex="-2">Dit is special 3</div>
+    <div tabindex="-2">Dit is special 4</div>
 </div>
 
 <div id="Order" class="tabcontent">
@@ -29,27 +49,4 @@
 </div>
 
 <script src="js/menu.js"></script>
-
-<script type="text/javascript">
-function openTab(evt, tabName) {
-    // Declare all variables
-    var i, tabcontent, tablinks;
-
-    // Get all elements with class="tabcontent" and hide them
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-    }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-</script>
 {{>footer}}
