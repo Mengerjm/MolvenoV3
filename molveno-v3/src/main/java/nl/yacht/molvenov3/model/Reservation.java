@@ -97,32 +97,4 @@ public class Reservation implements Serializable {
         this.reservedTable = reservedTable;
     }
 
-/** public void cancel() {
-
- //vervang guest voor tablenumber
-
- public void cancel (Guest guest){
- ArrayList<Reservation> reservationList = Restaurant.getReservationList();
- // Go through the list of reservations
- int index = 0;
- for (Reservation res : reservationList) {
- // if tablenumber.equals(res.gettablenumber)
- if (guest.equals(res.guest)) {
- reservationList.remove(index);
-
- // Als de tafel gelijk is aan de gereserveerde tafel: maak de tafel available
- for (Table tabl : Restaurant.getTableList()) {
- if (tabl.getTableNumber() == res.tableNumber) {
- tabl.setAvailable(true);
- }
- }
-
- }
- index++;
- // Gaat in de lijst verder zoeken index +1
- }
- }
-
- }
- */
 }
