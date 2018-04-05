@@ -5,8 +5,6 @@ import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.model.Table;
 import nl.yacht.molvenov3.repository.CrudReservationRepository;
 import nl.yacht.molvenov3.repository.CrudTableRepository;
-import nl.yacht.molvenov3.repository.ReservationRepository;
-import nl.yacht.molvenov3.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
