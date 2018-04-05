@@ -1,31 +1,33 @@
 package nl.yacht.molvenov3.model;
 
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Table {
 
-    private int tableNumber;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long tableNumber;
     private int numberOfSeats;
-    private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
-    private static int idCounter = 1;
+
+    //private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
+
+    @ElementCollection
+
     private List<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
-    public int getTableNumber() {
+    public Long getTableNumber() {
         return tableNumber;
     }
 
-    public boolean isAvailable(){
-        return isAvailable;
-    }
 
-    public void setAvailable(boolean available){
-        this.isAvailable = available;
-    }
+    public void setTableNumber(Long tableNumber) {
 
-    public void setTableNumber(int tableNumber) {
         this.tableNumber = tableNumber;
     }
 
@@ -37,8 +39,10 @@ public class Table {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public List<LocalDateTime> getReservationTimes() {
-        return reservationTimes;
+
+    public ArrayList<LocalDateTime> getReservationTimes() {
+        return (ArrayList) reservationTimes;
+
     }
 
     public void setReservationTimes(List<LocalDateTime> reservationTimes) {
@@ -76,12 +80,8 @@ public class Table {
 
     public Table(){}
 
-    public Table(int numberOfSeats){
-        this.tableNumber = idCounter++;
-        this.numberOfSeats = numberOfSeats;
-    }
 
-    public Table(int tableNumber, int numberOfSeats) {
+    public Table(Long tableNumber, int numberOfSeats) {
         this.tableNumber = tableNumber;
         this.numberOfSeats = numberOfSeats;
     }
