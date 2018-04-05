@@ -6,10 +6,14 @@ console.log("doc ready");
 
     $('#modalButton').click(activateModal);
 
-    //Deze functie kan misschien ook wel buiten at ready volgens mij
-    function activateModal (){
-        $('#myModalInput').modal('toggle');
-    }
+
+function activateModal (){
+        console.log("Ik activeer");
+        $('#reservationFormInput').trigger("reset");
+
+        $('#reservationInputModal').modal('toggle');
+}
+
 
     $("#addButton").click(function() {
 
@@ -21,16 +25,30 @@ console.log("doc ready");
         var alertString = "";
 
         if(a== null || a==""){
-            alertString += "Firstname,"
+
+            alertString += "Firstname, ";
+            $("#firstNameInput").css("backgroundColor", "#f8fbc8");
+        } else{
+            $("#firstNameInput").css("backgroundColor", "white");
         }
         if(b== null || b==""){
-            alertString += "Lastname,"
+            alertString += "Lastname, ";
+            $("#lastNameInput").css("backgroundColor", "#f8fbc8");
+        }else{
+            $("#lastNameInput").css("backgroundColor", "white");
         }
         if(c== null || c==""){
-            alertString += "Amount of people,"
+            alertString += "Amount of people, ";
+            $("#amountOfPeopleInput").css("backgroundColor", "#f8fbc8");
+        }else{
+            $("#amountOfPeopleInput").css("backgroundColor", "white");
         }
         if(d== null || d==""){
-            alertString += "Reservation time"
+            alertString += "Reservation time";
+            $("#reservationTimeInput").css("backgroundColor", "#f8fbc8");
+        }else{
+            $("#reservationTimeInput").css("backgroundColor", "white");
+
         }
 
         if (alertString != "")
@@ -63,10 +81,12 @@ console.log("doc ready");
                  }
         });
 
-        updateTable();
-        $('#myModalInput').modal('toggle');
 
-    });
+             updateTable();
+             $('#reservationInputModal').modal('toggle');
+
+    }});
+
 
 });
 

@@ -10,9 +10,6 @@ $(document).ready(function() {
                         dataSrc: ''
                     },
                 "columns": [
-                    { "data": "firstName" },
-                    { "data": "lastName" },
-                    { "data": "amountOfPeople"},
                     { "data": "reservationTime"},
                     { "data": function( data, type, row){
 
@@ -24,8 +21,10 @@ $(document).ready(function() {
 
                         return toReturn;
 
-                    }}
-
+                    }},
+                    { "data": "amountOfPeople"},
+                    { "data": "firstName" },
+                    { "data": "lastName" }
                 ]
          } );
 
@@ -42,7 +41,7 @@ $(document).ready(function() {
                 var data = table.row(this).data();
                 console.log(data);
                 apiGetSingleReservation(data.id);
-                $('#myModal').modal('toggle');
+                $('#newReservationModal').modal('toggle');
             }
         });
 
@@ -95,13 +94,15 @@ function fillUpdateDiv(reservation){
         animation:true,
         content:elem,
         html:true,
-        container: myModal
+        container: newReservationModal
     });
 }
 
 // Deselect all items in the table
 function deselect(){
     $('#reservationTable tr.selected').removeClass('selected');
+    console.log("Ik ben bij deselect");
+
 }
 
 // Submit the edited data in the form to the database
@@ -126,7 +127,7 @@ function submitEdit(id){
         }
     });
     deselect();
-    $('#myModal').modal('toggle');
+    $('#newReservationModal').modal('toggle');
 }
 
 // Delete the reservation in the database with the corresponding id
@@ -142,6 +143,6 @@ function submitDelete(){
         contentType: "application/json; charset=utf-8"
     });
 
-    $('#myModal').modal('toggle');
+    $('#newReservationModal').modal('toggle');
     deselect();
 }

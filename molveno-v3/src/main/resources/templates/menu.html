@@ -1,0 +1,51 @@
+{{>header}}
+
+<img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
+
+<br><br>
+<h2 class="titleBar">Menu</h2>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Drinks')">Drinks</button>
+    <button class="tablinks" onclick="openTab(event, 'Dishes')">Dishes</button>
+    <button class="tablinks" onclick="openTab(event, 'Specials')">Specials</button>
+    <button class="tablinks" onclick="openTab(event, 'Order')">Order</button>
+</div>
+
+<div id="Drinks" class="tabcontent">
+    <h3>Drinks</h3>
+    <div tabindex="-2" class="selectableDivs" onclick="openDescription(event, 'drank1')">Dit is drank 1</div>
+        <div class="divcontent" id="drank1">Hier komt dan beschrijving voor drank 1</div>
+    <div tabindex="-2" class="selectableDivs" onclick="openDescription(event, 'drank2')">Dit is drank 2</div>
+        <div class="divcontent" id="drank2">Hier komt dan beschrijving voor drank 2</div>
+    <div tabindex="-2" class="selectableDivs" onclick="openDescription(event, 'drank3')">Dit is drank 3</div>
+        <div class="divcontent" id="drank3">Hier komt dan beschrijving voor drank 3</div>
+</div>
+
+<div id="Dishes" class="tabcontent">
+    <h3>Dishes</h3>
+    <div tabindex="-2" class="selectableDivs">Dit is gerecht 1</div>
+    <div tabindex="-2" class="selectableDivs">Dit is gerecht 2</div>
+    <div tabindex="-2" class="selectableDivs">Dit is gerecht 3</div>
+    <div tabindex="-2" class="selectableDivs">Dit is gerecht 4</div>
+    <div tabindex="-2" class="selectableDivs">Dit is gerecht 5</div>
+    <div tabindex="-2" class="selectableDivs">Dit is gerecht 6</div>
+    <div tabindex="-2" class="selectableDivs">Dit is gerecht 7</div>
+    <div tabindex="-2" class="selectableDivs">Dit is gerecht 8</div>
+</div>
+
+<div id="Specials" class="tabcontent">
+    <h3>Specials</h3>
+    <div tabindex="-2" class="selectableDivs">Dit is special 1</div>
+    <div tabindex="-2" class="selectableDivs">Dit is special 2</div>
+    <div tabindex="-2" class="selectableDivs">Dit is special 3</div>
+    <div tabindex="-2" class="selectableDivs">Dit is special 4</div>
+
+</div>
+
+<div id="Order" class="tabcontent">
+    <h3>Order</h3>
+</div>
+
+<script src="js/menu.js"></script>
+{{>footer}}

@@ -3,7 +3,7 @@ $(document).ready(function(){
     $('#modalButton').click(modalToggle);
 
     function modalToggle (){
-    $('#addTableModal').modal('toggle');
+    $('#newReservationModal').modal('toggle');
     }
 
     $("#btnsubmit").click(function(){
