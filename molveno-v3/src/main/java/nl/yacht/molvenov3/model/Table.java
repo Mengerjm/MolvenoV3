@@ -1,5 +1,6 @@
 package nl.yacht.molvenov3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,24 +12,14 @@ public class Table {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long tableNumber;
+    private Long id;
     private int numberOfSeats;
-
-    //private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
-
+    private int tableNumber;
+    @JsonIgnore
     @ElementCollection
     private List<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
-    public Long getTableNumber() {
-        return tableNumber;
-    }
-
-
-    public void setTableNumber(Long tableNumber) {
-
-        this.tableNumber = tableNumber;
-    }
 
     public int getNumberOfSeats() {
         return numberOfSeats;
@@ -38,14 +29,28 @@ public class Table {
         this.numberOfSeats = numberOfSeats;
     }
 
-
-    public ArrayList<LocalDateTime> getReservationTimes() {
-        return (ArrayList) reservationTimes;
-
+    public List<LocalDateTime> getReservationTimes() {
+        return this.reservationTimes;
     }
 
     public void setReservationTimes(List<LocalDateTime> reservationTimes) {
         this.reservationTimes = reservationTimes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getTableNumber() {
+        return tableNumber;
+    }
+
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
     }
 
     //endregion
@@ -54,8 +59,7 @@ public class Table {
     public  boolean canTableBeUsedNow(){
         int counter = 0;
         for (LocalDateTime reserved:this.getReservationTimes()) {
-            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(6))){
-                reserved.minusHours(3);
+            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(3))){
                 counter++;
             }
         }
@@ -66,8 +70,7 @@ public class Table {
     public boolean canTableBeReserved(Table table, LocalDateTime reservationTime){
         int counter = 0;
         for (LocalDateTime reserved:table.getReservationTimes()) {
-            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(6))){
-                reserved.minusHours(3);
+            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(3))){
                 counter++;
             }
         }
@@ -79,8 +82,7 @@ public class Table {
 
     public Table(){}
 
-
-    public Table(Long tableNumber, int numberOfSeats) {
+    public Table(int tableNumber, int numberOfSeats) {
         this.tableNumber = tableNumber;
         this.numberOfSeats = numberOfSeats;
     }
