@@ -14,18 +14,27 @@ public class DrinkController {
 
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Drink creat (@RequestBody Drink drink){
+    public Drink creat(@RequestBody Drink drink) {
         return crudDrinkRepository.save(drink);
     }
 
-     @RequestMapping(value = "", method = RequestMethod.GET)
-     public Iterable<Drink> getAll(){
+    @RequestMapping(value = "", method = RequestMethod.PUT)
+    public Drink update(@RequestBody Drink drink) {
+        return crudDrinkRepository.save(drink);
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    public Iterable<Drink> getAll() {
         return crudDrinkRepository.findAll();
-     }
+    }
 
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    public Drink findById(@PathVariable long id) {
+        return this.crudDrinkRepository.findOne(id);
+    }
 
-    @RequestMapping(value = "", method = RequestMethod.DELETE)
-    public void delete (@PathVariable long id){
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable long id) {
         this.crudDrinkRepository.delete(id);
     }
 
