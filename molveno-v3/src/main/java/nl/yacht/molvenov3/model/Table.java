@@ -1,6 +1,5 @@
 package nl.yacht.molvenov3.model;
 
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,11 +12,7 @@ public class Table {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long tableNumber;
     private int numberOfSeats;
-
-    //private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
-
     @ElementCollection
-
     private List<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
@@ -39,10 +34,8 @@ public class Table {
         this.numberOfSeats = numberOfSeats;
     }
 
-
     public ArrayList<LocalDateTime> getReservationTimes() {
         return (ArrayList) reservationTimes;
-
     }
 
     public void setReservationTimes(List<LocalDateTime> reservationTimes) {
@@ -55,8 +48,7 @@ public class Table {
     public  boolean canTableBeUsedNow(){
         int counter = 0;
         for (LocalDateTime reserved:this.getReservationTimes()) {
-            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(6))){
-                reserved.minusHours(3);
+            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(3))){
                 counter++;
             }
         }
@@ -67,8 +59,7 @@ public class Table {
     public boolean canTableBeReserved(Table table, LocalDateTime reservationTime){
         int counter = 0;
         for (LocalDateTime reserved:table.getReservationTimes()) {
-            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(6))){
-                reserved.minusHours(3);
+            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(3))){
                 counter++;
             }
         }
@@ -79,7 +70,6 @@ public class Table {
     }
 
     public Table(){}
-
 
     public Table(Long tableNumber, int numberOfSeats) {
         this.tableNumber = tableNumber;

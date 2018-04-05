@@ -5,10 +5,7 @@ import nl.yacht.molvenov3.model.Table;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository
 public class TableRepository {
@@ -89,55 +86,60 @@ public class TableRepository {
 
     //region New reservation - set reservation time to table
 
-    //Online reservations, how many tables for number of people. Returns table number if possible, returns 0 of no tables available.
-    public List<Table> howManyTables(Reservation reservation) {
-        int fourChairCounter = 0;
-        int twoChairCounter = 0;
-        int numberGuests = reservation.getAmountOfPeople();
-        while (numberGuests >= 3) {
-            fourChairCounter++;
-            numberGuests = numberGuests - 4;
+    //Assign tables automatically depending on availability and party size
+    public List<Table> reserveTables(Reservation reservation, int numberOfGuests){
+        int biggestTable = biggestTableAvailable(reservation);
+        if(biggestTable<reservation.getAmountOfPeople()){
+            return findTwoTables(reservation, 0, numberOfGuests);
         }
-        while (numberGuests >= 1) {
-            twoChairCounter++;
-            numberGuests = numberGuests - 2;
+        else {
+            for (Table table : tables) {
+                if (table.getNumberOfSeats() == numberOfGuests && table.canTableBeReserved(table, reservation.getReservationTime())) {
+                    List<Table> output = new ArrayList<>();
+                    output.add(table);
+                    table.getReservationTimes().add(reservation.getReservationTime());
+                    return output;
+                }
+            }
+            return reserveTables(reservation, numberOfGuests+1);
         }
-        return fourSeatTables(fourChairCounter, twoChairCounter, reservation);
     }
 
-    //Find 4 seat tables and set them unavailable for online reservations
-    public List<Table> fourSeatTables(int fourChairs, int twoChairs, Reservation reservation) {
-        int i = 0;
-        List<Table> reservedTables = new ArrayList<>();
-        for (Table table : this.tables) {
-            if (table.getNumberOfSeats() == 4
-                    && fourChairs > 0
-                    && table.canTableBeReserved(table, reservation.getReservationTime())) {
-                table.getReservationTimes().add(reservation.getReservationTime());
-                fourChairs--;
-                reservedTables.add(table);
+    //Find biggest table available
+    public int biggestTableAvailable(Reservation reservation){
+        int biggestTable = 0;
+        for (Table table:tables) {
+            if(table.getNumberOfSeats()>biggestTable
+                    && table.canTableBeReserved(table, reservation.getReservationTime())){
+                biggestTable = table.getNumberOfSeats();
             }
         }
-        twoChairs = fourChairs * 2 + twoChairs;
-
-        return twoSeatTables(twoChairs, reservedTables, reservation, i);
+        return biggestTable;
     }
 
-    //Find 2 seat tables and set them unavailable for online reservations
-    public List<Table> twoSeatTables(int twoChairs, List<Table> reservedTables, Reservation reservation, int i) {
-        for (Table table : this.tables) {
-            if (table.getNumberOfSeats() == 2
-                    && twoChairs > 0
-                    && table.canTableBeReserved(table, reservation.getReservationTime())) {
+    //Find two tables
+    public List<Table> findTwoTables(Reservation reservation, int index, int numberOfGuests){
+        Table tableOne = tables.get(index);
+        int biggestTable = biggestTableAvailable(reservation);
+        for (Table table:tables) {
+            if(table.canTableBeReserved(table, reservation.getReservationTime())
+                    && !table.equals(tableOne)
+                    && (table.getNumberOfSeats()+tableOne.getNumberOfSeats())==reservation.getAmountOfPeople()){
+                List<Table> output = new ArrayList<>();
+                output.add(tableOne);
+                tableOne.getReservationTimes().add(reservation.getReservationTime());
+                output.add(table);
                 table.getReservationTimes().add(reservation.getReservationTime());
-                twoChairs--;
-                reservedTables.add(table);
+                return output;
             }
         }
-        if (twoChairs > 0) {
-            return null;
-            //Not enough tables, send error message
-        } else return reservedTables;
+        if(index<tables.size()){
+            return findTwoTables(reservation, index+1, numberOfGuests);
+        }
+        else if (numberOfGuests<=biggestTable*2) {
+            return findTwoTables(reservation, 0, numberOfGuests + 1);
+        }
+        else return null; //TODO Fix no table available exception
     }
 
     //endregion
