@@ -8,7 +8,9 @@ import java.util.Map;
 
 @Repository
 public class DishRepository {
+
     private static long counter = 0;
+
     private Map<Long, Dish> dishes = new HashMap<>();
 
     public Iterable<Dish> findAll() {
