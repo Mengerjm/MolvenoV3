@@ -17,38 +17,16 @@ import java.util.List;
 @RequestMapping("/api/reservation")
 public class ReservationController {
 
-    @Value("${firstName}")
-    private String voornaam;
-
 
     @Autowired
     private ReservationRepository reservationRepository;
     @Autowired
     private TableRepository tableRepository;
 
-
-    @PostConstruct
-    public void someData() {
-        for(int i = 0;i<10;i++) {
-            char c = (char) (i+65);
-            Reservation one = new Reservation("Henk","Boer", 2, "0612345678","HenkBoer@gmail.com", LocalDateTime.now());
-            this.reservationRepository.save(one);
-        }
-    }
-
     @GetMapping
     public Iterable<Reservation> findAll() {
 
-        final boolean demo = false;
-
         Iterable<Reservation> reservations = this.reservationRepository.findAll();
-
-        if (demo) {
-            for (Reservation r : reservations) {
-                r.setFirstName(this.voornaam);
-            }
-        }
-
 
         return reservations;
     }

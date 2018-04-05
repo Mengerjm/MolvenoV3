@@ -1,11 +1,17 @@
 {{>header}}
 <img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
 
-<br><br>
 
-<h2> Table Manager</h2>
 
-<!-- Hieronder staat het tabel waar de datatable verschijnt-->
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Reservation')">Reservation</button>
+    <button class="tablinks" onclick="openTab(event, 'TableManager')">Table Manager</button>
+    <button class="tablinks" onclick="openTab(event, 'WalkIn')">Walk In</button>
+</div>
+
+<h2 class="titleBar"> Table Manager</h2>
+
+
 <table id="allTables" class="display" style="width:100%">
     <thead>
     <tr>
@@ -15,12 +21,11 @@
     </thead>
 </table>
 
-<!-- Hieronder staat de modal die opgeroepen wordt in de datatable-->
-<div class="modal fade" id="allTablesModal" role="dialog">
+<div class="modal fade" id="allTableModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="modal-title-all-tables">All tables</h3>
+                <h3 class="modal-title" id="modal-title-all-table">All tables</h3>
             </div>
             <div class="modal-body">
                 <form id="tableForm" enctype='text/plain'>
@@ -42,10 +47,11 @@
 </div>
 
 
-<!--Hieronder staat knop met daaronder de modal waarmee een nieuwe tafel toegevoegd kan worden-->
+<!--Hieronder staat de werkende knop-->
+
 <button type="button" class="btn btn-info" id="modalButton">Add a Table</button>
 
-<div class="modal fade" id="addTableModal" role="dialog">
+<div class="modal fade" id="newReservationModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -59,13 +65,15 @@
                 </select>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnsubmit">Add new Table</button>
-                <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Close</button>
+                <button type="button" class="btn tablemanager_btn-primary" id="btnsubmit">Add new Table</button>
+                <button type="button" class="btn tablemanager_btn-default" id="btnclose" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
+
+<script src="js/homepage.js"></script>
 <script src="/js/tablemanagerdatatable.js"></script>
 <script src="/js/tablemanager.js"></script>
 {{>footer}}

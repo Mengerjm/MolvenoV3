@@ -2,6 +2,7 @@ package nl.yacht.molvenov3.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Table {
 
@@ -9,7 +10,7 @@ public class Table {
     private int numberOfSeats;
     private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
     private static int idCounter = 1;
-    private ArrayList<LocalDateTime> reservationTimes = new ArrayList<>();
+    private List<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
     public int getTableNumber() {
@@ -36,29 +37,26 @@ public class Table {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public ArrayList<LocalDateTime> getReservationTimes() {
+    public List<LocalDateTime> getReservationTimes() {
         return reservationTimes;
     }
 
-    public void setReservationTimes(ArrayList<LocalDateTime> reservationTimes) {
+    public void setReservationTimes(List<LocalDateTime> reservationTimes) {
         this.reservationTimes = reservationTimes;
     }
 
     //endregion
 
     //Can table be used NOW, or is it reserved?
-    public boolean canTableBeUsedNow(Table table){
+    public  boolean canTableBeUsedNow(){
         int counter = 0;
-        for (LocalDateTime reserved:table.getReservationTimes()) {
+        for (LocalDateTime reserved:this.getReservationTimes()) {
             if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(6))){
                 reserved.minusHours(3);
                 counter++;
             }
         }
-        if(counter == 0){
-            return true; //It can be used
-        }
-        else return false; //It can not be used
+       return counter == 0;
     }
 
     //Table available for online reservation at reservation time?

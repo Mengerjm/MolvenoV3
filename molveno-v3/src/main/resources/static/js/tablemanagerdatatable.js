@@ -24,7 +24,7 @@ $(document).ready(function() {
                 var table = $('#allTables').DataTable();
                 var data = table.row(this).data();
                 apiGetSingleTable(data.tableNumber);
-                $('#allTablesModal').modal('toggle');
+                $('#allTableModal').modal('toggle');
             }
         });
 
@@ -61,7 +61,7 @@ function fillUpdateDiv(table){
     console.log(table);
     $("#btndelete").attr('onclick', 'submitDelete(' + table.tableNumber + ');');
     $("#editbutton").attr('onclick', 'submitEdit(' + table.tableNumber + ');');
-    document.getElementById("modal-title-all-tables").innerHTML="Edit Table";
+    document.getElementById("modal-title-all-table").innerHTML="Edit Table";
     Number($("#tableNumber").val(table.tableNumber));
     Number($("#numberOfSeats").val(table.numberOfSeats));
     $("#confirmbutton").css('display', 'inline-block');
@@ -71,7 +71,7 @@ function fillUpdateDiv(table){
         animation:true,
         content:elem,
         html:true,
-        container: allTablesModal
+        container: allTableModal
     });
 }
 
@@ -103,7 +103,7 @@ function submitEdit(id){
         }
     });
     deselect();
-    $('#allTablesModal').modal('toggle');
+    $('#allTableModal').modal('toggle');
 }
 
 // Delete the guest in the database with the corresponding id
@@ -121,7 +121,7 @@ function submitDelete(){
 
     updateTable();
 
-    $('#allTablesModal').modal('toggle');
+    $('#allTableModal').modal('toggle');
     deselect();
 }
 
