@@ -53,7 +53,6 @@ function checkIfDataIsGiven(){
         } else{
             $(".error-messages").text("");
             return true;
-           //jeej;
         }
 }
 

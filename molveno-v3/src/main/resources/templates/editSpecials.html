@@ -1,0 +1,26 @@
+{{>header}}
+
+<img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
+<img class="back" src="../svg/back.svg" onclick="openTab(event, 'Management')"/>
+<br><br>
+
+<h2 class="titleBar">Edit Specials</h2>
+
+<table id="specialsTable" class="display">
+    <col class="specialsTable_column-one">
+    <col class="specialsTable_column-two">
+    <col class="specialsTable_column-three">
+    <col class="specialsTable_column-four">
+    <thead>
+    <tr>
+        <th>Special Name</th>
+        <th>Special Price</th>
+        <th>Special Dishes</th>
+        <th>Special Allergen</th>
+    </tr>
+    </thead>
+</table>
+
+<script src="js/management.js"></script>
+<script src="js/editSpecials.js"></script>
+{{>footer}}

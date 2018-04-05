@@ -47,6 +47,3 @@
 div {
     margin: 20px;
 }
-div:focus, div.focus {
-    outline: 1px solid blue;
-}
