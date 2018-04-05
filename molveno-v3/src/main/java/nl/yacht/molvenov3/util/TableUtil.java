@@ -27,6 +27,12 @@ public class TableUtil {
         return table;
     }
 
+    public static Table update(Table oldTable, Table newTable){
+        oldTable.setTableNumber(newTable.getTableNumber());
+        oldTable.setNumberOfSeats(newTable.getNumberOfSeats());
+        return oldTable;
+    }
+
     //WIP WIP WIP WIP WIP WIP Staat nog niet in de controller
     public static Table removeReservationFromTable(Table table, Reservation oldreservation) {
         int index = 0;
