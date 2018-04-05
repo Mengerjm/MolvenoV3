@@ -9,8 +9,16 @@
 
 <img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
 
+
 <br><br>
-<h2>Reservation List</h2>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Reservation')">Reservation</button>
+    <button class="tablinks" onclick="openTab(event, 'TableManager')">Table Manager</button>
+    <button class="tablinks" onclick="openTab(event, 'WalkIn')">Walk In</button>
+</div>
+
+<h2 class="titleBar">Reservation List</h2>
 
 <button type="button" class="btn btn-info" id="modalButton">Make a Reservation</button>
 <div class="modal fade" id="myModalInput" role="dialog">
@@ -72,13 +80,18 @@
 <br>
 
 <table id="reservationTable" class="display" style="width:100%">
+    <col class="reservation_column-one">
+    <col class="reservation_column-two">
+    <col class="reservation_column-three">
+    <col class="reservation_column-four">
+    <col class="reservation_column-five">
     <thead>
     <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Amount of People</th>
         <th>Reservation Time</th>
         <th>Table Number</th>
+        <th>Amount of People</th>
+        <th>First Name</th>
+        <th>Last Name</th>
     </tr>
     </thead>
 </table>
@@ -110,10 +123,10 @@
 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnsubmit">Submit</button>
+                <button type="button" class="btn reservation_btn-primary" id="btnsubmit">Submit</button>
                 <a href="#" id="confirmbutton" data-title="Are you sure?" data-trigger="focus" data-toggle="clickover"
                    data-placement="top" class="btn btn-danger">Delete</a>
-                <button type="button" class="btn btn-default" id="btnclose" onclick="deselect()" data-dismiss="modal">
+                <button type="button" class="btn reservation_btn-default" id="btnclose" onclick="deselect()" data-dismiss="modal">
                     Close
                 </button>
             </div>
@@ -121,7 +134,8 @@
     </div>
 </div>
 
-<!--<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>-->
+
+<script src="js/homepage.js"></script>
 <script src="js/datatable.js"></script>
 <script src="js/utils.js"></script>
 

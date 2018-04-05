@@ -3,7 +3,14 @@
 <img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
 
 <br><br>
-<h2> Available Tables </h2>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Reservation')">Reservation</button>
+    <button class="tablinks" onclick="openTab(event, 'TableManager')">Table Manager</button>
+    <button class="tablinks" onclick="openTab(event, 'WalkIn')">Walk In</button>
+</div>
+
+<h2 class="titleBar"> Available Tables </h2>
 
 <table id="allTables" class="display" style="width:100%">
     <thead>
@@ -24,12 +31,13 @@
                 <h3>Do you want to set this table to unavailable?</h3>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="editbutton">Yes</button>
-                <button type="button" class="btn btn-default" id="btnclosealltable" data-dismiss="modal">No</button>
+                <button type="button" class="btn walkin_btn-primary" id="editbutton">Yes</button>
+                <button type="button" class="btn walkin_btn-default" id="btnclosealltable" data-dismiss="modal">No</button>
             </div>
         </div>
     </div>
 </div>
 
+<script src="js/homepage.js"></script>
 <script src="/js/walkindatatable.js"></script>
 {{>footer}}

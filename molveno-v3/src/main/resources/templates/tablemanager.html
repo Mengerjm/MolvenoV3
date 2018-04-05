@@ -2,8 +2,15 @@
 <img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
 
 
-<br><br>
-<h2> Table Manager</h2>
+
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Reservation')">Reservation</button>
+    <button class="tablinks" onclick="openTab(event, 'TableManager')">Table Manager</button>
+    <button class="tablinks" onclick="openTab(event, 'WalkIn')">Walk In</button>
+</div>
+
+<h2 class="titleBar"> Table Manager</h2>
+
 
 <table id="allTables" class="display" style="width:100%">
     <thead>
@@ -58,15 +65,15 @@
                 </select>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnsubmit">Add new Table</button>
-                <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Close</button>
+                <button type="button" class="btn tablemanager_btn-primary" id="btnsubmit">Add new Table</button>
+                <button type="button" class="btn tablemanager_btn-default" id="btnclose" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 
 
-
+<script src="js/homepage.js"></script>
 <script src="/js/tablemanagerdatatable.js"></script>
 <script src="/js/tablemanager.js"></script>
 {{>footer}}

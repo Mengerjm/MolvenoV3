@@ -7,9 +7,6 @@ $(document).ready(function() {
                         dataSrc: ''
                     },
                 "columns": [
-                    { "data": "firstName" },
-                    { "data": "lastName" },
-                    { "data": "amountOfPeople"},
                     { "data": "reservationTime"},
                     { "data": function( data, type, row){
 
@@ -21,8 +18,10 @@ $(document).ready(function() {
 
                         return toReturn;
 
-                    }}
-
+                    }},
+                    { "data": "amountOfPeople"},
+                    { "data": "firstName" },
+                    { "data": "lastName" }
                 ]
          } );
 
