@@ -12,6 +12,7 @@ $(document).ready(function() {
                 ]
          } );
 
+
     // Functionality for interaction when clicking on rows of the table
         $('#allTables tbody').on( 'click', 'tr', function () {
             if ( $(this).hasClass('selected') ) {
@@ -22,7 +23,7 @@ $(document).ready(function() {
                 $(this).addClass('selected');
                 var table = $('#allTables').DataTable();
                 var data = table.row(this).data();
-                apiGetSingleTable(data.tableNumber);
+                apiGetSingleTable(data.id);
                 $('#allTableModal').modal('toggle');
             }
         });
@@ -58,13 +59,13 @@ function apiGetSingleTable(id){
 function fillUpdateDiv(table){
 
     console.log(table);
-    $("#btndelete").attr('onclick', 'submitDelete(' + table.tableNumber + ');');
-    $("#editbutton").attr('onclick', 'submitEdit(' + table.tableNumber + ');');
+    $("#btndelete").attr('onclick', 'submitDelete(' + table.id + ');');
+    $("#editbutton").attr('onclick', 'submitEdit(' + table.id + ');');
     document.getElementById("modal-title-all-table").innerHTML="Set table Unavailable";
     Number($("#tableNumber").val(table.tableNumber));
     Number($("#numberOfSeats").val(table.numberOfSeats));
     $("#confirmbutton").css('display', 'inline-block');
-    deleteID = table.tableNumber;
+    deleteID = table.id;
     var elem = '<button type="button" class="btn btn-danger" onclick="submitDelete();">Confirm delete</button>';
     $('#confirmbutton').popover({
         animation:true,
