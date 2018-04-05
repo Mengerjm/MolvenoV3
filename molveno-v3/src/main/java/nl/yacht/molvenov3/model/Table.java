@@ -29,8 +29,8 @@ public class Table {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public ArrayList<LocalDateTime> getReservationTimes() {
-        return (ArrayList) reservationTimes;
+    public List<LocalDateTime> getReservationTimes() {
+        return this.reservationTimes;
     }
 
     public void setReservationTimes(List<LocalDateTime> reservationTimes) {
