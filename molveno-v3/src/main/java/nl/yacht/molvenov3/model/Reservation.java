@@ -3,11 +3,18 @@ package nl.yacht.molvenov3.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
 public class Reservation implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
 
     private String firstName;
     private String lastName;
@@ -17,8 +24,10 @@ public class Reservation implements Serializable {
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime reservationTime;
-    private long id;
+    @ManyToMany
     private List<Table> reservedTable;
+
+
 
 
     public Reservation() {

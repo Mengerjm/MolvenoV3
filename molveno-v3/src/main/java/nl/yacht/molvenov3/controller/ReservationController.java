@@ -3,6 +3,8 @@ package nl.yacht.molvenov3.controller;
 
 import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.model.Table;
+import nl.yacht.molvenov3.repository.CrudReservationRepository;
+import nl.yacht.molvenov3.repository.CrudTableRepository;
 import nl.yacht.molvenov3.repository.ReservationRepository;
 import nl.yacht.molvenov3.repository.TableRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,12 @@ public class ReservationController {
     private String voornaam;
 
 
+   @Autowired
+   private CrudReservationRepository crudReservationRepository;
+  //  private ReservationRepository reservationRepository;
     @Autowired
-    private ReservationRepository reservationRepository;
-    @Autowired
-    private TableRepository tableRepository;
+    private CrudTableRepository tableRepository;
+    //private TableRepository tableRepository;
 
 
     @PostConstruct
@@ -32,7 +36,7 @@ public class ReservationController {
         for(int i = 0;i<10;i++) {
             char c = (char) (i+65);
             Reservation one = new Reservation("Henk","Boer", 2, "0612345678","HenkBoer@gmail.com", LocalDateTime.now());
-            this.reservationRepository.save(one);
+            this.crudReservationRepository.save(one);
         }
     }
 
@@ -41,7 +45,7 @@ public class ReservationController {
 
         final boolean demo = false;
 
-        Iterable<Reservation> reservations = this.reservationRepository.findAll();
+        Iterable<Reservation> reservations = this.crudReservationRepository.findAll();
 
         if (demo) {
             for (Reservation r : reservations) {
@@ -55,28 +59,30 @@ public class ReservationController {
 
     @GetMapping(value = "{id}")
     public Reservation findById(@PathVariable long id) {
-        return this.reservationRepository.findById(id);
+        return this.crudReservationRepository.findOne(id);
     }
 
+    /*
     @PutMapping(value = "{id}")
     public Reservation update(@PathVariable long id, @RequestBody Reservation input) {
-        this.tableRepository.cancelReservedTables(this.reservationRepository.findById(id));
-        Reservation output = this.reservationRepository.update(id, input);
+        this.tableRepository.cancelReservedTables(this.crudReservationRepository.findOne(id));
+        Reservation output = this.crudReservationRepository.save(input);
         output.setReservedTable(this.tableRepository.howManyTables(input));
         return output;
     }
 
     @DeleteMapping("{id}")
     public void delete(@PathVariable long id) {
-        this.tableRepository.cancelReservedTables(this.reservationRepository.findById(id));
-        this.reservationRepository.delete(id);
+        this.tableRepository.cancelReservedTables(this.crudReservationRepository.findOne(id));
+        this.crudReservationRepository.delete(id);
     }
 
     @PostMapping
     public Reservation save(@RequestBody Reservation reservation) {
         List<Table> newTable = this.tableRepository.howManyTables(reservation);
         reservation.setReservedTable(newTable);
-        return this.reservationRepository.save(reservation);
+        return this.crudReservationRepository.save(reservation);
     }
+    */
 }
 
