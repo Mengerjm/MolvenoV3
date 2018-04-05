@@ -26,7 +26,7 @@ function activateModal (){
 
         if(a== null || a==""){
 
-            alertString += "Firstname, ";
+            alertString += "1aFirstname, ";
             $("#firstNameInput").css("backgroundColor", "#f8fbc8");
         } else{
             $("#firstNameInput").css("backgroundColor", "white");
@@ -85,7 +85,7 @@ function activateModal (){
              updateTable();
              $('#reservationInputModal').modal('toggle');
 
-    }});
+    });
 
 
 });
