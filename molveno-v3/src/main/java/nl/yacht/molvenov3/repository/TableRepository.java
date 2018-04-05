@@ -88,96 +88,59 @@ public class TableRepository {
     //region New reservation - set reservation time to table
 
     //Assign tables automatically depending on availability and party size
-    public List<Table> reserveTables(Reservation reservation){
-        int totalSeats = reservation.getAmountOfPeople();
-        Table biggestTable = biggestTableAvailable(reservation);
-        List<Table> output = reserveOneTable(reservation, totalSeats);
-        if(!output.isEmpty()){
-            return output;
+    public List<Table> reserveTables(Reservation reservation, int numberOfGuests){
+        int biggestTable = biggestTableAvailable(reservation);
+        if(biggestTable<reservation.getAmountOfPeople()){
+            return findTwoTables(reservation, 0, numberOfGuests);
         }
-        else if(biggestTable.getNumberOfSeats()>reservation.getAmountOfPeople()){
-            return findBestTable(totalSeats, reservation);
+        else {
+            for (Table table : tables) {
+                if (table.getNumberOfSeats() == numberOfGuests && table.canTableBeReserved(table, reservation.getReservationTime())) {
+                    List<Table> output = new ArrayList<>();
+                    output.add(table);
+                    table.getReservationTimes().add(reservation.getReservationTime());
+                    return output;
+                }
+            }
+            return reserveTables(reservation, numberOfGuests+1);
         }
-        else return findMultipleTables(reservation, biggestTable);
-
     }
 
-    //See if one table is available that has the exact right amount of seats
-    public List<Table> reserveOneTable(Reservation reservation, int totalSeats){
-        List<Table> output = new ArrayList<>();
-        for (Table table: tables) {
-            if(table.getNumberOfSeats()==totalSeats && table.canTableBeReserved(table, reservation.getReservationTime())){
+    //Find biggest table available
+    public int biggestTableAvailable(Reservation reservation){
+        int biggestTable = 0;
+        for (Table table:tables) {
+            if(table.getNumberOfSeats()>biggestTable
+                    && table.canTableBeReserved(table, reservation.getReservationTime())){
+                biggestTable = table.getNumberOfSeats();
+            }
+        }
+        return biggestTable;
+    }
+
+    //Find two tables
+    public List<Table> findTwoTables(Reservation reservation, int index, int numberOfGuests){
+        Table tableOne = tables.get(index);
+        int biggestTable = biggestTableAvailable(reservation);
+        for (Table table:tables) {
+            if(table.canTableBeReserved(table, reservation.getReservationTime())
+                    && !table.equals(tableOne)
+                    && (table.getNumberOfSeats()+tableOne.getNumberOfSeats())==reservation.getAmountOfPeople()){
+                List<Table> output = new ArrayList<>();
+                output.add(tableOne);
+                tableOne.getReservationTimes().add(reservation.getReservationTime());
                 output.add(table);
                 table.getReservationTimes().add(reservation.getReservationTime());
                 return output;
             }
         }
-        return output;
-    }
-
-    //Find smallest possible available table
-    public List<Table> findBestTable(int totalSeats, Reservation reservation){
-        List<Table> output = new ArrayList<>();
-        int smallestTable = 0;
-        Table outputTable = new Table();
-        for (Table table:tables) {
-            if(table.getNumberOfSeats()<smallestTable
-                    && table.getNumberOfSeats()>totalSeats
-                    && table.canTableBeReserved(table, reservation.getReservationTime())){
-                smallestTable = table.getNumberOfSeats();
-                outputTable = table;
-            }
+        if(index<tables.size()){
+            return findTwoTables(reservation, index+1, numberOfGuests);
         }
-        output.add(outputTable);
-        outputTable.getReservationTimes().add(reservation.getReservationTime());
-        return output;
-
-    }
-
-    //Find multiple tables
-    public List<Table> findMultipleTables(Reservation reservation, Table biggestTable){
-        int totalSeats = reservation.getAmountOfPeople() - biggestTable.getNumberOfSeats();
-        List<Table> output = reserveOneTable(reservation, totalSeats);
-        output.add(biggestTable);
-        Table secondBiggestTable = biggestTableAvailable(reservation, biggestTable);
-        if(!output.isEmpty()){
-            return output;
+        else if (numberOfGuests<=biggestTable*2) {
+            return findTwoTables(reservation, 0, numberOfGuests + 1);
         }
-        else if(secondBiggestTable.getNumberOfSeats()>reservation.getAmountOfPeople()){
-            List<Table> outputTables = findBestTable(totalSeats, reservation);
-            outputTables.add(biggestTable);
-            return outputTables;
-        }
-        else  throw new RuntimeException(); // FIX DIE SHIZZLE NO RESERVATION POSSIBLE
-    }
-
-    //Find biggest table available
-    public Table biggestTableAvailable(Reservation reservation){
-        int biggestTable = 0;
-        Table outputTable = new Table();
-        for (Table table:tables) {
-            if(table.getNumberOfSeats()>biggestTable
-                    && table.canTableBeReserved(table, reservation.getReservationTime())){
-                biggestTable = table.getNumberOfSeats();
-                outputTable = table;
-            }
-        }
-        return outputTable;
-    }
-
-    //Find the second biggest table available, ignoreTable = biggest table from first iteration
-    public Table biggestTableAvailable(Reservation reservation, Table ignoreTable){
-        int biggestTable = 0;
-        Table outputTable = new Table();
-        for (Table table:tables) {
-            if(table.getNumberOfSeats()>biggestTable
-                    && !table.equals(ignoreTable)
-                    && table.canTableBeReserved(table, reservation.getReservationTime())){
-                biggestTable = table.getNumberOfSeats();
-                outputTable = table;
-            }
-        }
-        return outputTable;
+        else return null; //TODO Fix no table available exception
     }
 
     //endregion
