@@ -17,7 +17,6 @@ public class Table {
     //private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
 
     @ElementCollection
-
     private List<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
