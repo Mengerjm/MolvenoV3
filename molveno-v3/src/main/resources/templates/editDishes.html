@@ -1,10 +1,28 @@
 {{>header}}
 
 <img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
-<img class="back" src="../images/back.png" onclick="openTab(event, 'Management')"/>
+<img class="back" src="../svg/back.svg" onclick="openTab(event, 'Management')"/>
 <br><br>
 
 <h2 class="titleBar">Edit Dishes</h2>
-<script src="js/management.js"></script>
 
+<table id="dishesTable" class="display">
+    <col class="dishesTable_column-one">
+    <col class="dishesTable_column-two">
+    <col class="dishesTable_column-three">
+    <col class="dishesTable_column-four">
+    <col class="dishesTable_column-five">
+    <thead>
+    <tr>
+        <th>Dish Name</th>
+        <th>Dish Price</th>
+        <th>Dish Type</th>
+        <th>Dish Ingredients</th>
+        <th>Dish Allergen</th>
+    </tr>
+    </thead>
+</table>
+
+<script src="js/management.js"></script>
+<script src="js/editDish.js"></script>
 {{>footer}}

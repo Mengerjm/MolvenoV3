@@ -1,10 +1,10 @@
 .button-wrap1 {
-  width: 95%;
+  width: 98%;
   height: 30%;
   text-align: center;
 }
 .button-wrap2 {
-  width: 95%;
+  width: 98%;
   height: 10%;
   text-align: center;
 }
@@ -14,10 +14,15 @@
   width: 150px;
   height: 150px;
   margin: 4%;
+  border-radius: 25px;
 }
 
 .buttonManagement:hover{
     background-color: #7F8FAF;
+}
+
+.buttonManagement:active{
+    border-style:none;
 }
 
 .back{
