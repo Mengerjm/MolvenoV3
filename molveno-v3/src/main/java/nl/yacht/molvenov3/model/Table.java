@@ -1,23 +1,28 @@
 package nl.yacht.molvenov3.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Table {
 
-    private int tableNumber;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long tableNumber;
     private int numberOfSeats;
-    //private boolean isAvailable; //Deze is nu voor nood/handmatig, check voor reserveringen?
-    private static int idCounter = 1;
+    @ElementCollection
     private List<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
-    public int getTableNumber() {
+    public Long getTableNumber() {
         return tableNumber;
     }
 
-    public void setTableNumber(int tableNumber) {
+
+    public void setTableNumber(Long tableNumber) {
+
         this.tableNumber = tableNumber;
     }
 
@@ -29,8 +34,8 @@ public class Table {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public List<LocalDateTime> getReservationTimes() {
-        return reservationTimes;
+    public ArrayList<LocalDateTime> getReservationTimes() {
+        return (ArrayList) reservationTimes;
     }
 
     public void setReservationTimes(List<LocalDateTime> reservationTimes) {
@@ -40,17 +45,14 @@ public class Table {
     //endregion
 
     //Can table be used NOW, or is it reserved?
-    public boolean canTableBeUsedNow(Table table){
+    public  boolean canTableBeUsedNow(){
         int counter = 0;
-        for (LocalDateTime reserved:table.getReservationTimes()) {
+        for (LocalDateTime reserved:this.getReservationTimes()) {
             if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(3))){
                 counter++;
             }
         }
-        if(counter == 0){
-            return true; //It can be used
-        }
-        else return false; //It can not be used
+       return counter == 0;
     }
 
     //Table available for online reservation at reservation time?
@@ -69,12 +71,7 @@ public class Table {
 
     public Table(){}
 
-    public Table(int numberOfSeats){
-        this.tableNumber = idCounter++;
-        this.numberOfSeats = numberOfSeats;
-    }
-
-    public Table(int tableNumber, int numberOfSeats) {
+    public Table(Long tableNumber, int numberOfSeats) {
         this.tableNumber = tableNumber;
         this.numberOfSeats = numberOfSeats;
     }

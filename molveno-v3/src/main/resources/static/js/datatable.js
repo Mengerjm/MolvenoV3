@@ -1,15 +1,15 @@
+
+//At ready create data table & watch for click on resarvationtable
 $(document).ready(function() {
 
-        $('#reservationTable').DataTable( {
+    // Create data table
+    $('#reservationTable').DataTable( {
                 "order": [[ 0, "asc" ]],
                 "ajax": {
                         url: 'http://localhost:8080/api/reservation',
                         dataSrc: ''
                     },
                 "columns": [
-                    { "data": "firstName" },
-                    { "data": "lastName" },
-                    { "data": "amountOfPeople"},
                     { "data": "reservationTime"},
                     { "data": function( data, type, row){
 
@@ -21,14 +21,15 @@ $(document).ready(function() {
 
                         return toReturn;
 
-                    }}
-
+                    }},
+                    { "data": "amountOfPeople"},
+                    { "data": "firstName" },
+                    { "data": "lastName" }
                 ]
          } );
 
-
     // Functionality for interaction when clicking on rows of the table
-        $('#reservationTable tbody').on( 'click', 'tr', function () {
+    $('#reservationTable tbody').on( 'click', 'tr', function () {
             console.log("hallo ik heb geklikt");
             if ( $(this).hasClass('selected') ) {
                 $(this).removeClass('selected');
@@ -40,12 +41,13 @@ $(document).ready(function() {
                 var data = table.row(this).data();
                 console.log(data);
                 apiGetSingleReservation(data.id);
-                $('#myModal').modal('toggle');
+                $('#newReservationModal').modal('toggle');
             }
         });
 
-} );
+});
 
+// Get all data
 function getData() {
       var api = "http://localhost:8080/api/reservation";
         $.get(api, function(data){
@@ -55,6 +57,7 @@ function getData() {
         });
 }
 
+// Set data in data table
 function setData(data){
     $("#reservationTable").DataTable().clear();
     $("#reservationTable").DataTable().rows.add(data);
@@ -91,13 +94,15 @@ function fillUpdateDiv(reservation){
         animation:true,
         content:elem,
         html:true,
-        container: myModal
+        container: newReservationModal
     });
 }
 
 // Deselect all items in the table
 function deselect(){
     $('#reservationTable tr.selected').removeClass('selected');
+    console.log("Ik ben bij deselect");
+
 }
 
 // Submit the edited data in the form to the database
@@ -107,6 +112,7 @@ function submitEdit(id){
     var formData = $("#reservationForm").serializeArray().reduce(function(result, object){ result[object.name] = object.value; return result}, {});
     console.log(formData);
     var reservationNumber = id;
+
     for(var key in formData){
         if(formData[key] == "" || formData == null) delete formData[key];
     }
@@ -121,7 +127,7 @@ function submitEdit(id){
         }
     });
     deselect();
-    $('#myModal').modal('toggle');
+    $('#newReservationModal').modal('toggle');
 }
 
 // Delete the reservation in the database with the corresponding id
@@ -137,6 +143,6 @@ function submitDelete(){
         contentType: "application/json; charset=utf-8"
     });
 
-    $('#myModal').modal('toggle');
+    $('#newReservationModal').modal('toggle');
     deselect();
 }

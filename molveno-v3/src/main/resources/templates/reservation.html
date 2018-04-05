@@ -1,15 +1,27 @@
 {{>header}}
+<link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/locales/bootstrap-datetimepicker.fr.js"
+        charset="UTF-8"></script>
+
 
 <img class="logo" src="../svg/logo.svg"/> <h1 class="site-title"> Restaurant Molveno Lake Resort</h1>
 
 
 <br><br>
-<h2>Reservation List</h2>
 
-<!--Make a reservation button + modal-->
+<div class="tab">
+    <button class="tablinks" onclick="openTab(event, 'Reservation')">Reservation</button>
+    <button class="tablinks" onclick="openTab(event, 'TableManager')">Table Manager</button>
+    <button class="tablinks" onclick="openTab(event, 'WalkIn')">Walk In</button>
+</div>
+
+<h2 class="titleBar">Reservation List</h2>
+
 <button type="button" class="btn btn-info" id="modalButton">Make a Reservation</button>
-
-<div class="modal fade" id="myModalInput" role="dialog">
+<div class="modal fade" id="reservationInputModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,87 +31,45 @@
                 <form id="reservationFormInput" enctype='text/plain' name="inputForm" onsubmit="return validateForm()">
 
                     <h5 class="test">First Name:</h5>
-                    <input type="text" name="firstName" id="firstNameInput" required/>
+                    <input type="text" name="firstName" placeholder="Voornaam" id="firstNameInput" required/>
                     <h5 class="test">Last Name:</h5>
-                    <input type="text" name="lastName" id="lastNameInput" required/>
+                    <input type="text" name="lastName" placeholder="Achternaam" id="lastNameInput" required/>
                     <h5 class="test">Number Of People:</h5>
-                    <input type="text" name="amountOfPeople" id="amountOfPeopleInput" required/>
+                    <input type="number" min="1" placeholder="Aantal mensen" name="amountOfPeople" id="amountOfPeopleInput" required/>
 
                     <h5 class="test">E-mail:</h5>
-                    <input type="text" name="email" id="emailInput"/>
+                    <input type="email" placeholder="voorbeeld@voorbeeld.nl" name="email" id="emailInput"/>
                     <h5 class="test">TelephoneNumber:</h5>
-                    <input type="text" name="telephoneNumber" id="telephoneNumberInput"/>
+                    <input type="tel" placeholder="06-12345678" name="telephoneNumber" id="telephoneNumberInput"/>
                     <h5 class="test">Reservation Time:</h5>
-
-
-
-                    <!--
-                    <input type="text" name="reservationTime" id="reservationTimeInput"/>
-                    -->
-
-                    <div class="container">
-                        <form action="" class="form-horizontal">
-                            <fieldset>
-                                <div class="control-group">
-                                    <div class="controls input-append date form_datetime"
-                                         data-date="2018-03-29T16:15:07Z" data-date-format="yyyy-mm-dd hh:mm:ss "
-                                         data-link-field="dtp_input1">
-                                        <input size="16" type="text" name="reservationTime" id="reservationTimeInput" readonly>
-                                        <span class="add-on"><i class="icon-remove"></i></span>
-                                        <span class="add-on"><i class="icon-th"></i></span>
-                                    </div>
-                                    <input type="hidden" id="dtp_input1" value="" required/><br/>
-                                </div>
-                            </fieldset>
-                        </form>
+                    <div class="input-append date form_datetime" data-date="2012-12-21T15:25:00Z">
+                        <input size="16" type="text" placeholder="Kies een datum + tijd" value="" id="reservationTimeInput" readonly>
+                        <span class="add-on"><i class="icon-remove"></i></span>
+                        <span class="add-on"><i class="icon-th"></i></span>
                     </div>
-                    <!--Datum picker scripts-->
-                    <script type="text/javascript" src="../js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
-                    <script type="text/javascript" src="../js/locales/bootstrap-datetimepicker.fr.js"
-                            charset="UTF-8"></script>
+
                     <script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        //language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1
-    });
-	$('.form_date').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
-	$('.form_time').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 1,
-		minView: 0,
-		maxView: 1,
-		forceParse: 0
+    $(".form_datetime").datetimepicker({
+        format: "dd-mm-yyyy hh:ii:00",
+        showMeridian: false,
+        autoclose: true,
+        todayBtn: true
     });
                     </script>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="addButton">Confirm Reservation</button>
-                        <button type="button" class="btn btn-default" id="btncloseInput" data-dismiss="modal">Close</button>
 
-                    </div>
-                    <!--hier moet nog style-->
-                    <div class="error-messages" style="display:none;"></div>
-                    <!--Deze 2 statements-->
-                </form>         <!--Moeten nagekeken worden-->
+                </form>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="addButton">Confirm Reservation</button>
+                    <button type="button" class="btn btn-default" id="btncloseInput" data-dismiss="modal">Close</button>
+
+                </div>
+                <!--hier moet nog style-->
+                <div class="error-messages" style="display:none;"></div>
+                <!--Deze 2 statements-->
+                </form>
             </div>
         </div>
     </div>
@@ -109,26 +79,30 @@
 <br>
 <br>
 
-<!--Datatable-->
 <table id="reservationTable" class="display" style="width:100%">
+    <col class="reservation_column-one">
+    <col class="reservation_column-two">
+    <col class="reservation_column-three">
+    <col class="reservation_column-four">
+    <col class="reservation_column-five">
     <thead>
     <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Amount of People</th>
         <th>Reservation Time</th>
         <th>Table Number</th>
+        <th>Amount of People</th>
+        <th>First Name</th>
+        <th>Last Name</th>
     </tr>
     </thead>
 </table>
 
-<!--Modal die opgeroepen wordt uit de datatable-->
-<div class="modal fade" id="myModal" role="dialog">
+
+<div class="modal fade" id="newReservationModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="modal-title">Title</h3>
-               <!-- <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>-->
+                <!-- <button type="button" class="close" onclick="deselect()" data-dismiss="modal">&times;</button>-->
             </div>
             <div class="modal-body">
                 <form id="reservationForm" enctype='text/plain'>
@@ -137,7 +111,8 @@
                     Last name:<br>
                     <input type='text' class="form-control" name='lastName' id="lastName" required><br>
                     Amount of people<br>
-                    <input type='text' class="form-control" name='amountOfPeople' id="amountOfPeople" required><br>
+                    <input type='number' class="form-control" min="1" name='amountOfPeople' id="amountOfPeople"
+                           required><br>
                     E-mail<br>
                     <input type='text' class="form-control" name='email' id="email"><br>
                     TelephoneNumber<br>
@@ -145,12 +120,13 @@
                     Reservation time<br>
                     <input type='text' class="form-control" name='reservationTime' id="reservationTime" required><br>
                 </form>
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btnsubmit">Submit</button>
+                <button type="button" class="btn reservation_btn-primary" id="btnsubmit">Submit</button>
                 <a href="#" id="confirmbutton" data-title="Are you sure?" data-trigger="focus" data-toggle="clickover"
                    data-placement="top" class="btn btn-danger">Delete</a>
-                <button type="button" class="btn btn-default" id="btnclose" onclick="deselect()" data-dismiss="modal">
+                <button type="button" class="btn reservation_btn-default" id="btnclose" onclick="deselect()" data-dismiss="modal">
                     Close
                 </button>
             </div>
@@ -158,6 +134,13 @@
     </div>
 </div>
 
+
+
+<script src="js/homepage.js"></script>
+
 <script src="js/datatable.js"></script>
 <script src="js/utils.js"></script>
+
+</body>
+
 {{>footer}}
