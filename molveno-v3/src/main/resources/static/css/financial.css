@@ -1,0 +1,62 @@
+.options{
+    width:100%;
+}
+
+.option1{
+    top:17%;
+    position: absolute;
+    left:15%;
+}
+
+.option2{
+    top:17%;
+    position: absolute;
+    left:30%;
+}
+
+.option3{
+    top:17%;
+    position: absolute;
+    left:45%;
+}
+
+.option4{
+    top:17%;
+    position: absolute;
+    left:60%;
+}
+
+#type{
+    width:150px;
+    height:30px;
+}
+
+#data{
+    width:150px;
+    height:30px;
+}
+
+#period{
+    width:150px;
+    height:30px;
+}
+
+#graphType{
+   width:150px;
+   height:30px;
+}
+
+.graph{
+    position:absolute;
+    width:98%;
+    top:25%;
+}
+
+#chart{
+    bottom:25%;
+}
+
+p {
+    text-align:center;
+    margin-bottom: -3px;
+}
