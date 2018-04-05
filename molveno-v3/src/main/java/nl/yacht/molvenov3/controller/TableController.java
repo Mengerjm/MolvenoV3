@@ -57,7 +57,8 @@ public class TableController {
     //Set table unavailable now for random walk in guests
     @PutMapping(value = "/available/{id}")
     public Table setUnavailable(@PathVariable("id") Long tableNumber) {
-        Table newTable = this.crudTableRepository.findOne(tableNumber);
+        Table oldTable = this.crudTableRepository.findOne(tableNumber);
+        Table newTable = TableUtil.setUnavailable(oldTable);
         return save(newTable);
     }
 
