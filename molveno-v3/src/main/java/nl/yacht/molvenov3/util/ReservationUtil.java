@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class ReservationUtil {
@@ -100,11 +101,18 @@ public class ReservationUtil {
     //For the correct table, find the correct reservationtime and delete it from the arraylist of the table
     public static void removeReservationFromTable(Table table, Reservation reservation) {
         int index = 0;
-        for (LocalDateTime reservationTime : table.getReservationTimes()) {
-            if (reservationTime.isEqual(reservation.getReservationTime())) {
-                table.getReservationTimes().remove(index);
+        try {
+             for (LocalDateTime reservationTime : table.getReservationTimes()) {
+
+                if (reservationTime.isEqual(reservation.getReservationTime())) {
+                    table.getReservationTimes().remove(index);
+                }
             }
             index++;
+        }
+        catch(ConcurrentModificationException cme) {
+            // ignore for now
+            // in the wild: log something ...
         }
     }
 

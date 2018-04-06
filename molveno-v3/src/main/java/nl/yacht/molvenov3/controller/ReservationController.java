@@ -55,15 +55,17 @@ public class ReservationController {
 
     @DeleteMapping(value = "{id}")
     public void delete(@PathVariable long id){
+        Reservation reservation = this.crudReservationRepository.findOne(id);
+        ReservationUtil.cancelReservedTables(reservation);
         this.crudReservationRepository.delete(id);
-        // Logica om tafel + reservering te verwijderen
     }
 
-    @PutMapping(value = "/table/{id}")
-    public Table update(@PathVariable("id") Long id, @RequestBody Table input) {
+    //Set tables unavailable when new reservation is made
+    public Table update(long id, Table input) {
         Table oldTable = crudTableRepository.findOne(id);
         Table newTable = TableUtil.update(oldTable, input);
         return crudTableRepository.save(newTable);
     }
+
 }
 
