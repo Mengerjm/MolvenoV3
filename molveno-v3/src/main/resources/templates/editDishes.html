@@ -6,6 +6,57 @@
 
 <h2 class="titleBar">Edit Dishes</h2>
 
+<button type="button" class="btnAddDish" id="modalButton">Add a new special</button>
+<br>
+
+<div class="modal fade" id="dishInputModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-titleInput">Create Dish</h3>
+            </div>
+            <div class="modal-body">
+                <form enctype='text/plain' id="dishFormInput" name="inputForm" onsubmit="return validateForm()">
+                    <h5 class="test">Name:</h5>         <input id="nameInput" name="name" type="text">
+                    <h5 class="test">Price:</h5>        <input id="priceInput" name="price" type="number">
+                    <h5 class="test">Description:</h5>  <textarea id="descriptionInput" cols="40" rows="5"></textarea>
+                    <h5 class="test">Ingredients:</h5><!-- Hier komt een multiline selection van dishes -->
+                </form>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="addButton" type="button">Confirm Dish</button>
+                    <button class="btn btn-default" data-dismiss="modal" id="btncloseInput" type="button">Close</button>
+                </div>
+                <div class="error-messages" style="display:none;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="allDishesModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title-all-dishes">All Dishes</h3>
+            </div>
+            <div class="modal-body">
+                <form id="dishForm" enctype='text/plain'>
+                    <h5 class="test">Name:</h5>         <input id="nameInputEdit" name="name" type="text">
+                    <h5 class="test">Price:</h5>        <input id="priceInputEdit" name="price" type="number">
+                    <h5 class="test">Description:</h5>  <textarea id="descriptionInputEdit" cols="40" rows="5"></textarea>
+                    <h5 class="test">Ingredients:</h5><!-- Hier komt een multiline selection van dishes -->
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="editbutton">Submit</button>
+                <a href="#" id="confirmbutton" data-title="Are you sure" data-trigger="focus" data-toggle="clickover" data-placement="top" class="btn btn-danger">Delete</a>
+                <button type="button" class="btn btn-default" id="btnCloseAllSpecials" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <table id="dishesTable" class="display">
     <col class="dishesTable_column-one">
     <col class="dishesTable_column-two">
@@ -15,10 +66,10 @@
     <thead>
     <tr>
         <th>Dish Name</th>
+        <th>Dish Description</th>
         <th>Dish Price</th>
         <th>Dish Type</th>
         <th>Dish Ingredients</th>
-        <th>Dish Allergen</th>
     </tr>
     </thead>
 </table>

@@ -11,7 +11,7 @@ function openTab(ev, arg) {
     if (arg == 'Financial') {
         window.open("../financial.html", "_self");
     }
-        if (arg == 'Management') {
-            window.open("../management.html", "_self");
-        }
+    if (arg == 'Management') {
+        window.open("../management.html", "_self");
+    }
 }
