@@ -1,5 +1,7 @@
 package nl.yacht.molvenov3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,21 +12,14 @@ public class Table {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long tableNumber;
+    private Long id;
     private int numberOfSeats;
+    private int tableNumber;
+    @JsonIgnore
     @ElementCollection
     private List<LocalDateTime> reservationTimes = new ArrayList<>();
 
     //region getters and setters
-    public Long getTableNumber() {
-        return tableNumber;
-    }
-
-
-    public void setTableNumber(Long tableNumber) {
-
-        this.tableNumber = tableNumber;
-    }
 
     public int getNumberOfSeats() {
         return numberOfSeats;
@@ -34,12 +29,28 @@ public class Table {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public ArrayList<LocalDateTime> getReservationTimes() {
-        return (ArrayList) reservationTimes;
+    public List<LocalDateTime> getReservationTimes() {
+        return this.reservationTimes;
     }
 
     public void setReservationTimes(List<LocalDateTime> reservationTimes) {
         this.reservationTimes = reservationTimes;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getTableNumber() {
+        return tableNumber;
+    }
+
+    public void setTableNumber(int tableNumber) {
+        this.tableNumber = tableNumber;
     }
 
     //endregion
@@ -71,7 +82,7 @@ public class Table {
 
     public Table(){}
 
-    public Table(Long tableNumber, int numberOfSeats) {
+    public Table(int tableNumber, int numberOfSeats) {
         this.tableNumber = tableNumber;
         this.numberOfSeats = numberOfSeats;
     }

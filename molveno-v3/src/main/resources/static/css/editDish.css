@@ -1,0 +1,13 @@
+.btnAddDish{
+    position: absolute;
+    margin-left:2%;
+    text-align:center;
+    border-radius: 25px;
+    width: 10%;
+    height:5%;
+}
+
+.btnAddDish:hover{
+    background-color: #7F8FAF;
+}
+

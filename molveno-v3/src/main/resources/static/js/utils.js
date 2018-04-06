@@ -86,8 +86,6 @@ function activateModal (){
         });
 
 
-    });
-
 
 });
 
@@ -105,6 +103,6 @@ $("#updateButton").click(function() {
 
 //Create line for data table
 function createReservationString(reservation){
-   result ="<tr><td>"+reservation.firstName+"</td><td>"+reservation.lastName+"</td><td>"+reservation.amountOfPeople+"</td><td>"+reservation.email+"</td><td>"+reservation.telephoneNumber+"</td><td>"+reservation.reservationTime+"</td></tr>";
-   return result;
-}
+      result ="<tr><td>"+reservation.firstName+"</td><td>"+reservation.lastName+"</td><td>"+reservation.amountOfPeople+"</td><td>"+reservation.email+"</td><td>"+reservation.telephoneNumber+"</td><td>"+reservation.reservationTime+"</td></tr>";
+      return result;
+   }
