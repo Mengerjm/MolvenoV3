@@ -59,7 +59,6 @@ function fillGraph(id, selVal, labelArray, dataArray, graphType){
     if(myChart != null){
         myChart.destroy();
     }
-    beforePrintHandler();
     myChart = new Chart($("#chart"), {
     type: graphType,
     data: {

@@ -8,7 +8,7 @@ public class Dish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String name;
     private String description;
     private double price;
@@ -16,14 +16,11 @@ public class Dish {
     @OneToMany
     private List<Ingredient> ingredientList;
 
-
-
     public Dish(){
 
     }
 
-    public Dish(long id, String name, String description, List<Ingredient> ingredientList, double price) {
-        this.id = id;
+    public Dish(String name, String description, List<Ingredient> ingredientList, double price) {
         this.name = name;
         this.description = description;
         this.ingredientList = ingredientList;
@@ -36,14 +33,6 @@ public class Dish {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public void setPriceUsingIngredientPrices(Dish d) {
-        double price = 0.0;
-        for(Ingredient i : d.getIngredientList()){
-            price += i.getPrice();
-        }
-        d.price = price;
     }
 
     public String getName() {
@@ -74,8 +63,7 @@ public class Dish {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
-
 }

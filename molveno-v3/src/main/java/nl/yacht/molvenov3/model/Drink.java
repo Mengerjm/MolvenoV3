@@ -15,9 +15,7 @@ public class Drink {
     @ManyToMany
     private List<Ingredient> ingredientList;
 
-
-
-    public Drink(){
+    public Drink() {
 
     }
 
