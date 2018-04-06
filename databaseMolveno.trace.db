@@ -1,0 +1,15 @@
+2018-04-06 15:46:12 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "TABLE_RESERVATION_TIMES[*]"; expected "TRUNCATE, {"; SQL statement:
+TABLE_RESERVATION_TIMES [42001-196]
+2018-04-06 15:46:31 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "TABLE_ID[*]"; expected "TRUNCATE, {"; SQL statement:
+TABLE_ID [42001-196]
+2018-04-06 15:46:40 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "TABLE_RESERVATION_TIMES[*]"; expected "TRUNCATE, {"; SQL statement:
+TABLE_RESERVATION_TIMES [42001-196]
+2018-04-06 15:46:41 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "TABLE_RESERVATION_TIMES[*]"; expected "TRUNCATE, {"; SQL statement:
+TABLE_RESERVATION_TIMES [42001-196]
+2018-04-06 15:46:44 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "TTABLE[*] ABLE_RESERVATION_TIMES"; expected "TRUNCATE, {"; SQL statement:
+TTABLE ABLE_RESERVATION_TIMES [42001-196]

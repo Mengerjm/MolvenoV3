@@ -15,9 +15,30 @@ public class Table {
     private Long id;
     private int numberOfSeats;
     private int tableNumber;
-    @JsonIgnore
     @ElementCollection
     private List<LocalDateTime> reservationTimes = new ArrayList<>();
+
+    //Can table be used NOW, or is it reserved?
+    public  boolean canTableBeUsedNow(){
+        int counter = 0;
+        for (LocalDateTime reserved:this.getReservationTimes()) {
+            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(3))){
+                counter++;
+            }
+        }
+        return counter == 0;
+    }
+
+    //Table available for online reservation at reservation time?
+    public boolean canTableBeReserved(Table table, LocalDateTime reservationTime){
+        int counter = 0;
+        for (LocalDateTime reserved:table.getReservationTimes()) {
+            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(3))){
+                counter++;
+            }
+        }
+        return counter == 0;
+    }
 
     //region getters and setters
 
@@ -55,36 +76,17 @@ public class Table {
 
     //endregion
 
-    //Can table be used NOW, or is it reserved?
-    public  boolean canTableBeUsedNow(){
-        int counter = 0;
-        for (LocalDateTime reserved:this.getReservationTimes()) {
-            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(3))){
-                counter++;
-            }
-        }
-       return counter == 0;
-    }
-
-    //Table available for online reservation at reservation time?
-    public boolean canTableBeReserved(Table table, LocalDateTime reservationTime){
-        int counter = 0;
-        for (LocalDateTime reserved:table.getReservationTimes()) {
-            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(3))){
-                counter++;
-            }
-        }
-        if(counter == 0){
-            return true; //It can be used
-        }
-        else return false; //It can not be used
-    }
-
     public Table(){}
 
     public Table(int tableNumber, int numberOfSeats) {
         this.tableNumber = tableNumber;
         this.numberOfSeats = numberOfSeats;
+    }
+
+    public Table(int numberOfSeats, int tableNumber, List<LocalDateTime> reservationTimes) {
+        this.numberOfSeats = numberOfSeats;
+        this.tableNumber = tableNumber;
+        this.reservationTimes = reservationTimes;
     }
 
 }

@@ -15,33 +15,17 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     private String firstName;
     private String lastName;
     private int amountOfPeople;
     private String telephoneNumber;
     private String email;
-
-
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:00")
     private LocalDateTime reservationTime;
     @ManyToMany
     private List<Table> reservedTable;
 
-
-
-
-    public Reservation() {
-    }
-
-    public Reservation(String firstName, String lastName, int amountOfPeople, String telephoneNumber, String email, LocalDateTime reservationTime) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.amountOfPeople = amountOfPeople;
-        this.telephoneNumber = telephoneNumber;
-        this.email = email;
-        this.reservationTime = reservationTime;
-    }
+    //region Getters and Setters
 
     public String getTelephoneNumber() {
         return telephoneNumber;
@@ -105,6 +89,20 @@ public class Reservation implements Serializable {
 
     public void setReservedTable(List<Table> reservedTable) {
         this.reservedTable = reservedTable;
+    }
+
+    //endregion
+
+    public Reservation() {
+    }
+
+    public Reservation(String firstName, String lastName, int amountOfPeople, String telephoneNumber, String email, LocalDateTime reservationTime) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.amountOfPeople = amountOfPeople;
+        this.telephoneNumber = telephoneNumber;
+        this.email = email;
+        this.reservationTime = reservationTime;
     }
 
 }
