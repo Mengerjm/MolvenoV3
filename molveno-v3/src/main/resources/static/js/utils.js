@@ -77,15 +77,9 @@ function activateModal (){
                  data: JSON.stringify(jsonObject),
                  // als de actie lukt, voer deze functie uit
                  success: function(data){ // so the data is the bulb of the response of the Spring Boot REST controller
-                      console.log(data);
-                 }
-        });
-
 
              updateTable();
              $('#reservationInputModal').modal('toggle');
-
-    });
 });
 
 //Call datatable to reload the data table
