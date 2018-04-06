@@ -3,7 +3,7 @@ $(document).ready(function() {
         $('#allTables').DataTable( {
                 "order": [[ 0, "asc" ]],
                 "ajax": {
-                        url: 'http://localhost:8080/api/table/available',
+                        url: 'http://molvenov3.test.carpago.nl/api/table/available',
                         dataSrc: ''
                     },
                 "columns": [
@@ -31,7 +31,7 @@ $(document).ready(function() {
 } );
 
 function getData() {
-      var api = "http://localhost:8080/api/table/available";
+      var api = "http://molvenov3.test.carpago.nl/api/table/available";
         $.get(api, function(data){
             if (data){
                 setData(data);
@@ -47,7 +47,7 @@ function setData(data){
 
 // Get the data of a guest using an id
 function apiGetSingleTable(id){
-    var api = "http://localhost:8080/api/table/get/" + id;
+    var api = "http://molvenov3.test.carpago.nl/api/table/get/" + id;
     $.get(api, function(data){
         if (data){
             fillUpdateDiv(data);

@@ -5,7 +5,7 @@ $(document).ready(function() {
             [0, "asc"]
         ],
         "ajax": {
-            url: 'http://localhost:8080/api/table/findall',
+            url: 'http://molvenov3.test.carpago.nl/api/table/findall',
             dataSrc: ''
         },
         "columns": [{
@@ -35,7 +35,7 @@ $(document).ready(function() {
 });
 
 function getData() {
-    var api = "http://localhost:8080/api/table/findall";
+    var api = "http://molvenov3.test.carpago.nl/api/table/findall";
     $.get(api, function(data) {
         if (data) {
             setData(data);
@@ -51,7 +51,7 @@ function setData(data) {
 
 // Get the data of a guest using an id
 function apiGetSingleTable(id) {
-    var api = "http://localhost:8080/api/table/get/" + id;
+    var api = "http://molvenov3.test.carpago.nl/api/table/get/" + id;
     $.get(api, function(data) {
         if (data) {
             fillUpdateDiv(data);

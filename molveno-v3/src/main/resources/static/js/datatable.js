@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#reservationTable').DataTable( {
                 "order": [[ 0, "asc" ]],
                 "ajax": {
-                        url: 'http://localhost:8080/api/reservation',
+                        url: 'http://molvenov3.test.carpago.nl/api/reservation',
                         dataSrc: ''
                     },
                 "columns": [
@@ -49,7 +49,7 @@ $(document).ready(function() {
 
 // Get all data
 function getData() {
-      var api = "http://localhost:8080/api/reservation";
+      var api = "http://molvenov3.test.carpago.nl/api/reservation";
         $.get(api, function(data){
             if (data){
                 setData(data);
@@ -66,7 +66,7 @@ function setData(data){
 
 // Get the data of a reservation using an id
 function apiGetSingleReservation(id){
-    var api = "http://localhost:8080/api/reservation/" + id;
+    var api = "http://molvenov3.test.carpago.nl/api/reservation/" + id;
     $.get(api, function(data){
         if (data){
             fillUpdateDiv(data);
