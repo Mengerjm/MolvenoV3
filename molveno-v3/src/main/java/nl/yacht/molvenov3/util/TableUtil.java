@@ -1,9 +1,6 @@
 package nl.yacht.molvenov3.util;
 
-import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.model.Table;
-import nl.yacht.molvenov3.repository.CrudTableRepository;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +28,7 @@ public class TableUtil {
     public static Table update(Table oldTable, Table newTable){
         oldTable.setTableNumber(newTable.getTableNumber());
         oldTable.setNumberOfSeats(newTable.getNumberOfSeats());
+        oldTable.setReservationTimes(newTable.getReservationTimes());
         return oldTable;
     }
 

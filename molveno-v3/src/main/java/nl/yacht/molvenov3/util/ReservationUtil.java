@@ -66,7 +66,7 @@ public class ReservationUtil {
         for (Table table:tables) {
             if(table.canTableBeReserved(table, reservation.getReservationTime())
                     && !table.equals(tableOne)
-                    && (table.getNumberOfSeats()+tableOne.getNumberOfSeats())==reservation.getAmountOfPeople()){
+                    && (table.getNumberOfSeats()+tableOne.getNumberOfSeats())==numberOfGuests){
                 List<Table> output = new ArrayList<>();
                 output.add(tableOne);
                 tableOne.getReservationTimes().add(reservation.getReservationTime());
@@ -81,7 +81,7 @@ public class ReservationUtil {
         else if (numberOfGuests<=biggestTable*2) {
             return findTwoTables(reservation, 0, numberOfGuests+1, tables);
         }
-        else return null; //TODO Fix no table available exception
+        else return null;
     }
 
     //endregion

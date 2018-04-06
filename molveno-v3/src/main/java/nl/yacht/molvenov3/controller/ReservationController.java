@@ -5,6 +5,7 @@ import nl.yacht.molvenov3.model.Table;
 import nl.yacht.molvenov3.repository.CrudReservationRepository;
 import nl.yacht.molvenov3.repository.CrudTableRepository;
 import nl.yacht.molvenov3.util.ReservationUtil;
+import nl.yacht.molvenov3.util.TableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,10 +34,15 @@ public class ReservationController {
 
     @PostMapping
     public Reservation save(@RequestBody Reservation reservation) {
-        Iterable<Table> allTables = crudTableRepository.findAll();
-        List<Table> tables = ReservationUtil.makeList(allTables);
-        ReservationUtil.reserveTables(reservation,reservation.getAmountOfPeople(), tables);
-
+        List<Table> tables = ReservationUtil.makeList(crudTableRepository.findAll());
+        List<Table> reservedTables = ReservationUtil.reserveTables(reservation, reservation.getAmountOfPeople(), tables);
+        if(reservedTables==null){
+            return null; //TODO Throw exception reservation not possible
+        }
+        for (Table table:reservedTables) {
+            update(table.getId(), table);
+        }
+        reservation.setReservedTable(reservedTables);
         return this.crudReservationRepository.save(reservation);
     }
 
@@ -53,5 +59,11 @@ public class ReservationController {
         // Logica om tafel + reservering te verwijderen
     }
 
+    @PutMapping(value = "/table/{id}")
+    public Table update(@PathVariable("id") Long id, @RequestBody Table input) {
+        Table oldTable = crudTableRepository.findOne(id);
+        Table newTable = TableUtil.update(oldTable, input);
+        return crudTableRepository.save(newTable);
+    }
 }
 

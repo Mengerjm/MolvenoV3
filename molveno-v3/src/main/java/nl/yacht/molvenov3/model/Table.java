@@ -63,7 +63,7 @@ public class Table {
                 counter++;
             }
         }
-       return counter == 0;
+        return counter == 0;
     }
 
     //Table available for online reservation at reservation time?
@@ -74,10 +74,7 @@ public class Table {
                 counter++;
             }
         }
-        if(counter == 0){
-            return true; //It can be used
-        }
-        else return false; //It can not be used
+        return counter == 0;
     }
 
     public Table(){}
