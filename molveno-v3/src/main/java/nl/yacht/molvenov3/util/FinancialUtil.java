@@ -24,7 +24,7 @@ public class FinancialUtil {
 
     public static double getPriceUsingIngredientPrices(Dish d) {
         double price = 0.0;
-        for (Ingredient i : d.getIngredientList()) {
+        for (Ingredient i : d.getIngredients()) {
             price += i.getPrice();
         }
         return price;

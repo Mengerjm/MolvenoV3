@@ -1,3 +1,0 @@
-2018-04-06 14:40:25 jdbc[13]: exception
-org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM SPECIAL DRINK DISH[*]"; SQL statement:
-SELECT * FROM SPECIAL DRINK DISH [42000-196]

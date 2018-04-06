@@ -12,20 +12,23 @@ public class Dish {
     private String name;
     private String description;
     private double price;
+
+    @Enumerated(EnumType.STRING)
     private TypeOfCourse toc;
+    @Enumerated(EnumType.STRING)
     private TypeOfDish tod;
 
     @OneToMany
-    private List<Ingredient> ingredientList;
+    private List<Ingredient> ingredients;
 
     public Dish(){
 
     }
 
-    public Dish(String name, String description, List<Ingredient> ingredientList, double price, TypeOfCourse toc, TypeOfDish tod) {
+    public Dish(String name, String description, List<Ingredient> ingredients, double price, TypeOfCourse toc, TypeOfDish tod) {
         this.name = name;
         this.description = description;
-        this.ingredientList = ingredientList;
+        this.ingredients = ingredients;
         this.price = price;
         this.toc = toc;
         this.tod = tod;
@@ -71,15 +74,15 @@ public class Dish {
         this.description = description;
     }
 
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredientList(List<Ingredient> ingredientList) {
-        this.ingredientList = ingredientList;
+    public void setIngredients(List<Ingredient> ingredientList) {
+        ingredients = ingredientList;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
