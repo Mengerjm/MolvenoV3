@@ -40,7 +40,7 @@ $(document).ready(function() {
             [0, "asc"]
         ],
         "ajax": {
-            url: 'http://localhost:8080/api/editSpecials/findall',
+            url: 'http://molvenov3.test.carpago.nl/api/editSpecials/findall',
             dataSrc: ''
         },
         "columns": [{
@@ -74,7 +74,7 @@ $(document).ready(function() {
 });
 
 function getData() {
-    var api = "http://localhost:8080/api/editSpecials/findall";
+    var api = "http://molvenov3.test.carpago.nl/api/editSpecials/findall";
     $.get(api, function(data) {
         if (data) {
             setData(data);
@@ -89,7 +89,7 @@ function setData(data) {
 }
 
 function apiGetSingleSpecial(id) {
-    var api = "http://localhost:8080/api/editSpecials/get/" + id;
+    var api = "http://molvenov3.test.carpago.nl/api/editSpecials/get/" + id;
     $.get(api, function(data) {
         if (data) {
             fillUpdateDiv(data);
