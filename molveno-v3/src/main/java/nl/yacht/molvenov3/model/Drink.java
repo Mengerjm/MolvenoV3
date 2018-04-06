@@ -8,29 +8,28 @@ public class Drink {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String name;
     private String description;
 
     @ManyToMany
-    private List<Ingredient> ingredientList;
+    private List<Ingredient> ingredients;
 
     public Drink() {
 
     }
 
-    public Drink(long id, String name, String description, List<Ingredient> ingredientList) {
-        this.id = id;
+    public Drink(String name, String description, List<Ingredient> ingredients) {
         this.name = name;
         this.description = description;
-        this.ingredientList = ingredientList;
+        this.ingredients = ingredients;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -50,11 +49,11 @@ public class Drink {
         this.description = description;
     }
 
-    public List<Ingredient> getIngredientList() {
-        return ingredientList;
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 
-    public void setIngredientList(List<Ingredient> ingredientList) {
-        this.ingredientList = ingredientList;
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 }
