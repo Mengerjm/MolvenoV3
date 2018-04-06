@@ -62,8 +62,8 @@ function fillUpdateDiv(table){
     $("#btndelete").attr('onclick', 'submitDelete(' + table.id + ');');
     $("#editbutton").attr('onclick', 'submitEdit(' + table.id + ');');
     document.getElementById("modal-title-all-table").innerHTML="Edit Table";
-    Number($("#tableNumber").val(table.tableNumber));
-    Number($("#numberOfSeats").val(table.numberOfSeats));
+    Number($("#tableNumberTwo").val(table.tableNumber));
+    Number($("#numberOfSeatsTwo").val(table.numberOfSeats));
     $("#confirmbutton").css('display', 'inline-block');
     deleteID = table.id;
     var elem = '<button type="button" class="btn btn-danger" onclick="submitDelete();">Confirm delete</button>';

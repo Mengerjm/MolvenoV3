@@ -23,6 +23,7 @@ $(document).ready(function(){
 });
 
     function modalToggle (){
+    $('#newTableForm').trigger("reset");
     $('#newReservationModal').modal('toggle');
     }
 
