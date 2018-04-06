@@ -2,10 +2,6 @@ package nl.yacht.molvenov3.util;
 
 import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.model.Table;
-import nl.yacht.molvenov3.repository.CrudReservationRepository;
-import nl.yacht.molvenov3.repository.CrudTableRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -21,6 +17,15 @@ public class ReservationUtil {
         update.setTelephoneNumber(reservation.getTelephoneNumber());
         update.setReservationTime(reservation.getReservationTime());
         return update;
+    }
+
+    //Turn findAll() Iterable into List
+    public static List<Table> makeList(Iterable<Table> tables){
+        List<Table> alltables = new ArrayList<>();
+        for (Table table:tables) {
+            alltables.add(table);
+        }
+        return alltables;
     }
 
     //region New reservation - set reservation time to table
@@ -111,15 +116,6 @@ public class ReservationUtil {
             // ignore for now
             // in the wild: log something ...
         }
-    }
-
-    //Turn findAll() Iterable into List
-    public static List<Table> makeList(Iterable<Table> tables){
-        List<Table> alltables = new ArrayList<>();
-        for (Table table:tables) {
-            alltables.add(table);
-        }
-        return alltables;
     }
 
 //endregion

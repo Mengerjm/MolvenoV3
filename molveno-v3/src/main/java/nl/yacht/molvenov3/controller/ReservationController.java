@@ -50,7 +50,15 @@ public class ReservationController {
     @PutMapping(value = "{id}")
     public Reservation update(@PathVariable long id, @RequestBody Reservation reservation) {
         Reservation oldReservation = this.crudReservationRepository.findOne(id);
+        List<Table> oldReservedTables = ReservationUtil.cancelReservedTables(reservation);
+        this.crudTableRepository.save(oldReservedTables);
         Reservation newReservation = ReservationUtil.update(oldReservation, reservation);
+        List<Table> allTables = ReservationUtil.makeList(crudTableRepository.findAll());
+        List<Table> reservedTables = ReservationUtil.reserveTables(newReservation, newReservation.getAmountOfPeople(), allTables);
+        if(reservedTables==null){
+            return null; //TODO Throw exception reservation not possible
+        }
+        newReservation.setReservedTable(reservedTables);
         return this.crudReservationRepository.save(newReservation);
     }
 
