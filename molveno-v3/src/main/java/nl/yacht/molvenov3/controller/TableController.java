@@ -13,9 +13,6 @@ public class TableController {
     @Autowired
     private CrudTableRepository crudTableRepository;
     //private TableRepository tables;
-    @Autowired
-    private CrudTableRepository tableRepository;
-    //private ReservationRepository reservationRepository;
 
     //Show all available tables
     @GetMapping(value = "/available")

@@ -34,16 +34,4 @@ public class TableUtil {
         return oldTable;
     }
 
-    //WIP WIP WIP WIP WIP WIP Staat nog niet in de controller
-    public static void removeReservationTimeFromTable(Table table, Reservation oldreservation) {
-        int index = 0;
-        for (LocalDateTime reservationTime : table.getReservationTimes()) {
-            if (reservationTime.isEqual(oldreservation.getReservationTime())) {
-                table.getReservationTimes().remove(index);
-            }
-            index++;
-        }
-    }
-
-
 }
