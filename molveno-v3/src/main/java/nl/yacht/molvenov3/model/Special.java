@@ -1,13 +1,39 @@
 package nl.yacht.molvenov3.model;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Special {
-    private long id;
-    private List<Dish> dishes;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private String description;
     private double price;
 
-    public long getId() {
+    @ManyToMany
+    private List<Dish> dishes;
+
+    public Special() {
+    }
+
+    public Special(String name, String description, List<Dish> dishes, double price) {
+        this.name = name;
+        this.description = description;
+        this.dishes = dishes;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -31,26 +57,11 @@ public class Special {
         this.price = price;
     }
 
-    public void setPriceUsingExternalPrices(Special s, boolean useIngredientPrices){
-        double price = 0.0;
-        for(Dish d : s.getDishes()){
-            if(useIngredientPrices){
-                for(Ingredient i : d.getIngredientList()){
-                    price += i.getPrice();
-                }
-            }else{
-                price += d.getPrice();
-            }
-        }
-        s.setPrice(price);
+    public String getDescription() {
+        return description;
     }
 
-    public Special(long id, List<Dish> dishes, double price) {
-        this.id = id;
-        this.dishes = dishes;
-        this.price = price;
-    }
-
-    public Special() {
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
