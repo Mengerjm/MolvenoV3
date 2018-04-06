@@ -23,10 +23,6 @@ public class ReservationUtil {
         return update;
     }
 
-
-
-
-
     //region New reservation - set reservation time to table
 
     //Assign tables automatically depending on availability and party size
@@ -90,12 +86,14 @@ public class ReservationUtil {
     //region Reservation deleted - remove reservationtime from table
 
     //For every table that is saved in reservation, run the next method
-    public static void cancelReservedTables(Reservation reservation) {
+    public static List<Table> cancelReservedTables(Reservation reservation) {
+        List<Table> reservedTables = reservation.getReservedTable();
         if (reservation.getReservedTable() != null) {
-            for (Table table : reservation.getReservedTable()) {
+            for (Table table : reservedTables) {
                 removeReservationFromTable(table, reservation);
             }
         }
+        return reservedTables;
     }
 
     //For the correct table, find the correct reservationtime and delete it from the arraylist of the table
@@ -103,7 +101,6 @@ public class ReservationUtil {
         int index = 0;
         try {
              for (LocalDateTime reservationTime : table.getReservationTimes()) {
-
                 if (reservationTime.isEqual(reservation.getReservationTime())) {
                     table.getReservationTimes().remove(index);
                 }
@@ -116,6 +113,7 @@ public class ReservationUtil {
         }
     }
 
+    //Turn findAll() Iterable into List
     public static List<Table> makeList(Iterable<Table> tables){
         List<Table> alltables = new ArrayList<>();
         for (Table table:tables) {

@@ -22,16 +22,19 @@ public class ReservationController {
     private CrudTableRepository crudTableRepository;
     //private TableRepository tableRepository;
 
+    //Find all reservations
     @GetMapping
     public Iterable<Reservation> findAll() {
         return this.crudReservationRepository.findAll();
     }
 
+    //Find one reservation by ID
     @GetMapping(value = "{id}")
     public Reservation findById(@PathVariable long id) {
         return this.crudReservationRepository.findOne(id);
     }
 
+    //New Reservation and reservation time added to tables
     @PostMapping
     public Reservation save(@RequestBody Reservation reservation) {
         List<Table> tables = ReservationUtil.makeList(crudTableRepository.findAll());
@@ -39,13 +42,11 @@ public class ReservationController {
         if(reservedTables==null){
             return null; //TODO Throw exception reservation not possible
         }
-        for (Table table:reservedTables) {
-            update(table.getId(), table);
-        }
         reservation.setReservedTable(reservedTables);
         return this.crudReservationRepository.save(reservation);
     }
 
+    //Update reservation
     @PutMapping(value = "{id}")
     public Reservation update(@PathVariable long id, @RequestBody Reservation reservation) {
         Reservation oldReservation = this.crudReservationRepository.findOne(id);
@@ -53,18 +54,13 @@ public class ReservationController {
         return this.crudReservationRepository.save(newReservation);
     }
 
+    //Delete reservation and remove reservationtime from tables in reservation
     @DeleteMapping(value = "{id}")
     public void delete(@PathVariable long id){
         Reservation reservation = this.crudReservationRepository.findOne(id);
-        ReservationUtil.cancelReservedTables(reservation);
+        List<Table> reservedTables = ReservationUtil.cancelReservedTables(reservation);
+        this.crudTableRepository.save(reservedTables);
         this.crudReservationRepository.delete(id);
-    }
-
-    //Set tables unavailable when new reservation is made
-    public Table update(long id, Table input) {
-        Table oldTable = crudTableRepository.findOne(id);
-        Table newTable = TableUtil.update(oldTable, input);
-        return crudTableRepository.save(newTable);
     }
 
 }

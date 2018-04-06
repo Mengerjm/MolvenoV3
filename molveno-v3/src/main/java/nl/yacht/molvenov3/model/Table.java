@@ -15,7 +15,6 @@ public class Table {
     private Long id;
     private int numberOfSeats;
     private int tableNumber;
-    @JsonIgnore
     @ElementCollection
     private List<LocalDateTime> reservationTimes = new ArrayList<>();
 
@@ -84,5 +83,10 @@ public class Table {
         this.numberOfSeats = numberOfSeats;
     }
 
+    public Table(int numberOfSeats, int tableNumber, List<LocalDateTime> reservationTimes) {
+        this.numberOfSeats = numberOfSeats;
+        this.tableNumber = tableNumber;
+        this.reservationTimes = reservationTimes;
+    }
 }
 

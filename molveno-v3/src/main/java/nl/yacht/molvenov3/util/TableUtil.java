@@ -25,10 +25,10 @@ public class TableUtil {
         return table;
     }
 
+    //Update characteristics of table
     public static Table update(Table oldTable, Table newTable){
         oldTable.setTableNumber(newTable.getTableNumber());
         oldTable.setNumberOfSeats(newTable.getNumberOfSeats());
-        oldTable.setReservationTimes(newTable.getReservationTimes());
         return oldTable;
     }
 
