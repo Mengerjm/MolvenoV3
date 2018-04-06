@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $('#modalButton').click(modalToggle);
 
     $("#addButton").click(function() {
@@ -25,6 +24,7 @@ $(document).ready(function() {
 });
 
 function modalToggle() {
+    $('#specialFormInput').trigger("reset");
     $('#specialInputModal').modal('toggle');
 }
 
@@ -103,8 +103,8 @@ function fillUpdateDiv(special) {
     $("#btndelete").attr('onclick', 'submitDelete(' + special.id + ');');
     $("#editbutton").attr('onclick', 'submitEdit(' + special.id + ');');
     document.getElementById("modal-title-all-specials").innerHTML = "Edit Special";
-	$("#nameInputEdit").val(special.name);
-	$("#descriptionInputEdit").val(special.description);
+    $("#nameInputEdit").val(special.name);
+    $("#descriptionInputEdit").val(special.description);
     Number($("#priceInputEdit").val(special.price));
     $("#dishes").val(null); // verzin hier wat op
     $("#confirmbutton").css('display', 'inline-block');

@@ -86,8 +86,6 @@ function activateModal (){
              $('#reservationInputModal').modal('toggle');
 
     });
-
-
 });
 
 //Call datatable to reload the data table
