@@ -29,13 +29,9 @@
             </div>
             <div class="modal-body">
                 <form id="tableForm" enctype='text/plain'>
-                    <h5 class="test">Input tablenumber: </h5><input type='text' class="form-control" name='tableNumber' id="tableNumberTwo"><br>
-                    <h5 class="test">Input number of chairs: </h5><select name="numberOfSeats" id="numberOfSeatsTwo">
-                        <option value=2>2 Chairs</option>
-                        <option value=4>4 Chairs</option>
-                    </select><br>
+                    <h5 class="test">Input tablenumber: </h5><input type='number' min="1" max="200" class="form-control" name='tableNumber' placeholder="Tablenumber" id="tableNumberTwo"><br>
+                    <h5 class="test">Input number of chairs: </h5><input type='number' min="1" max="12" class="form-control" name='numberOfSeats' placeholder="Number of Chairs" id="numberOfSeatsTwo">
                 </form>
-
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="editbutton">Submit</button>
@@ -57,13 +53,12 @@
             <div class="modal-header">
                 <h3 class="modal-title" id="modal-title">Add a Table</h3>
             </div>
-            <div class="modal-body">
-                <h5 class="test">Input tablenumber: </h5><input type="text" name="tableNumber" id="tableNumber"><br>
-                <h5 class="test">Input number of chairs: </h5><select name="numberOfSeats" id="numberOfSeats">
-                    <option value=2>2 Chairs</option>
-                    <option value=4>4 Chairs</option>
-                </select>
-            </div>
+                <div class="modal-body">
+                    <form id="newTableForm" enctype='text/plain'>
+                        <h5 class="test">Input tablenumber: </h5><input type='number' min="1" max="200" class="form-control" name='tableNumber' placeholder="Tablenumber" id="tableNumber"><br>
+                        <h5 class="test">Input number of chairs: </h5><input type='number' min="1" max="12" class="form-control" name='numberOfSeats' placeholder="Number of Chairs" id="numberOfSeats">
+                    </form>
+                </div>
             <div class="modal-footer">
                 <button type="button" class="btn tablemanager_btn-primary" id="btnsubmit">Add new Table</button>
                 <button type="button" class="btn tablemanager_btn-default" id="btnclose" data-dismiss="modal">Close</button>

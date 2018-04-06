@@ -2,10 +2,6 @@ $(document).ready(function(){
 
     $('#modalButton').click(modalToggle);
 
-    function modalToggle (){
-    $('#newReservationModal').modal('toggle');
-    }
-
     $("#btnsubmit").click(function(){
         var jsonObject = {
             tableNumber: Number($("#tableNumber").val()),
@@ -16,14 +12,20 @@ $(document).ready(function(){
             url: "api/table/newtable",
             type: "post",
             data: JSON.stringify(jsonObject),
-            succes: function(data){
+            success: function(data){
                 console.log(data);
+                updateTable();
+                modalToggle();
             }
         });
-        updateTable();
-        modalToggle();
+
     });
 });
+
+    function modalToggle (){
+    $('#newTableForm').trigger("reset");
+    $('#newReservationModal').modal('toggle');
+    }
 
     var updateTable = function(){
           console.log("ik start update");

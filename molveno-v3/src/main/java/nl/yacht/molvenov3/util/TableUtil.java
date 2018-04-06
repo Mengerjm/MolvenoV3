@@ -10,6 +10,7 @@ import java.util.List;
 
 public class TableUtil {
 
+
     //Find all tables that are available NOW
     public static Iterable<Table> findAllAvailable(Iterable<Table> allTables){
         List<Table> availableTables = new ArrayList<>();
@@ -34,7 +35,7 @@ public class TableUtil {
     }
 
     //WIP WIP WIP WIP WIP WIP Staat nog niet in de controller
-    public static Table removeReservationFromTable(Table table, Reservation oldreservation) {
+    public static void removeReservationTimeFromTable(Table table, Reservation oldreservation) {
         int index = 0;
         for (LocalDateTime reservationTime : table.getReservationTimes()) {
             if (reservationTime.isEqual(oldreservation.getReservationTime())) {
@@ -42,7 +43,7 @@ public class TableUtil {
             }
             index++;
         }
-        return table;
     }
+
 
 }

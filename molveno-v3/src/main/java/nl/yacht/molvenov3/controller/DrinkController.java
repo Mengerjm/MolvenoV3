@@ -14,7 +14,7 @@ public class DrinkController {
 
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Drink creat(@RequestBody Drink drink) {
+    public Drink create(@RequestBody Drink drink) {
         return crudDrinkRepository.save(drink);
     }
 

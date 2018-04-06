@@ -12,7 +12,7 @@ function activateModal (){
         $('#reservationFormInput').trigger("reset");
 
         $('#reservationInputModal').modal('toggle');
-}
+        }
 
 
     $("#addButton").click(function() {
@@ -77,19 +77,26 @@ function activateModal (){
                  data: JSON.stringify(jsonObject),
                  // als de actie lukt, voer deze functie uit
                  success: function(data){ // so the data is the bulb of the response of the Spring Boot REST controller
+<<<<<<< HEAD
                       console.log(data);
                  }
 
 
+=======
+>>>>>>> master
 
              updateTable();
              $('#reservationInputModal').modal('toggle');
 
+<<<<<<< HEAD
+=======
+                      console.log(data);
+                 }
+>>>>>>> master
         });
 
     });
 });
-
 //Call datatable to reload the data table
 var updateTable = function(){
     $('#reservationTable').DataTable().ajax.reload();
@@ -104,6 +111,6 @@ $("#updateButton").click(function() {
 
 //Create line for data table
 function createReservationString(reservation){
-   result ="<tr><td>"+reservation.firstName+"</td><td>"+reservation.lastName+"</td><td>"+reservation.amountOfPeople+"</td><td>"+reservation.email+"</td><td>"+reservation.telephoneNumber+"</td><td>"+reservation.reservationTime+"</td></tr>";
-   return result;
-}
+      result ="<tr><td>"+reservation.firstName+"</td><td>"+reservation.lastName+"</td><td>"+reservation.amountOfPeople+"</td><td>"+reservation.email+"</td><td>"+reservation.telephoneNumber+"</td><td>"+reservation.reservationTime+"</td></tr>";
+      return result;
+   }

@@ -5,6 +5,51 @@
 <br><br>
 
 <h2 class="titleBar">Financial</h2>
-<script src="js/management.js"></script>
+<div class="options">
+    <div class="option1">
+        <p>Select Supertype</p>
+        <select name="type" id="type" onchange="showData('type')">
+            <option value="ingredient">Ingredient</option>
+            <option value="dish">Dish</option>
+            <option value="special">Special</option>
+        </select>
+    </div>
+    <div class="option2">
+        <p>Select specific item</p>
+        <select name="data" id="data" onchange="showData('data')">
+        <!--
+        Hier iets verzinnen waardoor de DDL wordt gevuld met data afhankelijk van Type
+        Maar wel als je alleen Type hebt geselecteerd dat die ALLES laat zien van dat type
 
+         -->
+        </select>
+    </div>
+    <div class="option3">
+        <p>Select period</p>
+        <select name="period" id="period" onchange="showData('period')">
+            <option value="week">Weekly</option>
+            <option value="month">Monthly</option>
+            <option value="quarter">Quarterly</option>
+            <option value="year">Yearly</option>
+        </select>
+    </div>
+    <div class="option4">
+        <p>Select GraphType</p>
+        <select name="graphType" id="graphType" onchange="showData('graphType')">
+            <option value="line">Line</option>
+            <option value="bar">Bar</option>
+            <option value="radar">Radar</option>
+            <option value="pie">Pie</option>
+            <option value="doughnut">Doughnut</option>
+            <option value="polarArea">PolarArea</option>
+        </select>
+    </div>
+</div>
+<div class="graph">
+    <canvas id="chart"></canvas>
+</div>
+
+<script src="js/Chart.js"></script>
+<script src="js/management.js"></script>
+<script src="js/financial.js"></script>
 {{>footer}}
