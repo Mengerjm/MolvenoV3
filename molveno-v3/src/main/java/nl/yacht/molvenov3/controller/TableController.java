@@ -2,8 +2,8 @@ package nl.yacht.molvenov3.controller;
 
 import nl.yacht.molvenov3.model.Table;
 import nl.yacht.molvenov3.repository.CrudTableRepository;
-import nl.yacht.molvenov3.repository.ReservationRepository;
-import nl.yacht.molvenov3.repository.TableRepository;
+//import nl.yacht.molvenov3.repository.ReservationRepository;
+//import nl.yacht.molvenov3.repository.TableRepository;
 import nl.yacht.molvenov3.util.TableUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
