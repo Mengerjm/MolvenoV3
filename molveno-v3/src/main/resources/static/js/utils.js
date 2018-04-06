@@ -12,7 +12,7 @@ function activateModal (){
         $('#reservationFormInput').trigger("reset");
 
         $('#reservationInputModal').modal('toggle');
-}
+        }
 
 
     $("#addButton").click(function() {
@@ -26,7 +26,7 @@ function activateModal (){
 
         if(a== null || a==""){
 
-            alertString += "1aFirstname, ";
+            alertString += "Firstname, ";
             $("#firstNameInput").css("backgroundColor", "#f8fbc8");
         } else{
             $("#firstNameInput").css("backgroundColor", "white");
@@ -85,10 +85,8 @@ function activateModal (){
                  }
         });
 
-
-
+    });
 });
-
 //Call datatable to reload the data table
 var updateTable = function(){
     $('#reservationTable').DataTable().ajax.reload();
