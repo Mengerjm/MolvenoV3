@@ -12,6 +12,8 @@ public class Dish {
     private String name;
     private String description;
     private double price;
+    private TypeOfCourse toc;
+    private TypeOfDish tod;
 
     @OneToMany
     private List<Ingredient> ingredientList;
@@ -20,11 +22,29 @@ public class Dish {
 
     }
 
-    public Dish(String name, String description, List<Ingredient> ingredientList, double price) {
+    public Dish(String name, String description, List<Ingredient> ingredientList, double price, TypeOfCourse toc, TypeOfDish tod) {
         this.name = name;
         this.description = description;
         this.ingredientList = ingredientList;
         this.price = price;
+        this.toc = toc;
+        this.tod = tod;
+    }
+
+    public TypeOfCourse getToc() {
+        return toc;
+    }
+
+    public void setToc(TypeOfCourse toc) {
+        this.toc = toc;
+    }
+
+    public TypeOfDish getTod() {
+        return tod;
+    }
+
+    public void setTod(TypeOfDish tod) {
+        this.tod = tod;
     }
 
     public double getPrice() {
