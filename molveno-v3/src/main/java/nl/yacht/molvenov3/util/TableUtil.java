@@ -7,7 +7,6 @@ import java.util.List;
 
 public class TableUtil {
 
-
     //Find all tables that are available NOW
     public static Iterable<Table> findAllAvailable(Iterable<Table> allTables){
         List<Table> availableTables = new ArrayList<>();

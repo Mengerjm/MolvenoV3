@@ -18,6 +18,28 @@ public class Table {
     @ElementCollection
     private List<LocalDateTime> reservationTimes = new ArrayList<>();
 
+    //Can table be used NOW, or is it reserved?
+    public  boolean canTableBeUsedNow(){
+        int counter = 0;
+        for (LocalDateTime reserved:this.getReservationTimes()) {
+            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(3))){
+                counter++;
+            }
+        }
+        return counter == 0;
+    }
+
+    //Table available for online reservation at reservation time?
+    public boolean canTableBeReserved(Table table, LocalDateTime reservationTime){
+        int counter = 0;
+        for (LocalDateTime reserved:table.getReservationTimes()) {
+            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(3))){
+                counter++;
+            }
+        }
+        return counter == 0;
+    }
+
     //region getters and setters
 
     public int getNumberOfSeats() {
@@ -54,28 +76,6 @@ public class Table {
 
     //endregion
 
-    //Can table be used NOW, or is it reserved?
-    public  boolean canTableBeUsedNow(){
-        int counter = 0;
-        for (LocalDateTime reserved:this.getReservationTimes()) {
-            if(LocalDateTime.now().isAfter(reserved.minusHours(3)) && LocalDateTime.now().isBefore(reserved.plusHours(3))){
-                counter++;
-            }
-        }
-        return counter == 0;
-    }
-
-    //Table available for online reservation at reservation time?
-    public boolean canTableBeReserved(Table table, LocalDateTime reservationTime){
-        int counter = 0;
-        for (LocalDateTime reserved:table.getReservationTimes()) {
-            if(reservationTime.isAfter(reserved.minusHours(3)) && reservationTime.isBefore(reserved.plusHours(3))){
-                counter++;
-            }
-        }
-        return counter == 0;
-    }
-
     public Table(){}
 
     public Table(int tableNumber, int numberOfSeats) {
@@ -88,5 +88,6 @@ public class Table {
         this.tableNumber = tableNumber;
         this.reservationTimes = reservationTimes;
     }
+
 }
 

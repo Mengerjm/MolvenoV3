@@ -33,10 +33,12 @@ public class ReservationUtil {
     //Assign tables automatically depending on availability and party size
     public static List<Table> reserveTables(Reservation reservation, int numberOfGuests, List<Table> tables){
         int biggestTable = biggestTableAvailable(reservation, tables);
+        //If biggest table is smaller than number of guests, two tables are required
         if(biggestTable<reservation.getAmountOfPeople()){
             return findTwoTables(reservation, 0, numberOfGuests, tables);
         }
         else {
+            //If a table with the right amount of seats is available, it is returned and reservation time is set
             for (Table table : tables) {
                 if (table.getNumberOfSeats() == numberOfGuests && table.canTableBeReserved(table, reservation.getReservationTime())) {
                     List<Table> output = new ArrayList<>();
@@ -45,6 +47,7 @@ public class ReservationUtil {
                     return output;
                 }
             }
+            //Try and find a table that is 1 bigger than the number of guests
             return reserveTables(reservation, numberOfGuests+1, tables);
         }
     }
@@ -65,6 +68,7 @@ public class ReservationUtil {
     public static List<Table> findTwoTables(Reservation reservation, int index, int numberOfGuests, List<Table> tables){
         Table tableOne = tables.get(index);
         int biggestTable = biggestTableAvailable(reservation, tables);
+        //First try to find a combination of 2 tables that are exactly equal to amount of guests
         for (Table table:tables) {
             if(table.canTableBeReserved(table, reservation.getReservationTime())
                     && !table.equals(tableOne)
@@ -77,9 +81,11 @@ public class ReservationUtil {
                 return output;
             }
         }
+        //Try again with a new combination of 2 tables as long as there are more tables in the db
         if(index<tables.size()){
             return findTwoTables(reservation, index+1, numberOfGuests, tables);
         }
+        //As long as number of guests isn't twice as big as the amount of seats on the biggest table, try and look for a bigger table
         else if (numberOfGuests<=biggestTable*2) {
             return findTwoTables(reservation, 0, numberOfGuests+1, tables);
         }

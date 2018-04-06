@@ -46,12 +46,16 @@ public class ReservationController {
         return this.crudReservationRepository.save(reservation);
     }
 
-    //Update reservation
+    //Update reservation, setting tables available again and (trying to) reserve new tables depending on changes
     @PutMapping(value = "{id}")
     public Reservation update(@PathVariable long id, @RequestBody Reservation reservation) {
+        //Save tables that are available again
         Reservation oldReservation = this.crudReservationRepository.findOne(id);
-        List<Table> oldReservedTables = ReservationUtil.cancelReservedTables(reservation);
-        this.crudTableRepository.save(oldReservedTables);
+        List<Table> oldReservedTables = ReservationUtil.cancelReservedTables(oldReservation);
+        for (Table table:oldReservedTables) {
+            this.crudTableRepository.save(table);
+        }
+        //Try to find new tables at new reservation time
         Reservation newReservation = ReservationUtil.update(oldReservation, reservation);
         List<Table> allTables = ReservationUtil.makeList(crudTableRepository.findAll());
         List<Table> reservedTables = ReservationUtil.reserveTables(newReservation, newReservation.getAmountOfPeople(), allTables);
