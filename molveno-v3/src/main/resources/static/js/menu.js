@@ -52,3 +52,55 @@ function focus() {
 function blur() {
     this.classList.remove('focus');
 }
+
+$(document).ready(function(){
+
+
+      $("#clickOnDrinks").click(function(){
+        $.ajax({
+
+        url : baseUrl+"editDrinks",
+
+        type: "get",
+
+        success: function(data){
+
+        DrinkList = "";
+        Drank = "";
+
+            $.each(data,function(index, current){
+
+            //set alle drankjes lost in een lijst
+            node = document.createElement("LI");
+            Drank = createDrinkListNameOnly(current);
+            textnode = document.createTextNode(Drank);
+            node.appendChild(textnode);
+            document.getElementById("drank").appendChild(node);
+
+                DrinkList += createDrinkList(current);
+
+
+
+            });
+
+            //print hele drink lijst om te kijken wat er in de db staat
+            $("#DrinkList").html(DrinkList);
+
+
+           }
+        });
+     });
+
+     });
+
+
+function createDrinkList(drink){
+    result = "<tr><td>"+drink.name+"</td><td>"+drink.description+"</td></tr>";
+    return result;
+}
+
+function createDrinkListNameOnly(drink){
+    result = "<div><a>"+drink.name+"</a></div>";
+
+    return result;
+}

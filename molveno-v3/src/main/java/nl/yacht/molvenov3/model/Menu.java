@@ -1,13 +1,33 @@
 package nl.yacht.molvenov3.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.List;
 
+@Entity
 public class Menu  implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+
+    //geen idee wat dit moet worden??? @ManyToMany @OneToMany @ManyToOne
     private List<Drink> drinks;
     private List<Dish> dishes;
     private List<Special> specials;
     private Order order;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public List<Drink> getDrinks() {
         return drinks;

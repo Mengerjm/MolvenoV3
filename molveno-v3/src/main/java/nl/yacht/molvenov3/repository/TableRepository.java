@@ -10,6 +10,7 @@ import java.util.*;
 @Repository
 public class TableRepository {
 
+    /*
     private ArrayList<Table> tables = new ArrayList<>();
     private Map<Long, Reservation> reservation = new HashMap<>();
 
@@ -96,5 +97,7 @@ public class TableRepository {
     }
 
 //endregion
+
+*/
 
 }

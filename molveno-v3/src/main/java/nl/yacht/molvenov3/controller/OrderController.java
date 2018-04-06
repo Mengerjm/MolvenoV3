@@ -1,12 +1,14 @@
 package nl.yacht.molvenov3.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import nl.yacht.molvenov3.model.Order;
+import nl.yacht.molvenov3.repository.CrudOrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/editSpecials")
 public class OrderController {
-/*
+
     @Autowired
     private CrudOrderRepository crudOrderRepository;
 
@@ -35,5 +37,5 @@ public class OrderController {
     public void delete(@PathVariable long id) {
         crudOrderRepository.delete(id);
     }
-    */
+
 }
