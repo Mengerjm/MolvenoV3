@@ -82,7 +82,8 @@ function activateModal (){
              $('#reservationInputModal').modal('toggle');
 
                       console.log(data);
-                 }
+                 },
+                 error: $(".error-messages").text("There are no tables available for that time period")
         });
 
     });
