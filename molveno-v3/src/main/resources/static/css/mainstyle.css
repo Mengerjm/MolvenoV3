@@ -61,7 +61,17 @@ body {
 }
 
 .modal-dialog {
+    width: 400px;
+}
 
-          width: 400px;
+.btn-info {
+    position: absolute;
+    right:45%;
+    width:200px;
+}
 
-        }
+.add-wrapper {
+    padding-top:2%;
+    text-align: center;
+
+}

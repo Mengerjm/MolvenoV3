@@ -1,12 +1,12 @@
-
-//At ready create data table & watch for click on resarvationtable
+//var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+var baseUrl = "http://localhost:8080/api/"
 $(document).ready(function() {
 
     // Create data table
     $('#reservationTable').DataTable( {
                 "order": [[ 0, "asc" ]],
                 "ajax": {
-                        url: 'http://molvenov3.test.carpago.nl/api/reservation',
+                        url: baseUrl+'reservation',
                         dataSrc: ''
                     },
                 "columns": [
@@ -49,7 +49,7 @@ $(document).ready(function() {
 
 // Get all data
 function getData() {
-      var api = "http://molvenov3.test.carpago.nl/api/reservation";
+      var api = baseUrl+"reservation";
         $.get(api, function(data){
             if (data){
                 setData(data);
@@ -66,7 +66,7 @@ function setData(data){
 
 // Get the data of a reservation using an id
 function apiGetSingleReservation(id){
-    var api = "http://molvenov3.test.carpago.nl/api/reservation/" + id;
+    var api = baseUrl+"reservation/" + id;
     $.get(api, function(data){
         if (data){
             fillUpdateDiv(data);
@@ -87,7 +87,6 @@ function fillUpdateDiv(reservation){
     $("#email").val(reservation.email);
     $("#telephoneNumber").val(reservation.telephoneNumber);
     $("#reservationTime").val(reservation.reservationTime);
-    $("#confirmbutton").css('display', 'inline-block');
     deleteID = reservation.id;
     var elem = '<button type="button" class="btn btn-danger" onclick="submitDelete();">Confirm delete</button>';
     $('#confirmbutton').popover({

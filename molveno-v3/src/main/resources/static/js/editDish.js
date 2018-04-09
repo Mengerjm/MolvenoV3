@@ -1,3 +1,6 @@
+//var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+var baseUrl = "http://localhost:8080/api/"
+
 $(document).ready(function() {
     $('#modalButton').click(modalToggle);
 
@@ -41,7 +44,7 @@ $(document).ready(function() {
             [0, "asc"]
         ],
         "ajax": {
-            url: 'http://molvenov3.test.carpago.nl/api/editDishes/findall',
+            url: baseUrl+'editDishes/findall',
             dataSrc: ''
         },
         "columns": [{
@@ -81,7 +84,7 @@ $(document).ready(function() {
 });
 
 function getData() {
-    var api = "http://molvenov3.test.carpago.nl/api/editDishes/findall";
+    var api = baseUrl+"editDishes/findall";
     $.get(api, function(data) {
         if (data) {
             setData(data);
@@ -96,8 +99,8 @@ function setData(data) {
 }
 
 function apiGetSingledish(id) {
-    var api = "http://molvenov3.test.carpago.nl/api/editDishes/get/" + id;
     $.get(api, function(data) {
+    var api = baseUrl+"editDishes/get/" + id;
         if (data) {
             fillUpdateDiv(data);
         }

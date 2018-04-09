@@ -1,3 +1,6 @@
+//var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+var baseUrl = "http://localhost:8080/api/"
+
 $(document).ready(function() {
     $('#modalButton').click(modalToggle);
 
@@ -40,7 +43,7 @@ $(document).ready(function() {
             [0, "asc"]
         ],
         "ajax": {
-            url: 'http://molvenov3.test.carpago.nl/api/editSpecials/findall',
+            url: baseUrl+'editSpecials/findall',
             dataSrc: ''
         },
         "columns": [{
@@ -74,7 +77,7 @@ $(document).ready(function() {
 });
 
 function getData() {
-    var api = "http://molvenov3.test.carpago.nl/api/editSpecials/findall";
+    var api = baseUrl+"editSpecials/findall";
     $.get(api, function(data) {
         if (data) {
             setData(data);
@@ -89,7 +92,7 @@ function setData(data) {
 }
 
 function apiGetSingleSpecial(id) {
-    var api = "http://molvenov3.test.carpago.nl/api/editSpecials/get/" + id;
+    var api = baseUrl+"editSpecials/get/" + id;
     $.get(api, function(data) {
         if (data) {
             fillUpdateDiv(data);

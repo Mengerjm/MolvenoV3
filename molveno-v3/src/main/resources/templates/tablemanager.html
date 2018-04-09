@@ -6,6 +6,31 @@
 
 <h2 class="titleBar"> Table Manager</h2>
 
+<div class="add-wrapper">
+    <button type="button" class="btn btn-info" id="modalButton">Add a Table</button>
+</div>
+
+<b></b>
+<div class="modal fade" id="newReservationModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Add a Table</h3>
+            </div>
+            <div class="modal-body">
+                <form id="newTableForm" enctype='text/plain'>
+                    <h5 class="test">Input tablenumber: </h5><input type='number' min="1" max="200" class="form-control" name='tableNumber' placeholder="Tablenumber" id="tableNumber"><br>
+                    <h5 class="test">Input number of chairs: </h5><input type='number' min="1" max="12" class="form-control" name='numberOfSeats' placeholder="Number of Chairs" id="numberOfSeats">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn tablemanager_btn-primary" id="btnsubmit">Add new Table</button>
+                <button type="button" class="btn tablemanager_btn-default" id="btnclose" data-dismiss="modal">Close</button>
+            </div>
+            <div class="error-messages" style="display:none;"></div>
+        </div>
+    </div>
+</div>
 
 <table id="allTables" class="display" style="width:80%">
     <thead>
@@ -33,35 +58,10 @@
                 <a href="#" id="confirmbutton" data-title="Are you sure" data-trigger="focus" data-toggle="clickover" data-placement="top" class="btn btn-danger">Delete</a>
                 <button type="button" class="btn tablemanager_btn-default" id="btnclosealltable" data-dismiss="modal">Close</button>
             </div>
+            <div class="error-messages" style="display:none;"></div>
         </div>
     </div>
 </div>
-
-
-<!--Hieronder staat de werkende knop-->
-
-<button type="button" class="btn btn-info" id="modalButton">Add a Table</button>
-
-<div class="modal fade" id="newReservationModal" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-title">Add a Table</h3>
-            </div>
-                <div class="modal-body">
-                    <form id="newTableForm" enctype='text/plain'>
-                        <h5 class="test">Input tablenumber: </h5><input type='number' min="1" max="200" class="form-control" name='tableNumber' placeholder="Tablenumber" id="tableNumber"><br>
-                        <h5 class="test">Input number of chairs: </h5><input type='number' min="1" max="12" class="form-control" name='numberOfSeats' placeholder="Number of Chairs" id="numberOfSeats">
-                    </form>
-                </div>
-            <div class="modal-footer">
-                <button type="button" class="btn tablemanager_btn-primary" id="btnsubmit">Add new Table</button>
-                <button type="button" class="btn tablemanager_btn-default" id="btnclose" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <script src="js/homepage.js"></script>
 <script src="/js/tablemanagerdatatable.js"></script>

@@ -1,3 +1,6 @@
+//var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+var baseUrl = "http://localhost:8080/api/"
+
 $(document).ready(function() {
 
     $('#allTables').DataTable({
@@ -5,7 +8,7 @@ $(document).ready(function() {
             [0, "asc"]
         ],
         "ajax": {
-            url: 'http://molvenov3.test.carpago.nl/api/table/findall',
+            url: baseUrl+'table/findall',
             dataSrc: ''
         },
         "columns": [{
@@ -35,7 +38,7 @@ $(document).ready(function() {
 });
 
 function getData() {
-    var api = "http://molvenov3.test.carpago.nl/api/table/findall";
+    var api = baseUrl+"table/findall";
     $.get(api, function(data) {
         if (data) {
             setData(data);
@@ -51,7 +54,7 @@ function setData(data) {
 
 // Get the data of a guest using an id
 function apiGetSingleTable(id) {
-    var api = "http://molvenov3.test.carpago.nl/api/table/get/" + id;
+    var api = baseUrl+"table/get/" + id;
     $.get(api, function(data) {
         if (data) {
             fillUpdateDiv(data);

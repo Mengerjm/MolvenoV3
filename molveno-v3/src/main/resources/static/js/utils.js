@@ -1,4 +1,5 @@
-var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+//var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+var baseUrl = "http://localhost:8080/api/"
 
 //At ready watch for button click: add button & modal button
 $(document).ready(function() {
