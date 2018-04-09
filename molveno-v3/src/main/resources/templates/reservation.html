@@ -25,20 +25,20 @@
             <div class="modal-body">
                 <form id="reservationFormInput" enctype='text/plain' name="inputForm" onsubmit="return validateForm()">
 
-                    <h5 class="test">First Name:</h5>
-                    <input type="text" name="firstName" placeholder="Voornaam" id="firstNameInput" required/>
-                    <h5 class="test">Last Name:</h5>
-                    <input type="text" name="lastName" placeholder="Achternaam" id="lastNameInput" required/>
-                    <h5 class="test">Number Of People:</h5>
-                    <input type="number" min="1" placeholder="Aantal mensen" name="amountOfPeople" id="amountOfPeopleInput" required/>
+                    First Name:<br>
+                    <input type="text" class="form-control" name="firstName" placeholder="First Name" id="firstNameInput" required/>
+                   Last Name:<br>
+                    <input type="text" class="form-control" name="lastName" placeholder="Last Name" id="lastNameInput" required/>
+                    Number Of People:<br>
+                    <input type="number" class="form-control" min="1" placeholder="Amount of People" name="amountOfPeople" id="amountOfPeopleInput" required/>
 
-                    <h5 class="test">E-mail:</h5>
-                    <input type="email" placeholder="voorbeeld@voorbeeld.nl" name="email" id="emailInput"/>
-                    <h5 class="test">TelephoneNumber:</h5>
-                    <input type="tel" placeholder="06-12345678" name="telephoneNumber" id="telephoneNumberInput"/>
-                    <h5 class="test">Reservation Time:</h5>
+                    E-mail:<br>
+                    <input type="email" class="form-control" placeholder="example@example.nl" name="email" id="emailInput"/>
+                    TelephoneNumber:<br>
+                    <input type="tel" class="form-control" placeholder="06-12345678" name="telephone Number" id="telephoneNumberInput"/>
+                    Reservation Time:<br>
                     <div class="input-append date form_datetime" data-date="2012-12-21T15:25:00Z">
-                        <input size="16" type="text" placeholder="Kies een datum + tijd" value="" id="reservationTimeInput" readonly>
+                        <input size="18" type="text" placeholder="Kies een datum + tijd" value="" id="reservationTimeInput" readonly>
                         <span class="add-on"><i class="icon-remove"></i></span>
                         <span class="add-on"><i class="icon-th"></i></span>
                     </div>
@@ -51,11 +51,7 @@
         todayBtn: true
     });
                     </script>
-
-
                 </form>
-
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="addButton">Confirm Reservation</button>
                     <button type="button" class="btn btn-default" id="btncloseInput" data-dismiss="modal">Close</button>
@@ -115,8 +111,6 @@
                     Reservation time<br>
                     <input type='text' class="form-control" name='reservationTime' id="reservationTime" required><br>
                 </form>
-
-
 
             </div>
             <div class="modal-footer">
