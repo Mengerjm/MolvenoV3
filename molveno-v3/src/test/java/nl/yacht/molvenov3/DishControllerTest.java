@@ -42,7 +42,7 @@ public class DishControllerTest {
     }
 
     @Test
-    public void addSportTest() throws Exception {
+    public void addDishTest() throws Exception {
         Dish dish = new Dish();
         dish.setName("Barbeque");
         dish.setDescription("Barbeque met veel (vrucht) vlees");
