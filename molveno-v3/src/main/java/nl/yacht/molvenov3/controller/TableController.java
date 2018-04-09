@@ -48,6 +48,11 @@ public class TableController {
     //Change table characteristics
     @PutMapping(value = "/update/{id}")
     public Table update(@PathVariable("id") Long id, @RequestBody Table input) {
+        for(Table t : findAll()){
+            if(t.getTableNumber() == input.getTableNumber()){
+                throw new SameTableNumberException();
+            }
+        }
         Table oldTable = crudTableRepository.findOne(id);
         Table newTable = TableUtil.update(oldTable, input);
         return crudTableRepository.save(newTable);
