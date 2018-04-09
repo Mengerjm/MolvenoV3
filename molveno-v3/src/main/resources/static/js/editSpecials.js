@@ -175,3 +175,7 @@ function submitDelete() {
 var updateTable = function() {
     $('#specialsTable').DataTable().ajax.reload();
 }
+
+function displayError(error){
+    alert(error);
+}

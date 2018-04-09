@@ -183,3 +183,7 @@ function submitDelete() {
 var updateTable = function() {
     $('#dishesTable').DataTable().ajax.reload();
 }
+
+function displayError(error){
+    alert(error);
+}

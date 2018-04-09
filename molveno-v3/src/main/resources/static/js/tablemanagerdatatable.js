@@ -165,6 +165,10 @@ function submitDelete() {
     deselect();
 }
 
+function displayError(error){
+    alert(error);
+}
+
 var updateTable = function() {
     console.log("ik start update");
     $('#allTables').DataTable().ajax.reload();
