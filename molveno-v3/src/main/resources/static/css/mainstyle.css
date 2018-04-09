@@ -60,3 +60,8 @@ body {
     font-size: 45px;
 }
 
+.modal-dialog {
+
+          width: 400px;
+
+        }
