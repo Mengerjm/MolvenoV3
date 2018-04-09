@@ -29,6 +29,13 @@ public class ReservationController {
         return this.crudReservationRepository.findAll();
     }
 
+    //Find reservations after the local date time
+    @GetMapping(value="/recent")
+    public Iterable<Reservation> findAllRecent() {
+        Iterable<Reservation> allReservations = crudReservationRepository.findAll();
+        return ReservationUtil.findAllRecent(allReservations);
+    }
+
     //Find one reservation by ID
     @GetMapping(value = "{id}")
     public Reservation findById(@PathVariable long id) {
