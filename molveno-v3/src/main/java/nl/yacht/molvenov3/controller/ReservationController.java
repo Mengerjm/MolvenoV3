@@ -61,7 +61,7 @@ public class ReservationController {
         List<Table> allTables = ReservationUtil.makeList(crudTableRepository.findAll());
         List<Table> reservedTables = ReservationUtil.reserveTables(newReservation, newReservation.getAmountOfPeople(), allTables);
         if(reservedTables==null){
-            return null; //TODO Throw exception reservation not possible
+            throw new NoTablesAvailableException();
         }
         newReservation.setReservedTable(reservedTables);
         return this.crudReservationRepository.save(newReservation);

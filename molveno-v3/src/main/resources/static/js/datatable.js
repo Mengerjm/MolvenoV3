@@ -96,6 +96,7 @@ function fillUpdateDiv(reservation){
         html:true,
         container: newReservationModal
     });
+
 }
 
 // Deselect all items in the table
@@ -116,18 +117,73 @@ function submitEdit(id){
     for(var key in formData){
         if(formData[key] == "" || formData == null) delete formData[key];
     }
+    // first validate here
+            $(".error-messages").text("");
+
+        var fname = $("#firstName").val()
+        var lname = $("#lastName").val()
+        var amountppl = Number($("#amountOfPeople").val())
+        var restime = $("#reservationTime").val()
+        var email = $("#email").val()
+        var telnr = $("#telephoneNumber").val()
+
+        var alertString = "";
+
+        if(!fname){
+            alertString += "Firstname, ";
+            $("#firstName").css("backgroundColor", "#f8fbc8");
+        } else{
+            $("#firstName").css("backgroundColor", "white");
+        }
+        if(!lname){
+            alertString += "Lastname, ";
+            $("#lastName").css("backgroundColor", "#f8fbc8");
+        }else{
+            $("#lastName").css("backgroundColor", "white");
+        }
+        if(!amountppl){
+            alertString += "Amount of people, ";
+            $("#amountOfPeople").css("backgroundColor", "#f8fbc8");
+        }else{
+            $("#amountOfPeople").css("backgroundColor", "white");
+        }
+        if(!restime){
+            alertString += "Reservation time";
+            $("#reservationTime").css("backgroundColor", "#f8fbc8");
+        }else{
+            $("#reservationTime").css("backgroundColor", "white");
+        }
+        if (!email && !telnr){
+            alertString += "Contact information, ";
+            $("#email").css("backgroundColor", "#f8fbc8");
+            $("#telephoneNumber").css("backgroundColor", "#f8fbc8");
+        }else{
+            $("#email").css("backgroundColor", "white");
+            $("#telehponeNumber").css("backgroundColor", "white");
+             }
+
+        if (alertString != "")
+        {
+         $(".error-messages").text("Please Fill All Required Field(s) \n" + alertString).show();
+            return false;
+        }
+
+
     $.ajax({
         url:"/api/reservation/" + reservationNumber,
         type:"put",
         data: JSON.stringify(formData),
         contentType: "application/json; charset=utf-8",
-        success: getData,
-        error: function(error){
-            displayError(error);
-        }
+        success: function(){
+            getData();
+            $('#newReservationModal').modal('toggle');
+        },
+        error: function(){$(".error-messages").text("There are no tables available for that time period")}
     });
+
     deselect();
-    $('#newReservationModal').modal('toggle');
+
+
 }
 
 // Delete the reservation in the database with the corresponding id
@@ -142,6 +198,9 @@ function submitDelete(){
         success: getData,
         contentType: "application/json; charset=utf-8"
     });
+
+
+
 
     $('#newReservationModal').modal('toggle');
     deselect();
