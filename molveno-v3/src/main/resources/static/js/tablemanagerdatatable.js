@@ -1,5 +1,5 @@
-var baseUrl = "http://molvenov3.test.carpago.nl/api/"
-//var baseUrl = "http://localhost:8080/api/"
+//var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+var baseUrl = "http://localhost:8080/api/"
 
 $(document).ready(function() {
 
@@ -136,7 +136,7 @@ function submitEdit(id) {
         contentType: "application/json; charset=utf-8",
         success: getData,
         error: function(error) {
-            displayError(error);
+            alert("tableNumber " + tableNumber + " already exists, cannot change table to existing table number")
         }
     });
     deselect();
@@ -156,6 +156,9 @@ function submitDelete() {
         type: "delete",
         data: JSON.stringify(formData),
         success: getData,
+        error: function(error) {
+            alert("Cannot delete " + tableNumber + ", it has been reserved by somebody")
+        },
         contentType: "application/json; charset=utf-8"
     });
 
@@ -163,10 +166,6 @@ function submitDelete() {
 
     $('#allTableModal').modal('toggle');
     deselect();
-}
-
-function displayError(error){
-    alert(error);
 }
 
 var updateTable = function() {
