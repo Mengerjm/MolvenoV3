@@ -82,7 +82,7 @@ public class ReservationUtil {
             }
         }
         //Try again with a new combination of 2 tables as long as there are more tables in the db
-        if(index<tables.size()){
+        if(index<tables.size()-1){
             return findTwoTables(reservation, index+1, numberOfGuests, tables);
         }
         //As long as number of guests isn't twice as big as the amount of seats on the biggest table, try and look for a bigger table

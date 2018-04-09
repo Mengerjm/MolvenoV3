@@ -10,7 +10,7 @@ console.log("doc ready");
 function activateModal (){
         console.log("Ik activeer");
         $('#reservationFormInput').trigger("reset");
-
+        $(".error-messages").text("");
         $('#reservationInputModal').modal('toggle');
         }
 
@@ -82,7 +82,8 @@ function activateModal (){
              $('#reservationInputModal').modal('toggle');
 
                       console.log(data);
-                 }
+                 },
+                 error: $(".error-messages").text("There are no tables available for that time period")
         });
 
     });
