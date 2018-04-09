@@ -10,7 +10,7 @@ console.log("doc ready");
 function activateModal (){
         console.log("Ik activeer");
         $('#reservationFormInput').trigger("reset");
-
+        $(".error-messages").text("");
         $('#reservationInputModal').modal('toggle');
         }
 
