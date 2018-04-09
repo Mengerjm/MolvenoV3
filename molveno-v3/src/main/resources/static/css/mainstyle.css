@@ -1,7 +1,7 @@
 
 @font-face {
-font-family: "Header font";
-src: url("../fonts/BRUSHSCI.ttf");
+    font-family: "Header font";
+    src: url("../fonts/BRUSHSCI.ttf");
 }
 
 
@@ -13,22 +13,29 @@ h1, h2, h3, h4, h5, h6 {
 
 
 body {
-  font-family: Calibri, sans-serif;
-  background-color: #EFF8FB;
+    font-family: Calibri, sans-serif;
+    background-color: #EFF8FB;
   }
 
 .logo {
-width: 100px;
+    width: 100px;
+ }
+
+.back {
+    width: 60px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
 }
 
 .site-title {
-display: inline-block;
+    display: inline-block;
 }
 
 .test {
-font-family: Calibri, sans-serif;
-color: black;
-font size: 11px;
+    font-family: Calibri, sans-serif;
+    color: black;
+    font size: 11px;
 }
 
 

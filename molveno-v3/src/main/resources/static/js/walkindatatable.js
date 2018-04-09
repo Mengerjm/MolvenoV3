@@ -1,3 +1,5 @@
+var baseUrl
+
 $(document).ready(function() {
 
         $('#allTables').DataTable( {

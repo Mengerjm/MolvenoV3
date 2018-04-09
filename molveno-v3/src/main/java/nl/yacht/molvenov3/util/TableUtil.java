@@ -1,6 +1,7 @@
 package nl.yacht.molvenov3.util;
 
 import nl.yacht.molvenov3.model.Table;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,6 @@ public class TableUtil {
         oldTable.setTableNumber(newTable.getTableNumber());
         oldTable.setNumberOfSeats(newTable.getNumberOfSeats());
         return oldTable;
-    }
+                }
 
-}
+                }

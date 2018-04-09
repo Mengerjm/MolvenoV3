@@ -1,9 +1,11 @@
 .reservation_btn-default {
 background-color: #D8D8D8;
+color: white;
 }
 
 .reservation_btn-primary{
     background-color: #17a2b8;
+    color: white;
 }
 
 .error-messages{

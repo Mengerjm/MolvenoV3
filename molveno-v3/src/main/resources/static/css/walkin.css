@@ -1,6 +1,15 @@
-.walkin_btn-primary{
+.modal-unavailable {
+font-family: Calibri, sans-serif;
+color: black;
+font size: 11px;
 }
 
+.walkin_btn-default {
+background-color: #D8D8D8;
+color: white;
+}
 
-.walkin_btn-default{
+.walkin_btn-primary{
+    background-color: #17a2b8;
+    color: white;
 }

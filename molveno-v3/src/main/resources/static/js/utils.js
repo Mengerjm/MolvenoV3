@@ -10,7 +10,7 @@ $(document).ready(function() {
     function activateModal() {
         console.log("Ik activeer");
         $('#reservationFormInput').trigger("reset");
-
+        $(".error-messages").text("");
         $('#reservationInputModal').modal('toggle');
     }
 
@@ -68,20 +68,22 @@ $(document).ready(function() {
         console.log(JSON.stringify(jsonObject));
 
         $.ajax({
-            contentType: "application/json",
-            // waar moet hij de request op uitvoeren
-            url: baseUrl + "reservation",
-            // type actie
-            type: "post",
-            data: JSON.stringify(jsonObject),
-            // als de actie lukt, voer deze functie uit
-            success: function(data) { // so the data is the bulb of the response of the Spring Boot REST controller
 
-                updateTable();
-                $('#reservationInputModal').modal('toggle');
+                 contentType : "application/json",
+                 // waar moet hij de request op uitvoeren
+                 url : baseUrl+"reservation",
+                 // type actie
+                 type : "post",
+                 data: JSON.stringify(jsonObject),
+                 // als de actie lukt, voer deze functie uit
+                 success: function(data){ // so the data is the bulb of the response of the Spring Boot REST controller
 
-                console.log(data);
-            }
+             updateTable();
+             $('#reservationInputModal').modal('toggle');
+
+                      console.log(data);
+                 },
+                 error: $(".error-messages").text("There are no tables available for that time period")
         });
 
 

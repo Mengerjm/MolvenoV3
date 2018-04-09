@@ -1,5 +1,6 @@
 package nl.yacht.molvenov3.controller;
 
+import nl.yacht.molvenov3.exception.    NoTablesAvailableException;
 import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.model.Table;
 import nl.yacht.molvenov3.repository.CrudReservationRepository;
@@ -40,7 +41,7 @@ public class ReservationController {
         List<Table> tables = ReservationUtil.makeList(crudTableRepository.findAll());
         List<Table> reservedTables = ReservationUtil.reserveTables(reservation, reservation.getAmountOfPeople(), tables);
         if(reservedTables==null){
-            return null; //TODO Throw exception reservation not possible
+            throw new NoTablesAvailableException();
         }
         reservation.setReservedTable(reservedTables);
         return this.crudReservationRepository.save(reservation);
