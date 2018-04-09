@@ -2,6 +2,7 @@ package nl.yacht.molvenov3.util;
 
 import nl.yacht.molvenov3.model.Reservation;
 import nl.yacht.molvenov3.model.Table;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class ReservationUtil {
 
-    public static Reservation update(Reservation update, Reservation reservation){
+    public static Reservation update(Reservation update, Reservation reservation) {
         update.setFirstName(reservation.getFirstName());
         update.setLastName(reservation.getLastName());
         update.setAmountOfPeople(reservation.getAmountOfPeople());
@@ -19,10 +20,22 @@ public class ReservationUtil {
         return update;
     }
 
+    //Find recent reservations
+    public static Iterable<Reservation> findAllRecent(Iterable<Reservation> allReservations) {
+        List<Reservation> allRecentReservations = new ArrayList<>();
+        for (Reservation reservation : allReservations) {
+            if (reservation.getReservationTime().isAfter(LocalDateTime.now().minusDays(1))) {
+                allRecentReservations.add(reservation);
+            }
+        }
+        return allRecentReservations;
+    }
+
+
     //Turn findAll() Iterable into List
-    public static List<Table> makeList(Iterable<Table> tables){
+    public static List<Table> makeList(Iterable<Table> tables) {
         List<Table> alltables = new ArrayList<>();
-        for (Table table:tables) {
+        for (Table table : tables) {
             alltables.add(table);
         }
         return alltables;
@@ -31,13 +44,12 @@ public class ReservationUtil {
     //region New reservation - set reservation time to table
 
     //Assign tables automatically depending on availability and party size
-    public static List<Table> reserveTables(Reservation reservation, int numberOfGuests, List<Table> tables){
+    public static List<Table> reserveTables(Reservation reservation, int numberOfGuests, List<Table> tables) {
         int biggestTable = biggestTableAvailable(reservation, tables);
         //If biggest table is smaller than number of guests, two tables are required
-        if(biggestTable<reservation.getAmountOfPeople()){
+        if (biggestTable < reservation.getAmountOfPeople()) {
             return findTwoTables(reservation, 0, numberOfGuests, tables);
-        }
-        else {
+        } else {
             //If a table with the right amount of seats is available, it is returned and reservation time is set
             for (Table table : tables) {
                 if (table.getNumberOfSeats() == numberOfGuests && table.canTableBeReserved(table, reservation.getReservationTime())) {
@@ -48,16 +60,16 @@ public class ReservationUtil {
                 }
             }
             //Try and find a table that is 1 bigger than the number of guests
-            return reserveTables(reservation, numberOfGuests+1, tables);
+            return reserveTables(reservation, numberOfGuests + 1, tables);
         }
     }
 
     //Find biggest table available
-    public static int biggestTableAvailable(Reservation reservation, List<Table> tables){
+    public static int biggestTableAvailable(Reservation reservation, List<Table> tables) {
         int biggestTable = 0;
-        for (Table table:tables) {
-            if(table.getNumberOfSeats()>biggestTable
-                    && table.canTableBeReserved(table, reservation.getReservationTime())){
+        for (Table table : tables) {
+            if (table.getNumberOfSeats() > biggestTable
+                    && table.canTableBeReserved(table, reservation.getReservationTime())) {
                 biggestTable = table.getNumberOfSeats();
             }
         }
@@ -65,14 +77,14 @@ public class ReservationUtil {
     }
 
     //Find two tables
-    public static List<Table> findTwoTables(Reservation reservation, int index, int numberOfGuests, List<Table> tables){
+    public static List<Table> findTwoTables(Reservation reservation, int index, int numberOfGuests, List<Table> tables) {
         Table tableOne = tables.get(index);
         int biggestTable = biggestTableAvailable(reservation, tables);
         //First try to find a combination of 2 tables that are exactly equal to amount of guests
-        for (Table table:tables) {
-            if(table.canTableBeReserved(table, reservation.getReservationTime())
+        for (Table table : tables) {
+            if (table.canTableBeReserved(table, reservation.getReservationTime())
                     && !table.equals(tableOne)
-                    && (table.getNumberOfSeats()+tableOne.getNumberOfSeats())==numberOfGuests){
+                    && (table.getNumberOfSeats() + tableOne.getNumberOfSeats()) == numberOfGuests) {
                 List<Table> output = new ArrayList<>();
                 output.add(tableOne);
                 tableOne.getReservationTimes().add(reservation.getReservationTime());
@@ -82,14 +94,13 @@ public class ReservationUtil {
             }
         }
         //Try again with a new combination of 2 tables as long as there are more tables in the db
-        if(index<tables.size()-1){
-            return findTwoTables(reservation, index+1, numberOfGuests, tables);
+        if (index < tables.size() - 1) {
+            return findTwoTables(reservation, index + 1, numberOfGuests, tables);
         }
         //As long as number of guests isn't twice as big as the amount of seats on the biggest table, try and look for a bigger table
-        else if (numberOfGuests<=biggestTable*2) {
-            return findTwoTables(reservation, 0, numberOfGuests+1, tables);
-        }
-        else return null;
+        else if (numberOfGuests <= biggestTable * 2) {
+            return findTwoTables(reservation, 0, numberOfGuests + 1, tables);
+        } else return null;
     }
 
     //endregion
@@ -111,14 +122,13 @@ public class ReservationUtil {
     public static void removeReservationFromTable(Table table, Reservation reservation) {
         int index = 0;
         try {
-             for (LocalDateTime reservationTime : table.getReservationTimes()) {
+            for (LocalDateTime reservationTime : table.getReservationTimes()) {
                 if (reservationTime.isEqual(reservation.getReservationTime())) {
                     table.getReservationTimes().remove(index);
                 }
             }
             index++;
-        }
-        catch(ConcurrentModificationException cme) {
+        } catch (ConcurrentModificationException cme) {
             // ignore for now
             // in the wild: log something ...
         }

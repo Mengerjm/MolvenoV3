@@ -29,6 +29,13 @@ public class ReservationController {
         return this.crudReservationRepository.findAll();
     }
 
+    //Find reservations after the local date time
+    @GetMapping(value="/recent")
+    public Iterable<Reservation> findAllRecent() {
+        Iterable<Reservation> allReservations = crudReservationRepository.findAll();
+        return ReservationUtil.findAllRecent(allReservations);
+    }
+
     //Find one reservation by ID
     @GetMapping(value = "{id}")
     public Reservation findById(@PathVariable long id) {
@@ -61,7 +68,7 @@ public class ReservationController {
         List<Table> allTables = ReservationUtil.makeList(crudTableRepository.findAll());
         List<Table> reservedTables = ReservationUtil.reserveTables(newReservation, newReservation.getAmountOfPeople(), allTables);
         if(reservedTables==null){
-            return null; //TODO Throw exception reservation not possible
+            throw new NoTablesAvailableException();
         }
         newReservation.setReservedTable(reservedTables);
         return this.crudReservationRepository.save(newReservation);

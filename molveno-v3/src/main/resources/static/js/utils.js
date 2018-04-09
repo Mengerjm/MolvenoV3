@@ -17,39 +17,47 @@ function activateModal (){
 
     $("#addButton").click(function() {
 
-        var a = $("#firstNameInput").val()
-        var b = $("#lastNameInput").val()
-        var c = Number($("#amountOfPeopleInput").val())
-        var d = $("#reservationTimeInput").val()
+        var fname = $("#firstNameInput").val()
+        var lname = $("#lastNameInput").val()
+        var amountppl = Number($("#amountOfPeopleInput").val())
+        var restime = $("#reservationTimeInput").val()
+        var email = $("#emailInput").val()
+        var telnr = $("#telephoneNumberInput").val()
 
         var alertString = "";
 
-        if(a== null || a==""){
-
+        if(!fname){
             alertString += "Firstname, ";
             $("#firstNameInput").css("backgroundColor", "#f8fbc8");
         } else{
             $("#firstNameInput").css("backgroundColor", "white");
         }
-        if(b== null || b==""){
+        if(!lname){
             alertString += "Lastname, ";
             $("#lastNameInput").css("backgroundColor", "#f8fbc8");
         }else{
             $("#lastNameInput").css("backgroundColor", "white");
         }
-        if(c== null || c==""){
+        if(!amountppl){
             alertString += "Amount of people, ";
             $("#amountOfPeopleInput").css("backgroundColor", "#f8fbc8");
         }else{
             $("#amountOfPeopleInput").css("backgroundColor", "white");
         }
-        if(d== null || d==""){
-            alertString += "Reservation time";
+        if(!restime){
+            alertString += "Reservation time, ";
             $("#reservationTimeInput").css("backgroundColor", "#f8fbc8");
         }else{
             $("#reservationTimeInput").css("backgroundColor", "white");
-
         }
+        if (!email && !telnr){
+            alertString += "Contact information, ";
+            $("#emailInput").css("backgroundColor", "#f8fbc8");
+            $("#telephoneNumberInput").css("backgroundColor", "#f8fbc8");
+        }else{
+            $("#emailInput").css("backgroundColor", "white");
+            $("#telehponeNumberInput").css("backgroundColor", "white");
+             }
 
         if (alertString != "")
         {
