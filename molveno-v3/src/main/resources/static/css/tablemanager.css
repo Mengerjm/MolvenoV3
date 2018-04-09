@@ -1,5 +1,9 @@
-.tablemanager_btn-primary{
+.tablemanager_btn-default {
+background-color: #D8D8D8;
+color: white;
 }
 
-.tablemanager_btn-default{
+.tablemanager_btn-primary{
+    background-color: #17a2b8;
+    color: white;
 }
