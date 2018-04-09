@@ -1,5 +1,5 @@
-//var baseUrl = "http://molvenov3.test.carpago.nl/api/"
-var baseUrl = "http://localhost:8080/api/"
+var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+//var baseUrl = "http://localhost:8080/api/"
 
 //At ready watch for button click: add button & modal button
 $(document).ready(function() {
@@ -12,6 +12,12 @@ $(document).ready(function() {
         console.log("Ik activeer");
         $('#reservationFormInput').trigger("reset");
         $(".error-messages").text("");
+        $("#firstNameInput").css("backgroundColor", "white");
+        $("#lastNameInput").css("backgroundColor", "white");
+        $("#amountOfPeopleInput").css("backgroundColor", "white");
+        $("#reservationTimeInput").css("backgroundColor", "white");
+        $("#emailInput").css("backgroundColor", "white");
+        $("#telephoneNumberInput").css("backgroundColor", "white");
         $('#reservationInputModal').modal('toggle');
     }
 
@@ -58,7 +64,7 @@ $(document).ready(function() {
         }else{
             $("#emailInput").css("backgroundColor", "white");
             $("#telehponeNumberInput").css("backgroundColor", "white");
-             }
+        }
 
         if (alertString != "") {
             $(".error-messages").text("Please Fill All Required Field(s) \n" + alertString).show();
