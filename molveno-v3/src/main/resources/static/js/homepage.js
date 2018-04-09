@@ -8,4 +8,7 @@ function openTab(ev, arg) {
      if(arg == 'WalkIn') {
               window.open("../walkin.html","_self");
           }
+     if (arg == 'Homepage') {
+             window.open("../homepage.html", "_self");
+         }
  }
