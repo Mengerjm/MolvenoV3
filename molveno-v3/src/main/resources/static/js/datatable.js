@@ -143,9 +143,13 @@ function submitEdit(id){
         if(!amountppl){
             alertString += "Amount of people, ";
             $("#amountOfPeople").css("backgroundColor", "#f8fbc8");
+        }else if(amountppl == 0){
+            alertString += "Amount of people cant be 0";
+            $("#amountOfPeople").css("backgroundColor", "#f8fbc8");
         }else{
             $("#amountOfPeople").css("backgroundColor", "white");
         }
+
         if(!restime){
             alertString += "Reservation time";
             $("#reservationTime").css("backgroundColor", "#f8fbc8");
