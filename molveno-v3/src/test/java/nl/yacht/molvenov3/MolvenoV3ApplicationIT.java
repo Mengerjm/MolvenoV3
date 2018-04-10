@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MolvenoV3ApplicationTests {
+public class MolvenoV3ApplicationIT {
 
 	@Test
 	public void contextLoads() {

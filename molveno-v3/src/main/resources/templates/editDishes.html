@@ -6,7 +6,7 @@
 
 <h2 class="titleBar">Edit Dishes</h2>
 
-<button type="button" class="btnAddDish" id="modalButton">Add a new special</button>
+<button type="button" class="btnAddDish" id="modalButton">Add a new dish</button>
 <br>
 
 <div class="modal fade" id="dishInputModal" role="dialog">
@@ -20,6 +20,20 @@
                     <h5 class="test">Name:</h5>         <input id="nameInput" name="name" type="text">
                     <h5 class="test">Price:</h5>        <input id="priceInput" name="price" type="number">
                     <h5 class="test">Description:</h5>  <textarea id="descriptionInput" cols="40" rows="5"></textarea>
+                    <h5 class="test">Type of Dish:</h5> <select name="dishType" id="dishType">
+                                                            <option value="MEAT">Meat</option>
+                                                            <option value="FISH">Fish</option>
+                                                            <option value="SOUP">Soup</option>
+                                                            <option value="VEGETARIAN">Vegetarian</option>
+                                                            <option value="GRILL">Grill</option>
+                                                            <option value="HOMEMADE">Homemade</option>
+                                                            <option value="OVEN">Oven</option>
+                                                        </select>
+                    <h5 class="test">Type of Course:</h5> <select name="courseType" id="courseType">
+                                                            <option value="STARTER">Starter</option>
+                                                            <option value="MAIN">Main</option>
+                                                            <option value="DESSERT">Dessert</option>
+                                                        </select>
                     <h5 class="test">Ingredients:</h5><!-- Hier komt een multiline selection van dishes -->
                 </form>
                 <div class="modal-footer">
@@ -63,11 +77,13 @@
     <col class="dishesTable_column-three">
     <col class="dishesTable_column-four">
     <col class="dishesTable_column-five">
+    <col class="dishesTable_column-six">
     <thead>
     <tr>
         <th>Dish Name</th>
         <th>Dish Description</th>
         <th>Dish Price</th>
+        <th>Course Type</th>
         <th>Dish Type</th>
         <th>Dish Ingredients</th>
     </tr>

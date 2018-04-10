@@ -7,7 +7,9 @@ public class DishUtil {
         oldDish.setName(newDish.getName());
         oldDish.setDescription(newDish.getDescription());
         oldDish.setPrice(newDish.getPrice());
-        oldDish.setIngredientList(newDish.getIngredientList());
+        oldDish.setIngredients(newDish.getIngredients());
+        oldDish.setToc(newDish.getToc());
+        oldDish.setTod(newDish.getTod());
         return oldDish;
     }
 }

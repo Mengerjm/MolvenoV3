@@ -1,5 +1,7 @@
-$(document).ready(function() {
+var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+//var baseUrl = "http://localhost:8080/api/"
 
+$(document).ready(function() {
     $('#modalButton').click(modalToggle);
 
     $("#addButton").click(function() {
@@ -25,6 +27,7 @@ $(document).ready(function() {
 });
 
 function modalToggle() {
+    $('#specialFormInput').trigger("reset");
     $('#specialInputModal').modal('toggle');
 }
 
@@ -40,7 +43,7 @@ $(document).ready(function() {
             [0, "asc"]
         ],
         "ajax": {
-            url: 'http://localhost:8080/api/editSpecials/findall',
+            url: baseUrl+'editSpecials/findall',
             dataSrc: ''
         },
         "columns": [{
@@ -74,7 +77,7 @@ $(document).ready(function() {
 });
 
 function getData() {
-    var api = "http://localhost:8080/api/editSpecials/findall";
+    var api = baseUrl+"editSpecials/findall";
     $.get(api, function(data) {
         if (data) {
             setData(data);
@@ -89,7 +92,7 @@ function setData(data) {
 }
 
 function apiGetSingleSpecial(id) {
-    var api = "http://localhost:8080/api/editSpecials/get/" + id;
+    var api = baseUrl+"editSpecials/get/" + id;
     $.get(api, function(data) {
         if (data) {
             fillUpdateDiv(data);
@@ -103,8 +106,8 @@ function fillUpdateDiv(special) {
     $("#btndelete").attr('onclick', 'submitDelete(' + special.id + ');');
     $("#editbutton").attr('onclick', 'submitEdit(' + special.id + ');');
     document.getElementById("modal-title-all-specials").innerHTML = "Edit Special";
-	$("#nameInputEdit").val(special.name);
-	$("#descriptionInputEdit").val(special.description);
+    $("#nameInputEdit").val(special.name);
+    $("#descriptionInputEdit").val(special.description);
     Number($("#priceInputEdit").val(special.price));
     $("#dishes").val(null); // verzin hier wat op
     $("#confirmbutton").css('display', 'inline-block');
@@ -171,4 +174,8 @@ function submitDelete() {
 
 var updateTable = function() {
     $('#specialsTable').DataTable().ajax.reload();
+}
+
+function displayError(error){
+    alert(error);
 }

@@ -1,5 +1,6 @@
 package nl.yacht.molvenov3.controller;
 
+import nl.yacht.molvenov3.exception.SameTableNumberException;
 import nl.yacht.molvenov3.model.Table;
 import nl.yacht.molvenov3.repository.CrudTableRepository;
 import nl.yacht.molvenov3.util.TableUtil;
@@ -36,12 +37,22 @@ public class TableController {
     //Add new table with tablenumber and number of seats
     @PostMapping(value = "/newtable")
     public Table save(@RequestBody Table table) {
+        for(Table t : findAll()){
+            if(t.getTableNumber() == table.getTableNumber()){
+                throw new SameTableNumberException();
+            }
+        }
         return crudTableRepository.save(table);
     }
 
     //Change table characteristics
     @PutMapping(value = "/update/{id}")
     public Table update(@PathVariable("id") Long id, @RequestBody Table input) {
+        for(Table t : findAll()){
+            if(t.getTableNumber() == input.getTableNumber()){
+                throw new SameTableNumberException();
+            }
+        }
         Table oldTable = crudTableRepository.findOne(id);
         Table newTable = TableUtil.update(oldTable, input);
         return crudTableRepository.save(newTable);

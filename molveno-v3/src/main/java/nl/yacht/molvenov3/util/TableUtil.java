@@ -1,6 +1,7 @@
 package nl.yacht.molvenov3.util;
 
 import nl.yacht.molvenov3.model.Table;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +9,10 @@ import java.util.List;
 public class TableUtil {
 
     //Find all tables that are available NOW
-    public static Iterable<Table> findAllAvailable(Iterable<Table> allTables){
+    public static Iterable<Table> findAllAvailable(Iterable<Table> allTables) {
         List<Table> availableTables = new ArrayList<>();
-        for (Table table: allTables) {
-            if(table.canTableBeUsedNow()){
+        for (Table table : allTables) {
+            if (table.canTableBeUsedNow()) {
                 availableTables.add(table);
             }
         }
@@ -25,10 +26,9 @@ public class TableUtil {
     }
 
     //Update characteristics of table
-    public static Table update(Table oldTable, Table newTable){
+    public static Table update(Table oldTable, Table newTable) {
         oldTable.setTableNumber(newTable.getTableNumber());
         oldTable.setNumberOfSeats(newTable.getNumberOfSeats());
         return oldTable;
     }
-
 }
