@@ -1,5 +1,5 @@
-var baseUrl = "http://molvenov3.test.carpago.nl/api/"
-//var baseUrl = "http://localhost:8080/api/"
+//var baseUrl = "http://molvenov3.test.carpago.nl/api/"
+var baseUrl = "http://localhost:8080/api/"
 
 $(document).ready(function() {
 

@@ -40,6 +40,9 @@ $(document).ready(function() {
                 console.log(data);
                 updateTable();
                 modalToggle();
+            },
+            error: function(error) {
+                alert("tableNumber " + tableNumber + " already exists, cannot change table to existing table number")
             }
         });
 
